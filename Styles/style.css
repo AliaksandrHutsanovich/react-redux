@@ -1,0 +1,43 @@
+body {
+    background: linear-gradient(to top left, chartreuse, aquamarine);
+}
+
+#not {
+    display: none;
+}
+
+.search-field {
+    position: absolute;
+    margin-left: 70%;
+    top: 10px;
+}
+
+.checkbox{
+    position: absolute;
+    margin-left: 60%;
+    top: 10px;
+}
+
+.redact {
+    background: url('../images/redact.png') no-repeat;
+}
+
+.delete {
+    background: url('../images/basket.jpg') no-repeat;
+}
+
+.add_subCategory{
+    background: url('../images/plus.png') no-repeat;
+}
+
+.visibility {
+    background: url('../images/arrow.png') no-repeat;
+}
+
+.edit-task {
+    background: url('../images/redact.png') no-repeat;
+}
+
+.choise {
+    background: url('../images/enter.png') no-repeat;
+}

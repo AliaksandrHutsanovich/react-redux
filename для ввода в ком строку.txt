@@ -1,0 +1,2 @@
+﻿chdir /d d:\Программирование\Обучение в EPAM\React_Redux\
+

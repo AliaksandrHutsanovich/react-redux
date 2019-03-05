@@ -1,0 +1,146 @@
+.container {
+    height: 100%;
+}
+
+.container > div {
+    height: 100%;
+    background: url(/images/background.jpg) no-repeat;
+    background-size: 100% 100% 
+}
+
+.wrapper {
+    height: 100%;
+    background: transparent;
+}
+
+.wrapper__main {
+    background: transparent;
+}
+
+.header {
+    background-color: transparent;
+    height: 15%;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.header__menu {
+    display: flex;
+    justify-content: space-between;
+}
+
+.wrapper__sider {
+    background: transparent;
+    /* border: 1px solid black; */
+}
+
+.wrapper__sider > div > div {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.wrapper__content {
+    /* border: 1px solid black; */
+}
+
+h1 {
+    color: white;
+    padding: 0px;
+    line-height: 28px;
+    margin-top: 3vh;
+    margin-bottom: 0px; 
+}
+
+.ant-progress-inner {
+    background: rgb(223, 217, 217) !important;
+}
+
+.progress_bar {
+    position: static !important;
+    display: block !important;
+    margin-top: 1vh !important;
+}
+
+.input {
+    display: block !important;
+    width: 50% !important;
+    top: 10px;
+    left: 20px;
+}
+
+.form_wrapper {
+    display: flex;
+    position: sticky;
+    top: 0px;
+}
+
+.button {
+    top: 10px;
+    left: 20px;
+}
+
+.draggable-tree {
+    /* border: 1px solid black; */
+    margin-top: 20px !important;
+    width: 90%;
+    align-self: center;
+    max-height: 85%;
+    overflow: auto;
+}
+
+
+.item__button:hover {
+    color: rgb(0, 225, 255);
+    cursor: pointer;
+}
+
+.ant-tree-node-content-wrapper {
+    background-color: rgb(41, 189, 226);
+    border-radius: 10px !important;
+    color: white;
+}
+
+.ant-tree-node-selected {
+    background-color: transparent !important;
+    color: red !important;
+}
+
+.ant-tree-node-selected a {
+    background-color: transparent !important;
+    color: red !important;
+}
+
+.filters {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    position: sticky;
+    top: 75px;
+}
+
+.list {
+    top: 8px;
+    height: calc(100vh - 15vh - 120px);
+    overflow: auto;
+}
+
+.list-item > div {
+    display: flex;
+    justify-content: center;
+}
+
+.list-item__content {
+    width: 80%;
+    border-radius: 10px !important;
+}
+
+.modal-input {
+    width: 100%;
+}
+
+.item-text {
+    line-height: 15px;
+}
+
+

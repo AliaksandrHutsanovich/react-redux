@@ -1,0 +1,21 @@
+import { addToUnDo, deleteFromUnDo } from '../actions/actions';
+import { handleActions } from 'redux-actions';
+import immutable from 'immutable';
+const Map = immutable.Map,
+      List = immutable.List;
+
+export const unDoReducer = handleActions({
+
+    [addToUnDo]: {
+        next(state, {payload}) {
+            return state.update('undoOperations', operations => operations.push(Map(payload)));
+        }
+    },
+
+    [deleteFromUnDo]: {
+        next(state, {payload}) {
+            return state.update('undoOperations', operations => operations.delete(state.get('undoOperations').toArray().length - 1));
+        }
+    }
+
+}, Map({ undoOperations: List([]) }));

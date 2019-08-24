@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Input, Button } from 'antd';
 import PropTypes from 'prop-types';
 import { clearReDo } from '../actions/actions';
-import { caseClickHandlers, kindsOfAddActions } from './utils/caseClickHandlers';
+import { caseClickHandlers, kindsOfAddActions } from './utils/utils';
 
 function addForm(placeholder) {
   class AddForm extends React.Component {

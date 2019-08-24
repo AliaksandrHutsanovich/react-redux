@@ -4,7 +4,7 @@ import { Modal, Input } from 'antd';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { clearReDo } from '../actions/actions';
-import { typesCategoryOperation } from './utils/caseClickHandlers';
+import { typesCategoryOperation } from './utils/utils';
 
 function changingDataDialog(operationTitle) {
   class ChangingDataDialog extends React.Component {

@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import { startUnDoProcess, startReDoProcess } from '../actions/actions';
 
 class HeaderContent extends React.Component {
-
   render() {
     const {
       percentage,

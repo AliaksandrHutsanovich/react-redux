@@ -19,7 +19,7 @@ export const editCategoryRevive = createAction('EDIT_CATEGORY_REVIVE');
 export const insertCategory = createAction('INSERT_CATEGORY');
 
 export const addTask = createAction('ADD_TASK');
-export const editTaskStatus = createAction('EDIT_TASK_STATUS'); 
+export const editTaskStatus = createAction('EDIT_TASK_STATUS');
 export const editTask = createAction('EDIT_TASK');
 export const deleteTask = createAction('DELETE_TASK');
 
@@ -46,4 +46,3 @@ export const addToReDo = createAction('ADD_TO_REDO');
 export const deleteFromReDo = createAction('DELETE_FROM_REDO');
 
 export const clearReDo = createAction('CLEAR_REDO');
-

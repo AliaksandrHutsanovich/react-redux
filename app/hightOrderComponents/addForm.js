@@ -11,15 +11,14 @@ function addForm(placeholder) {
     class AddForm extends React.Component {
         constructor(props) {
             super(props);
+            this.state = { value: "" }; 
         };
 
-        state = { value: "" };
-
-        changeValue = (event) => {
+        changeValue(event) {
             this.setState({ value: event.target.value });
         }
 
-        clickButton = (addAction, dispatch, url) => {
+        clickButton(addAction, dispatch, url) {
             dispatch(clearReDo());
             if (placeholder === 'Add new category') {
                 if (this.state.value) {

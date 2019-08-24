@@ -32,7 +32,8 @@ module.exports = {
     "curly": 2,
     "dot-location": 2,
     "react/prefer-stateless-function": [0, { "ignorePureComponents": true }],
-    "react/jsx-filename-extension": [0, { "extensions": [".js", ".jsx"] }]
+    "react/jsx-filename-extension": [0, { "extensions": [".js", ".jsx"] }],
+    'prefer-template': 0
   },
   parser: "babel-eslint",
 };

@@ -12,7 +12,7 @@ import {
 } from '../../../actions/actions';
 import { getPathParam, getSavingPath } from '../../../hightOrderComponents/utils/utils';
 
-const MyLoadingComponent = () => (<div>Loading...</div>); 
+const MyLoadingComponent = () => (<div>Loading...</div>);
 
 const LoadableModal = Loadable({
   loader: () => import('./editTaskModal'),

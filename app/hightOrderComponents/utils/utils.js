@@ -7,12 +7,12 @@ import {
   startDeleteCategoryProcess,
 } from '../../actions/actions';
 
-const getPathParam = (path) => ({
+export const getPathParam = (path) => ({
   savingPath: path.split('-'),
   param: path.split('-')[path.split('-').length - 1],
 });
 
-const getSavingPath = (path) => {
+export const getSavingPath = (path) => {
   const { savingPath } = getPathParam(path);
   savingPath.pop();
   return savingPath;

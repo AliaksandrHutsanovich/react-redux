@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const AddCategoryDialog = changingDataModal("Add new subcategory");
 const EditCategoryDialog = changingDataModal("Edit category");
-const DeleteCategoryDialog = changingDataModal("Delete category?");
+const DeleteCategoryDialog = changingDataModal("Delete category");
 
 class Category extends React.Component {
     constructor(props) {

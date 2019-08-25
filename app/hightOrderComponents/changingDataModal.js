@@ -13,11 +13,11 @@ function changingDataDialog(operationTitle) {
       this.state = { value: '' };
     }
 
-    handleChange = (e) => {
+    handleChange(e) {
       this.setState({ value: e.target.value });
     }
 
-    handleClickOk = (handleOk, path, dispatch, title) => {
+    handleClickOk(handleOk, path, dispatch, title) {
       const { value } = this.state;
       dispatch(clearReDo());
       typesCategoryOperation[operationTitle](path, dispatch, value, title);
@@ -43,7 +43,19 @@ function changingDataDialog(operationTitle) {
           onOk={() => this.handleClickOk(handleOk, path, dispatch, title)}
           onCancel={handleCancel}
         >
-          {operationTitle === 'Delete category?' ? <p>{titleCategory}</p> : <Input placeholder="input category title" defaultValue={title} value={value || title} onChange={this.handleChange} className="modal-input" />}
+          {
+            operationTitle === 'Delete category'
+              ? <p>{titleCategory}</p>
+              : (
+                <Input
+                  placeholder="input category title"
+                  defaultValue={title}
+                  value={value || title}
+                  onChange={this.handleChange}
+                  className="modal-input"
+                />
+              )
+          }
         </Modal>
       );
     }

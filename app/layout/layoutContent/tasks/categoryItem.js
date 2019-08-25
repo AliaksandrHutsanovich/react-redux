@@ -1,19 +1,22 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class CategoryItem extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+  shouldComponentUpdate(nextProps) {
+    const { title } = this.props;
+    return (nextProps.title !== title);
+  }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        return (nextProps.title !== this.props.title);
-    }
-
-    render() {
-        return (
-            <p className="item-text">{this.props.title}</p>
-        );
-    }
+  render() {
+    const { title } = this.props;
+    return (
+      <p className="item-text">{title}</p>
+    );
+  }
 }
+
+CategoryItem.propTypes = {
+  title: PropTypes.string.isRequired,
+};
 
 export default CategoryItem;

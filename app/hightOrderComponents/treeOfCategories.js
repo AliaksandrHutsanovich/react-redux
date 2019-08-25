@@ -1,50 +1,52 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import { Tree } from 'antd';
-const { TreeNode } = Tree;
 import { connect } from 'react-redux';
-import { getCategories, isRoutesRendered } from '../selectors/selectors';
+import PropTypes from 'prop-types';
+import { getCategories } from '../selectors/selectors';
+
+const { TreeNode } = Tree;
 
 
 function treeOfCategories(TreeNodeTitle) {
-    class TreeOfCategories extends React.Component {
-        constructor(props) {
-            super(props);
-        }
+  class TreeOfCategories extends React.Component {
+    onSelect = () => {}
 
-        onSelect = (e) => {
+    getTreeNodes(categories) {
+      return categories.map((category) => {
+        if (category.subCategories.length) {
+          return (
+            <TreeNode key={category.key} className="tree_node" title={<TreeNodeTitle path={category.key} title={category.title} />}>
+              {this.getTreeNodes(category.subCategories)}
+            </TreeNode>
+          );
         }
-
-        render() {
-            const loop = categories => categories.map((category) => {
-              if (category.subCategories.length) {
-                return <TreeNode key={category.key} className="tree_node" title={<TreeNodeTitle path={category.key} title={category.title} />}>
-                          {loop(category.subCategories)}
-                        </TreeNode>;
-              }
-              return <TreeNode key={category.key} className="tree_node" title={<TreeNodeTitle path={category.key} title={category.title} />} />;
-            });
-            let { onSelectCategory } = this.props;
-            return (
-              <Tree
-                className="draggable-tree"
-                draggable
-                onSelect={onSelectCategory || this.onSelect}
-              >
-                {loop(this.props.categories)}
-              </Tree>
-            );
-        }
+        return <TreeNode key={category.key} className="tree_node" title={<TreeNodeTitle path={category.key} title={category.title} />} />;
+      });
     }
 
-    const mapStateToProps = state => {
-        return {
-          categories: getCategories(state)
-        }
+    render() {
+      const { onSelectCategory, categories } = this.props;
+      return (
+        <Tree
+          className="draggable-tree"
+          draggable
+          onSelect={onSelectCategory || this.onSelect}
+        >
+          {this.getTreeNodes(categories)}
+        </Tree>
+      );
     }
+  }
 
-    return connect(mapStateToProps)(TreeOfCategories);
+  TreeOfCategories.propTypes = {
+    onSelectCategory: PropTypes.func.isRequired,
+    categories: PropTypes.arrayOf({}).isRequired,
+  };
 
+  const mapStateToProps = (state) => ({ categories: getCategories(state) });
+
+  return connect(mapStateToProps)(TreeOfCategories);
 }
 
 export default treeOfCategories;

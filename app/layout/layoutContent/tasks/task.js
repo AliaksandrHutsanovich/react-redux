@@ -1,40 +1,46 @@
 import React from 'react';
 import 'antd/dist/antd.css';
-import { Card } from 'antd';
+import { Card, Collapse } from 'antd';
+import PropTypes from 'prop-types';
 import CardTitle from './cardTitle';
-import { Collapse } from 'antd';
-import pure from 'recompose/pure';
 
-const Panel = Collapse.Panel;
+const { Panel } = Collapse;
 
-// class Task extends React.Component {
-//     constructor(props) {
-//         super(props);
-//     }
+const Task = ({
+  title,
+  description,
+  isFinished,
+  index,
+  url,
+}) => (
+  <Card
+    className="list-item__content"
+    title={
+      (
+        <CardTitle
+          index={index}
+          url={url}
+          title={title}
+          isFinished={isFinished}
+          description={description}
+        />
+      )
+    }
+  >
+    <Collapse bordered={false}>
+      <Panel header="Card content">
+        <p>{description}</p>
+      </Panel>
+    </Collapse>
+  </Card>
+);
 
-//     render() {
-//         console.log('rendering tasks');
-//         let { title, description, isFinished, index, url } = this.props;
-//         return (
-//             <Card className="list-item__content" title={<CardTitle index={index} url={url} title={title} isFinished={isFinished} description={description} />}>
-//                 <Collapse bordered={false}>
-//                     <Panel header="Card content">
-//                         <p>{description}</p>
-//                     </Panel>
-//                 </Collapse>
-//             </Card>
-//         );
-//     }
-// }
-
-const Task = ({title, description, isFinished, index, url}) => {
-    return  <Card className="list-item__content" title={<CardTitle index={index} url={url} title={title} isFinished={isFinished} description={description} />}>
-               <Collapse bordered={false}>
-                   <Panel header="Card content">
-                       <p>{description}</p>
-                   </Panel>
-               </Collapse>
-            </Card>
+Task.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  isFinished: PropTypes.bool.isRequired,
+  index: PropTypes.number.isRequired,
+  url: PropTypes.string.isRequired,
 };
 
-export default pure(Task);
+export default Task;

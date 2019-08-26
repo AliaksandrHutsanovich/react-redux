@@ -78,7 +78,7 @@ Tasks.propTypes = {
   tasks: PropTypes.arrayOf({}).isRequired,
   showDone: PropTypes.bool.isRequired,
   searchKey: PropTypes.string.isRequired,
-  match: PropTypes.objectOf({}).isRequired,
+  match: PropTypes.objectOf().isRequired,
 };
 
 export default connect(mapStateToProps)(Tasks);

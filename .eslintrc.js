@@ -33,7 +33,7 @@ module.exports = {
     "dot-location": 2,
     "react/prefer-stateless-function": [0, { "ignorePureComponents": true }],
     "react/jsx-filename-extension": [0, { "extensions": [".js", ".jsx"] }],
-    'prefer-template': 0
+    'prefer-template': 0,
   },
   parser: "babel-eslint",
 };

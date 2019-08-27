@@ -1,108 +1,117 @@
 import React from 'react';
-import {Icon} from 'antd';
-import changingDataModal from '../../../hightOrderComponents/changingDataModal';
+import { Icon } from 'antd';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import changingDataModal from '../../../hightOrderComponents/changingDataModal';
 
-const AddCategoryDialog = changingDataModal("Add new subcategory");
-const EditCategoryDialog = changingDataModal("Edit category");
-const DeleteCategoryDialog = changingDataModal("Delete category");
+const AddCategoryDialog = changingDataModal('Add new subcategory');
+const EditCategoryDialog = changingDataModal('Edit category');
+const DeleteCategoryDialog = changingDataModal('Delete category');
 
 class Category extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    state = { 
-        addModalVisible: false, 
-        editModalVisible: false, 
-        deleteModalVisible: false
+  constructor(props) {
+    super(props);
+    this.state = {
+      addModalVisible: false,
+      editModalVisible: false,
+      deleteModalVisible: false,
     };
+  }
 
-    handleAddModalOk = (e) => {
-        this.setState({
-            addModalVisible: false
-        });
-    }
+  shouldComponentUpdate(nextProps, nextState) {
+    const { addModalVisible, editModalVisible, deleteModalVisible } = this.state;
+    const { title } = this.props;
+    return (nextProps.title !== title
+    || nextState.addModalVisible !== addModalVisible
+    || nextState.editModalVisible !== editModalVisible
+    || nextState.deleteModalVisible !== deleteModalVisible);
+  }
 
-    handleEditModalOk = (e) => {
-        this.setState({
-            editModalVisible: false
-        });
-    }
+  handleAddModalOk = () => {
+    this.setState({
+      addModalVisible: false,
+    });
+  }
 
-    handleDeleteModalOk = (e) => {
-        this.setState({
-            deleteModalVisible: false
-        });
-    }
+  handleEditModalOk = () => {
+    this.setState({
+      editModalVisible: false,
+    });
+  }
 
-    handleAddModalCancel = (e) => {
-        this.setState({
-            addModalVisible: false
-        });
-    }
+  handleDeleteModalOk = () => {
+    this.setState({
+      deleteModalVisible: false,
+    });
+  }
 
-    handleEditModalCancel = (e) => {
-        this.setState({
-            editModalVisible: false
-        });
-    }
+  handleAddModalCancel = () => {
+    this.setState({
+      addModalVisible: false,
+    });
+  }
 
-    handleDeleteModalCancel = (e) => {
-        this.setState({
-            deleteModalVisible: false
-        });
-    }
+  handleEditModalCancel = () => {
+    this.setState({
+      editModalVisible: false,
+    });
+  }
 
-    showAddModal = () => {
-        this.setState({ addModalVisible: true });
-    }
+  handleDeleteModalCancel = () => {
+    this.setState({
+      deleteModalVisible: false,
+    });
+  }
 
-    showEditModal = () => {
-        this.setState({ editModalVisible: true });
-    }
+  showAddModal = () => {
+    this.setState({ addModalVisible: true });
+  }
 
-    showDeleteModal = () => {
-        this.setState({ deleteModalVisible: true });
-    }
+  showEditModal = () => {
+    this.setState({ editModalVisible: true });
+  }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        return (nextProps.title !== this.props.title || 
-                nextState.addModalVisible !== this.state.addModalVisible ||
-                nextState.editModalVisible !== this.state.editModalVisible ||
-                nextState.deleteModalVisible !== this.state.deleteModalVisible);
-    }
+  showDeleteModal = () => {
+    this.setState({ deleteModalVisible: true });
+  }
 
-    render() {
-        return (
-            <div>
-                <span><Link to={`/${this.props.path}`}>{this.props.title}</Link></span>
-                <Icon className="item__button" type="edit" onClick={this.showEditModal} />
-                <Icon className="item__button" type="plus" onClick={this.showAddModal} />
-                <Icon className="item__button" type="delete" onClick={this.showDeleteModal} />
-                <AddCategoryDialog 
-                    visible={this.state.addModalVisible} 
-                    handleOk={this.handleAddModalOk}
-                    handleCancel={this.handleAddModalCancel}
-                    path={this.props.path}
-                />
-                <EditCategoryDialog 
-                    visible={this.state.editModalVisible}
-                    handleOk={this.handleEditModalCancel} 
-                    handleCancel={this.handleEditModalCancel}
-                    path={this.props.path}
-                    title={this.props.title}
-                />
-                <DeleteCategoryDialog
-                    visible={this.state.deleteModalVisible}
-                    handleOk={this.handleDeleteModalOk}
-                    handleCancel={this.handleDeleteModalCancel}
-                    path={this.props.path}
-                    titleCategory={this.props.title}
-                />
-            </div>
-        );
-    }
+  render() {
+    const { addModalVisible, editModalVisible, deleteModalVisible } = this.state;
+    const { path, title } = this.props;
+    return (
+      <div>
+        <span><Link to={`/${path}`}>{title}</Link></span>
+        <Icon className="item__button" type="edit" onClick={this.showEditModal} />
+        <Icon className="item__button" type="plus" onClick={this.showAddModal} />
+        <Icon className="item__button" type="delete" onClick={this.showDeleteModal} />
+        <AddCategoryDialog
+          visible={addModalVisible}
+          handleOk={this.handleAddModalOk}
+          handleCancel={this.handleAddModalCancel}
+          path={path}
+        />
+        <EditCategoryDialog
+          visible={editModalVisible}
+          handleOk={this.handleEditModalCancel}
+          handleCancel={this.handleEditModalCancel}
+          path={path}
+          title={title}
+        />
+        <DeleteCategoryDialog
+          visible={deleteModalVisible}
+          handleOk={this.handleDeleteModalOk}
+          handleCancel={this.handleDeleteModalCancel}
+          path={path}
+          titleCategory={title}
+        />
+      </div>
+    );
+  }
 }
+
+Category.propTypes = {
+  path: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+};
 
 export default Category;

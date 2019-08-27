@@ -35,6 +35,8 @@ module.exports = {
     "react/jsx-filename-extension": [0, { "extensions": [".js", ".jsx"] }],
     "prefer-template": 0,
     "react/jsx-props-no-spreading": [0, { "exceptions": ["Tasks"] }],
+    "template-curly-spacing" : "off",
+    indent : "off",
   },
   parser: "babel-eslint",
 };

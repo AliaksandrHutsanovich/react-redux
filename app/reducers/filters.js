@@ -1,24 +1,24 @@
-import { 
-    showDoneTasks,
-    searchTasks
-} from '../actions/actions';
+import { Map } from 'immutable';
 import { handleActions } from 'redux-actions';
-import immutable from 'immutable';
-const Map = immutable.Map,
-      List = immutable.List;
+import {
+  showDoneTasks,
+  searchTasks,
+} from '../actions/actions';
 
-export const filters = handleActions({
+const filters = handleActions({
 
-    [showDoneTasks]: {
-        next(state, {payload}) {
-            return state.set("showDone", payload);
-        }
+  [showDoneTasks]: {
+    next(state, { payload }) {
+      return state.set('showDone', payload);
     },
+  },
 
-    [searchTasks]: {
-        next(state, {payload}) {
-            return state.set("searchKey", payload);
-        }
-    }
+  [searchTasks]: {
+    next(state, { payload }) {
+      return state.set('searchKey', payload);
+    },
+  },
 
 }, Map({ showDone: true, searchKey: '' }));
+
+export default filters;

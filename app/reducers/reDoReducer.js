@@ -1,27 +1,28 @@
-import { addToReDo, deleteFromReDo, clearReDo } from '../actions/actions';
+import { Map, List } from 'immutable';
 import { handleActions } from 'redux-actions';
-import immutable from 'immutable';
-const Map = immutable.Map,
-      List = immutable.List;
+import { addToReDo, deleteFromReDo, clearReDo } from '../actions/actions';
 
-export const reDoReducer = handleActions({
+const reDoReducer = handleActions({
 
-    [addToReDo]: {
-        next(state, { payload }) {
-            return state.update('redoOperations', operations => operations.push(Map(payload)));
-        }
+  [addToReDo]: {
+    next(state, { payload }) {
+      return state
+        .update('redoOperations', (operations) => operations.push(Map(payload)));
     },
+  },
 
-    [deleteFromReDo]: {
-        next(state, { payload }) {
-            return state.update('redoOperations', operations => operations.delete(state.get('redoOperations').toArray().length - 1));
-        }
+  [deleteFromReDo]: {
+    next(state) {
+      return state.update('redoOperations', (operations) => operations.delete(state.get('redoOperations').toArray().length - 1));
     },
+  },
 
-    [ clearReDo ]: {
-        next(state, { payload }) {
-            return state.set('redoOperations', List([]));
-        }
-    }
+  [clearReDo]: {
+    next(state) {
+      return state.set('redoOperations', List([]));
+    },
+  },
 
 }, Map({ redoOperations: List([]) }));
+
+export default reDoReducer;

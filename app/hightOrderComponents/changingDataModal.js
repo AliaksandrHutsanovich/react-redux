@@ -11,6 +11,8 @@ function changingDataDialog(operationTitle) {
     constructor(props) {
       super(props);
       this.state = { value: '' };
+      this.handleChange = this.handleChange.bind(this);
+      this.handleClickOk = this.handleClickOk.bind(this);
     }
 
     handleChange(e) {
@@ -33,7 +35,6 @@ function changingDataDialog(operationTitle) {
         handleOk,
         path,
         titleCategory,
-        value,
         handleCancel,
       } = this.props;
       return (
@@ -50,7 +51,6 @@ function changingDataDialog(operationTitle) {
                 <Input
                   placeholder="input category title"
                   defaultValue={title}
-                  value={value || title}
                   onChange={this.handleChange}
                   className="modal-input"
                 />
@@ -61,14 +61,18 @@ function changingDataDialog(operationTitle) {
     }
   }
 
+  ChangingDataDialog.defaultProps = {
+    title: '',
+    titleCategory: '',
+  };
+
   ChangingDataDialog.propTypes = {
     dispatch: PropTypes.func.isRequired,
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
     visible: PropTypes.bool.isRequired,
     handleOk: PropTypes.func.isRequired,
     path: PropTypes.string.isRequired,
-    titleCategory: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired,
+    titleCategory: PropTypes.string,
     handleCancel: PropTypes.func.isRequired,
   };
 

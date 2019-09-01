@@ -1,3 +1,4 @@
+/* eslint react/forbid-prop-types: 0 */
 import React from 'react';
 import PropTypes from 'prop-types';
 import Filters from './filtersElems/filters';
@@ -8,14 +9,12 @@ const AddTask = addForm('Add new task');
 
 class LayoutContent extends React.Component {
   render() {
-    const { props } = this;
-    const { showDone, searchKey } = props;
-    const { url } = props.match;
+    const { showDone, searchKey, match: { url } } = this.props;
     return (
       <div>
         <AddTask url={url} />
         <Filters showDone={showDone} searchKey={searchKey} />
-        <Tasks {...props} />
+        <Tasks {...this.props} />
       </div>
     );
   }
@@ -24,7 +23,7 @@ class LayoutContent extends React.Component {
 LayoutContent.propTypes = {
   showDone: PropTypes.bool.isRequired,
   searchKey: PropTypes.string.isRequired,
-  match: PropTypes.objectOf().isRequired,
+  match: PropTypes.object.isRequired,
 };
 
 export default LayoutContent;

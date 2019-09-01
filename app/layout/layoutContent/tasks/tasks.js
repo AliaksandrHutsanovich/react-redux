@@ -1,3 +1,5 @@
+/* eslint react/forbid-prop-types: 0 */
+
 import React from 'react';
 import 'antd/dist/antd.css';
 import { List } from 'antd';
@@ -75,10 +77,10 @@ const mapStateToProps = (state, props) => ({
 
 Tasks.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  tasks: PropTypes.arrayOf({}).isRequired,
+  tasks: PropTypes.array.isRequired,
   showDone: PropTypes.bool.isRequired,
   searchKey: PropTypes.string.isRequired,
-  match: PropTypes.objectOf().isRequired,
+  match: PropTypes.object.isRequired,
 };
 
 export default connect(mapStateToProps)(Tasks);

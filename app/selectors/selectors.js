@@ -1,92 +1,96 @@
-export const getCategories = state => {
-    let categories = state.actionReducers.get("categories").toArray();
-    let getSubCategories = (key, subCategories) => {
-        if (subCategories.length > 0) {
-            subCategories = subCategories.map((subCategory, num) => {
-                subCategory = subCategory.toObject();
-                subCategory.key = key + "-subCategories-" + num;
-                subCategory.subCategories = subCategory.subCategories.toArray();
-                if (subCategory.subCategories.length > 0) {
-                    subCategory.subCategories = getSubCategories(subCategory.key, subCategory.subCategories);
-                }
-                return subCategory;
-            });
+export const getCategories = (state) => {
+  const categories = state.actionReducers.get('categories').toArray();
+  const getSubCategories = (key, subCategories) => {
+    let arrSubCategories = [];
+    if (subCategories.length > 0) {
+      arrSubCategories = subCategories.map((subCategory, num) => {
+        const subCategoryElem = subCategory.toObject();
+        subCategoryElem.key = key + '-subCategories-' + num;
+        subCategoryElem.subCategories = subCategoryElem.subCategories.toArray();
+        if (subCategoryElem.subCategories.length > 0) {
+          subCategoryElem.subCategories = getSubCategories(
+            subCategoryElem.key,
+            subCategoryElem.subCategories,
+          );
         }
-        return subCategories;
-    };
-
-    categories = categories.map((category, num) => {
-        category = category.toObject();
-        category.key = "categories-" + num;
-        category.subCategories = category.subCategories.toArray();
-        category.subCategories = getSubCategories(category.key, category.subCategories);
-        return category;
-    });
-    return categories;
-}
-
-
-export const getTasks = state => {
-    let categories = state.actionReducers.get("categories").toArray();
-
-    let urls = [];
-    let arrayOfTaskGroups = [];
-
-    let getTasks = (key, subCategories) => {
-        if (subCategories.length > 0) {
-            subCategories.map((subCategory, num) => {
-                subCategory = subCategory.toObject();
-                subCategory.key = key + "-subCategories-" + num;
-                urls.push(subCategory.key);
-                subCategory.tasks = subCategory.tasks.toArray();
-                arrayOfTaskGroups.push(subCategory.tasks.map(task => task.toObject()));
-                subCategory.subCategories = subCategory.subCategories.toArray();
-                if (subCategory.subCategories.length > 0) {
-                    getTasks(subCategory.key, subCategory.subCategories);
-                }
-            });
-        }
-    };
-
-    categories.map((category, num) => {
-        category = category.toObject();
-        category.key = 'categories-' + num;
-        urls.push(category.key);
-        category.tasks = category.tasks.toArray();
-        arrayOfTaskGroups.push(category.tasks.map(task => task.toObject()));
-        category.subCategories = category.subCategories.toArray();
-        getTasks(category.key, category.subCategories);
-    });
-
-    return {
-      urls: urls,
-      taskGroups: arrayOfTaskGroups
+        return subCategoryElem;
+      });
     }
-}
+    return arrSubCategories;
+  };
 
-export const getUrls = state => {
-    let categories = state.actionReducers.get("categories").toArray();
-    let urls = [];
-    let getTasks = (key, subCategories) => {
-        if (subCategories.length > 0) {
-            subCategories.map((subCategory, num) => {
-                subCategory = subCategory.toObject();
-                subCategory.key = key + "-subCategories-" + num;
-                urls.push(subCategory.key);
-                subCategory.subCategories = subCategory.subCategories.toArray();
-                if (subCategory.subCategories.length > 0) {
-                    getTasks(subCategory.key, subCategory.subCategories);
-                }
-            });
+  const arrCategories = categories.map((category, num) => {
+    const categoryElem = category.toObject();
+    categoryElem.key = 'categories-' + num;
+    categoryElem.subCategories = categoryElem.subCategories.toArray();
+    categoryElem.subCategories = getSubCategories(categoryElem.key, categoryElem.subCategories);
+    return categoryElem;
+  });
+  return arrCategories;
+};
+
+
+export const getTasks = (state) => {
+  const categories = state.actionReducers.get('categories').toArray();
+
+  const urlsArr = [];
+  const arrayOfTaskGroups = [];
+
+  const getTasksFun = (key, subCategories) => {
+    if (subCategories.length > 0) {
+      subCategories.forEach((subCategory, num) => {
+        const subCategoryObj = subCategory.toObject();
+        subCategoryObj.key = key + '-subCategories-' + num;
+        urlsArr.push(subCategoryObj.key);
+        subCategoryObj.tasks = subCategoryObj.tasks.toArray();
+        arrayOfTaskGroups.push(subCategoryObj.tasks.map((task) => task.toObject()));
+        subCategoryObj.subCategories = subCategoryObj.subCategories.toArray();
+        if (subCategoryObj.subCategories.length > 0) {
+          getTasksFun(subCategoryObj.key, subCategoryObj.subCategories);
         }
+      });
+    }
+  };
+
+  categories.forEach((category, num) => {
+    const categoryObj = category.toObject();
+    categoryObj.key = 'categories-' + num;
+    urlsArr.push(categoryObj.key);
+    categoryObj.tasks = categoryObj.tasks.toArray();
+    arrayOfTaskGroups.push(categoryObj.tasks.map((task) => task.toObject()));
+    categoryObj.subCategories = categoryObj.subCategories.toArray();
+    getTasksFun(categoryObj.key, categoryObj.subCategories);
+  });
+
+  return {
+    urls: urlsArr,
+    taskGroups: arrayOfTaskGroups,
+  };
+};
+
+export const getUrls = (state) => {
+  const categories = state.actionReducers.get('categories').toArray();
+    const urls = [];
+    const getTasksFun = (key, subCategories) => {
+      if (subCategories.length > 0) {
+        subCategories.forEach((subCategory, num) => {
+          const subCategoryObj = subCategory.toObject();
+          subCategoryObj.key = key + '-subCategories-' + num;
+          urls.push(subCategoryObj.key);
+          subCategoryObj.subCategories = subCategoryObj.subCategories.toArray();
+          if (subCategoryObj.subCategories.length > 0) {
+            getTasksFun(subCategoryObj.key, subCategoryObj.subCategories);
+          }
+        });
+      }
     };
-    categories.map((category, num) => {
-        category = category.toObject();
-        category.key = 'categories-' + num;
-        urls.push(category.key);
-        category.subCategories = category.subCategories.toArray();
-        getTasks(category.key, category.subCategories);
+    categories.forEach((category, num) => {
+      const categoryObj = category.toObject();
+      categoryObj.key = 'categories-' + num;
+      urls.push(categoryObj.key);
+      categoryObj.subCategories = categoryObj.subCategories.toArray();
+      getTasksFun(categoryObj.key, categoryObj.subCategories);
     });
 
     return urls;
-}
+};

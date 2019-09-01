@@ -88,7 +88,7 @@ AppView.defaultProps = {
 AppView.propTypes = {
   showDone: PropTypes.bool.isRequired,
   searchKey: PropTypes.string,
-  urls: PropTypes.arrayOf().isRequired,
+  urls: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default connect(mapStateToProps)(AppView);

@@ -11,30 +11,31 @@ function addForm(placeholder) {
     constructor(props) {
       super(props);
       this.state = { value: '' };
+      this.changeValue = this.changeValue.bind(this);
+      this.clickButton = this.clickButton.bind(this);
     }
 
     changeValue(event) {
       this.setState({ value: event.target.value });
     }
 
-    clickButton(addAction, dispatch, url) {
+    clickButton(addAction, dispatch) {
       const { value } = this.state;
       dispatch(clearReDo());
-      caseClickHandlers[placeholder](dispatch, value, addAction, url);
+      caseClickHandlers[placeholder](dispatch, value, addAction);
       this.setState({ value: '' });
     }
 
     render() {
-      const { dispatch, url } = this.props;
-      const { value } = this.state;
+      const { dispatch } = this.props;
       const addAction = kindsOfAddActions[placeholder];
       return (
         <div className="form_wrapper">
-          <Input placeholder={placeholder} className="input" value={value} onChange={this.changeValue} />
+          <Input placeholder={placeholder} className="input" onChange={this.changeValue} />
           <Button
             type="primary"
             className="button"
-            onClick={() => { this.clickButton(addAction, dispatch, url); }}
+            onClick={() => { this.clickButton(addAction, dispatch); }}
           >
             Add
           </Button>
@@ -45,7 +46,6 @@ function addForm(placeholder) {
 
   AddForm.propTypes = {
     dispatch: PropTypes.func.isRequired,
-    url: PropTypes.string.isRequired,
   };
 
   return connect()(AddForm);

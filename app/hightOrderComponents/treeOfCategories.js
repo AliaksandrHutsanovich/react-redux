@@ -10,8 +10,6 @@ const { TreeNode } = Tree;
 
 function treeOfCategories(TreeNodeTitle) {
   class TreeOfCategories extends React.Component {
-    onSelect = () => {}
-
     getTreeNodes(categories) {
       return categories.map((category) => {
         if (category.subCategories.length) {
@@ -31,7 +29,7 @@ function treeOfCategories(TreeNodeTitle) {
         <Tree
           className="draggable-tree"
           draggable
-          onSelect={onSelectCategory || this.onSelect}
+          onSelect={onSelectCategory}
         >
           {this.getTreeNodes(categories)}
         </Tree>
@@ -39,9 +37,13 @@ function treeOfCategories(TreeNodeTitle) {
     }
   }
 
+  TreeOfCategories.defaultProps = {
+    onSelectCategory: () => {},
+  };
+
   TreeOfCategories.propTypes = {
-    onSelectCategory: PropTypes.func.isRequired,
-    categories: PropTypes.arrayOf({}).isRequired,
+    onSelectCategory: PropTypes.func,
+    categories: PropTypes.arrayOf(PropTypes.object).isRequired,
   };
 
   const mapStateToProps = (state) => ({ categories: getCategories(state) });

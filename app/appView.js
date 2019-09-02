@@ -11,7 +11,6 @@ import PropTypes from 'prop-types';
 import { Layout } from 'antd';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
 import HeaderContent from './header/headerContent';
 import LayoutSiderContent from './layout/layoutSider/layoutSiderContent';
 import LayoutContent from './layout/layoutContent/layoutContent';
@@ -67,18 +66,10 @@ class AppView extends React.Component {
     }
 }
 
-const urls = (state) => getUrls(state);
-const showDone = (state) => state.filters.get('showDone');
-const searchKey = (state) => state.filters.get('searchKey');
-
-const urlSelector = createSelector(urls, (url) => url);
-const showDoneSelector = createSelector(showDone, (showDone) => showDone);
-const searchKeySelector = createSelector(searchKey, (searchKey) => searchKey);
-
 const mapStateToProps = (state) => ({
-  urls: urlSelector(state),
-  showDone: showDoneSelector(state),
-  searchKey: searchKeySelector(state),
+  urls: getUrls(state),
+  showDone: state.filters.get('showDone'),
+  searchKey: state.filters.get('searchKey'),
 });
 
 AppView.defaultProps = {

@@ -26,6 +26,11 @@ class EditTaskModal extends React.Component {
       isFinished: '',
       isStatusChanged: false,
     };
+    this.onSelectCategory = this.onSelectCategory.bind(this);
+    this.onSaveTask = this.onSaveTask.bind(this);
+    this.onChangeTaskStatus = this.onChangeTaskStatus.bind(this);
+    this.onChangeTaskDescription = this.onChangeTaskDescription.bind(this);
+    this.onChangeTaskTitle = this.onChangeTaskTitle.bind(this);
   }
 
   onSelectCategory(e) {
@@ -47,7 +52,6 @@ class EditTaskModal extends React.Component {
     dispatch(clearReDo());
     const {
       isStatusChanged,
-      isFinishedTask,
       title: stateTitle,
       description: stateDescription,
       isFinished: stateIsFinished,
@@ -59,7 +63,7 @@ class EditTaskModal extends React.Component {
       newPathParam,
       title: stateTitle || title,
       description: stateDescription || description,
-      isFinished: stateIsFinished === '' ? isFinished : getStateValue(isFinishedTask, isStatusChanged, dispatch),
+      isFinished: stateIsFinished === '' ? isFinished : getStateValue(stateIsFinished, isStatusChanged, dispatch),
     }));
     handleOk();
   }
@@ -125,7 +129,7 @@ class EditTaskModal extends React.Component {
               <Row>
                 <Checkbox
                   defaultChecked={isFinished}
-                  onChange={this.onChangeTaskStatus}
+                  onChange={(e) => this.onChangeTaskStatus(e, isFinished)}
                 >
                   Done
                 </Checkbox>

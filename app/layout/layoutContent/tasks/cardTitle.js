@@ -23,13 +23,16 @@ class CardTitle extends React.Component {
   constructor(props) {
     super(props);
     this.state = { visible: false, checked: false };
+    this.showAddModal = this.showAddModal.bind(this);
+    this.handleModalCancel = this.handleModalCancel.bind(this);
+    this.handleModalOk = this.handleModalOk.bind(this);
   }
 
   static getDerivedStateFromProps = (nextProps) => ({ checked: nextProps.isFinished });
 
   onChange = (e, url, numTask, dispatch) => {
     dispatch(clearReDo());
-    const path = (url.replace('/', '') + '-tasks-' + numTask).split('-');
+    const path = url.replace('/', '') + '-tasks-' + numTask;
     if (e.target.checked) {
       dispatch(incrementInDone());
     } else {

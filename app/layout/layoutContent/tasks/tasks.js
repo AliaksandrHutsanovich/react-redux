@@ -45,7 +45,11 @@ class Tasks extends React.Component {
     } = this.props;
     let data = tasks || [];
     data = data
-      .map((elem) => elem)
+      .map((elem, index) => {
+        const newElem = elem;
+        newElem.index = index;
+        return newElem;
+      })
       .filter((elem) => elem.isFinished === showDone)
       .filter((elem) => elem.title.match(searchKey));
     return (
@@ -56,10 +60,10 @@ class Tasks extends React.Component {
           className="list"
           split={false}
           renderItem={
-            (item, index) => (
+            (item) => (
               <List.Item className="list-item">
                 <Task
-                  index={index}
+                  index={item.index}
                   url={url}
                   title={item.title}
                   description={item.Description}

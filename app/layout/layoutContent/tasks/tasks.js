@@ -10,6 +10,11 @@ import Task from './task';
 
 
 class Tasks extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
   componentDidMount() {
     const { dispatch, tasks } = this.props;
     dispatch(
@@ -20,14 +25,15 @@ class Tasks extends React.Component {
     );
   }
 
-  componentWillUpdate(nextProps) {
-    const { dispatch, tasks } = nextProps;
+  static getDerivedStateFromProps(props) {
+    const { dispatch, tasks } = props;
     dispatch(
       countPercentage({
         done: tasks.filter((task) => task.isFinished).length,
         all: tasks.length,
       }),
     );
+    return {};
   }
 
   render() {

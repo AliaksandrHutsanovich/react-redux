@@ -21,17 +21,24 @@ function addForm(placeholder) {
 
     clickButton(addAction, dispatch) {
       const { value } = this.state;
+      const { url } = this.props;
       dispatch(clearReDo());
-      caseClickHandlers[placeholder](dispatch, value, addAction);
+      caseClickHandlers[placeholder](dispatch, value, addAction, url);
       this.setState({ value: '' });
     }
 
     render() {
       const { dispatch } = this.props;
+      const { value } = this.state;
       const addAction = kindsOfAddActions[placeholder];
       return (
         <div className="form_wrapper">
-          <Input placeholder={placeholder} className="input" onChange={this.changeValue} />
+          <Input
+            placeholder={placeholder}
+            className="input"
+            value={value}
+            onChange={this.changeValue}
+          />
           <Button
             type="primary"
             className="button"
@@ -46,6 +53,11 @@ function addForm(placeholder) {
 
   AddForm.propTypes = {
     dispatch: PropTypes.func.isRequired,
+    url: PropTypes.string,
+  };
+
+  AddForm.defaultProps = {
+    url: '',
   };
 
   return connect()(AddForm);

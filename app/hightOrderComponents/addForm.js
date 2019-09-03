@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import 'antd/dist/antd.css';
 import { connect } from 'react-redux';
 import { Input, Button } from 'antd';
@@ -50,7 +50,7 @@ const addForm = (placeholder) => {
     url: '',
   };
 
-  return connect()(AddForm);
+  return connect()(memo(AddForm));
 };
 
 export default addForm;

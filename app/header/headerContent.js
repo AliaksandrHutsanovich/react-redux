@@ -1,38 +1,34 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import 'antd/dist/antd.css';
 import { Progress, Button, Icon } from 'antd';
 import { connect } from 'react-redux';
 import { startUnDoProcess, startReDoProcess } from '../actions/actions';
 
-class HeaderContent extends React.Component {
-  render() {
-    const {
-      percentage,
-      numUnDoObjs,
-      numReDoObjs,
-      dispatch,
-    } = this.props;
-    return (
-      <div>
-        <div className="header__menu">
-          <h1>Task Accountant</h1>
-          <Button.Group size="small">
-            <Button type="primary" disabled={!numUnDoObjs} onClick={() => dispatch(startUnDoProcess())}>
-              <Icon type="left" />
-              Backward
-            </Button>
-            <Button type="primary" disabled={!numReDoObjs} onClick={() => dispatch(startReDoProcess())}>
-              Forward
-              <Icon type="right" />
-            </Button>
-          </Button.Group>
-        </div>
-        <Progress className="progress_bar" percent={percentage} strokeColor="red" showInfo={false} />
-      </div>
-    );
-  }
-}
+const HeaderContent = ({
+  percentage,
+  numUnDoObjs,
+  numReDoObjs,
+  dispatch,
+}) => (
+  <div>
+    <div className="header__menu">
+      <h1>Task Accountant</h1>
+      <Button.Group size="small">
+        <Button type="primary" disabled={!numUnDoObjs} onClick={() => dispatch(startUnDoProcess())}>
+          <Icon type="left" />
+          Backward
+        </Button>
+        <Button type="primary" disabled={!numReDoObjs} onClick={() => dispatch(startReDoProcess())}>
+          Forward
+          <Icon type="right" />
+        </Button>
+      </Button.Group>
+    </div>
+    <Progress className="progress_bar" percent={percentage} strokeColor="red" showInfo={false} />
+  </div>
+);
+
 
 HeaderContent.propTypes = {
   percentage: PropTypes.number.isRequired,
@@ -52,4 +48,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(HeaderContent);
+export default connect(mapStateToProps)(memo(HeaderContent));

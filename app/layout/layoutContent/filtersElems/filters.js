@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import 'antd/dist/antd.css';
 import { Checkbox, Input } from 'antd';
 import { connect } from 'react-redux';
@@ -33,4 +33,4 @@ Filters.propTypes = {
   showDone: PropTypes.bool.isRequired,
 };
 
-export default connect()(Filters);
+export default connect()(memo(Filters));

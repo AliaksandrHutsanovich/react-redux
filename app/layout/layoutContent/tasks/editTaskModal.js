@@ -124,7 +124,12 @@ class EditTaskModal extends React.Component {
             </Col>
             <Col span={12}>
               <Row>
-                <Input defaultValue={taskTitle} placeholder="Input task title" onChange={this.onChangeTaskTitle} required />
+                <Input
+                  defaultValue={taskTitle}
+                  placeholder="Input task title"
+                  onChange={this.onChangeTaskTitle}
+                  required
+                />
               </Row>
               <Row>
                 <Checkbox
@@ -135,7 +140,12 @@ class EditTaskModal extends React.Component {
                 </Checkbox>
               </Row>
               <Row>
-                <TextArea rows={4} defaultValue={description} onChange={this.onChangeTaskDescription} placeholder="Input type description" />
+                <TextArea
+                  rows={4}
+                  defaultValue={description}
+                  onChange={this.onChangeTaskDescription}
+                  placeholder="Input type description"
+                />
               </Row>
             </Col>
           </Row>

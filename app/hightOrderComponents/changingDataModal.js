@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, memo } from 'react';
 import 'antd/dist/antd.css';
 import { Modal, Input } from 'antd';
 import { connect } from 'react-redux';
@@ -7,59 +7,50 @@ import { clearReDo } from '../actions/actions';
 import { typesCategoryOperation } from './utils/utils';
 
 function changingDataDialog(operationTitle) {
-  class ChangingDataDialog extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = { value: '' };
-      this.handleChange = this.handleChange.bind(this);
-      this.handleClickOk = this.handleClickOk.bind(this);
-    }
+  const ChangingDataDialog = ({
+    dispatch,
+    title,
+    visible,
+    handleOk,
+    titleCategory,
+    handleCancel,
+    path,
+  }) => {
+    const [value, setValue] = useState('');
 
-    handleChange(e) {
-      this.setState({ value: e.target.value });
-    }
+    const handleChange = (e) => {
+      setValue(e.target.value);
+    };
 
-    handleClickOk(handleOk, path, dispatch, title) {
-      const { value } = this.state;
+    const handleClickOk = () => {
       dispatch(clearReDo());
       typesCategoryOperation[operationTitle](path, dispatch, value, title);
-      this.setState({ value: '' });
+      setValue('');
       handleOk();
-    }
+    };
 
-    render() {
-      const {
-        dispatch,
-        title,
-        visible,
-        handleOk,
-        path,
-        titleCategory,
-        handleCancel,
-      } = this.props;
-      return (
-        <Modal
-          title={operationTitle}
-          visible={visible}
-          onOk={() => this.handleClickOk(handleOk, path, dispatch, title)}
-          onCancel={handleCancel}
-        >
-          {
-            operationTitle === 'Delete category'
-              ? <p>{titleCategory}</p>
-              : (
-                <Input
-                  placeholder="input category title"
-                  defaultValue={title}
-                  onChange={this.handleChange}
-                  className="modal-input"
-                />
-              )
-          }
-        </Modal>
-      );
-    }
-  }
+    return (
+      <Modal
+        title={operationTitle}
+        visible={visible}
+        onOk={() => handleClickOk(handleOk, path, dispatch, title)}
+        onCancel={handleCancel}
+      >
+        {
+          operationTitle === 'Delete category'
+            ? <p>{titleCategory}</p>
+            : (
+              <Input
+                placeholder="input category title"
+                defaultValue={title}
+                onChange={handleChange}
+                className="modal-input"
+              />
+            )
+        }
+      </Modal>
+    );
+  };
 
   ChangingDataDialog.defaultProps = {
     title: '',
@@ -76,7 +67,7 @@ function changingDataDialog(operationTitle) {
     handleCancel: PropTypes.func.isRequired,
   };
 
-  return connect()(ChangingDataDialog);
+  return connect()(memo(ChangingDataDialog));
 }
 
 export default changingDataDialog;

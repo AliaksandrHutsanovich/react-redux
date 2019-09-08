@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import 'antd/dist/antd.css';
 import addForm from '../../hightOrderComponents/addForm';
 import Category from './categories/category';
@@ -8,15 +8,12 @@ const Categories = treeOfCategories(Category);
 
 const AddCategory = addForm('Add new category');
 
-class LayoutSiderContent extends React.Component {
-  render() {
-    return (
-      <div>
-        <AddCategory />
-        <Categories />
-      </div>
-    );
-  }
-}
+const LayoutSiderContent = () => (
+  <div>
+    <AddCategory />
+    <Categories />
+  </div>
+);
 
-export default LayoutSiderContent;
+
+export default memo(LayoutSiderContent);

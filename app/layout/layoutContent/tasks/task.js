@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import 'antd/dist/antd.css';
 import { Card, Collapse } from 'antd';
 import PropTypes from 'prop-types';
@@ -43,4 +43,4 @@ Task.propTypes = {
   url: PropTypes.string.isRequired,
 };
 
-export default Task;
+export default memo(Task);

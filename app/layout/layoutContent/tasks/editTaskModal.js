@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, memo } from 'react';
 import 'antd/dist/antd.css';
 import {
   Modal, Input, Form, Checkbox, Row, Col,
@@ -16,144 +16,115 @@ import getStateValue, { getOldPathParams } from './utils/utils';
 const { TextArea } = Input;
 const Categories = treeOfCategories(CategoryItem);
 
-class EditTaskModal extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedPath: '',
-      title: '',
-      description: '',
-      isFinished: '',
-      isStatusChanged: false,
-    };
-    this.onSelectCategory = this.onSelectCategory.bind(this);
-    this.onSaveTask = this.onSaveTask.bind(this);
-    this.onChangeTaskStatus = this.onChangeTaskStatus.bind(this);
-    this.onChangeTaskDescription = this.onChangeTaskDescription.bind(this);
-    this.onChangeTaskTitle = this.onChangeTaskTitle.bind(this);
-  }
+const EditTaskModal = ({
+  taskTitle,
+  description,
+  isFinished,
+  oldPath,
+  handleOk,
+  dispatch,
+  visible,
+  handleCancel,
+}) => {
+  const [selectedPath, setSelectPath] = useState('');
+  const [stateTitle, setStateTitle] = useState('');
+  const [stateDescription, setStateDescription] = useState('');
+  const [stateIsFinished, setStateIsFinished] = useState('');
+  const [isStatusChanged, setIsStatusChanged] = useState('');
 
-  onSelectCategory(e) {
-    this.setState({ selectedPath: e[0] });
-  }
+  const onSelectCategory = (e) => {
+    setSelectPath(e[0]);
+  };
 
-  onSaveTask(
+  const onSaveTask = (
     e,
-    dispatch,
     newPath,
-    oldPath,
-    title,
-    description,
-    isFinished,
-    handleOk,
-    oldPathParam,
+    oldPathProp,
+    oldPathParamProp,
     newPathParam,
-  ) {
+  ) => {
     dispatch(clearReDo());
-    const {
-      isStatusChanged,
-      title: stateTitle,
-      description: stateDescription,
-      isFinished: stateIsFinished,
-    } = this.state;
     dispatch(startEditTaskProcess({
       newPath,
-      oldPath,
-      oldPathParam,
+      oldPath: oldPathProp,
+      oldPathParam: oldPathParamProp,
       newPathParam,
-      title: stateTitle || title,
+      title: stateTitle || taskTitle,
       description: stateDescription || description,
       isFinished: stateIsFinished === '' ? isFinished : getStateValue(stateIsFinished, isStatusChanged, dispatch),
     }));
     handleOk();
-  }
+  };
 
-  onChangeTaskStatus(e, isFinished) {
+  const onChangeTaskStatus = (e) => {
     if (e.target.checked === isFinished) {
-      this.setState({ isFinished: e.target.checked, isStatusChanged: false });
+      setStateIsFinished(e.target.checked);
+      setIsStatusChanged(false);
     } else {
-      this.setState({ isFinished: e.target.checked, isStatusChanged: true });
+      setStateIsFinished(e.target.checked);
+      setIsStatusChanged(true);
     }
-  }
+  };
 
-  onChangeTaskDescription(e) { this.setState({ description: e.target.value }); }
+  const onChangeTaskDescription = (e) => { setStateDescription(e.target.value); };
 
-  onChangeTaskTitle(e) { this.setState({ title: e.target.value }); }
+  const onChangeTaskTitle = (e) => { setStateTitle(e.target.value); };
 
+  const oldPathParams = getOldPathParams(oldPath.split('-'));
+  const newPath = selectedPath ? (selectedPath + '-tasks').split('-') : '';
+  const newPathParam = '';
 
-  render() {
-    const {
-      taskTitle,
-      description,
-      isFinished,
-      oldPath,
-      handleOk,
-      dispatch,
-      visible,
-      handleCancel,
-    } = this.props;
-    const { selectedPath } = this.state;
-    const oldPathParams = getOldPathParams(oldPath.split('-'));
-    const newPath = selectedPath ? (selectedPath + '-tasks').split('-') : '';
-    const newPathParam = '';
-
-    return (
-      <Modal
-        title="Edit task"
-        visible={visible}
-        onOk={(e) => this.onSaveTask(
-          e,
-          dispatch,
-          newPath,
-          oldPathParams.oldPath,
-          taskTitle,
-          description,
-          isFinished,
-          handleOk,
-          oldPathParams.oldPathParam,
-          newPathParam,
-        )}
-        onCancel={handleCancel}
-        okText="Save changes"
-        width="900px"
-      >
-        <Form>
-          <Row>
-            <Col span={12}>
-              <Categories onSelectCategory={this.onSelectCategory} />
-            </Col>
-            <Col span={12}>
-              <Row>
-                <Input
-                  defaultValue={taskTitle}
-                  placeholder="Input task title"
-                  onChange={this.onChangeTaskTitle}
-                  required
-                />
-              </Row>
-              <Row>
-                <Checkbox
-                  defaultChecked={isFinished}
-                  onChange={(e) => this.onChangeTaskStatus(e, isFinished)}
-                >
-                  Done
-                </Checkbox>
-              </Row>
-              <Row>
-                <TextArea
-                  rows={4}
-                  defaultValue={description}
-                  onChange={this.onChangeTaskDescription}
-                  placeholder="Input type description"
-                />
-              </Row>
-            </Col>
-          </Row>
-        </Form>
-      </Modal>
-    );
-  }
-}
+  return (
+    <Modal
+      title="Edit task"
+      visible={visible}
+      onOk={(e) => onSaveTask(
+        e,
+        newPath,
+        oldPathParams.oldPath,
+        oldPathParams.oldPathParam,
+        newPathParam,
+      )}
+      onCancel={handleCancel}
+      okText="Save changes"
+      width="900px"
+    >
+      <Form>
+        <Row>
+          <Col span={12}>
+            <Categories onSelectCategory={onSelectCategory} />
+          </Col>
+          <Col span={12}>
+            <Row>
+              <Input
+                defaultValue={taskTitle}
+                placeholder="Input task title"
+                onChange={onChangeTaskTitle}
+                required
+              />
+            </Row>
+            <Row>
+              <Checkbox
+                defaultChecked={isFinished}
+                onChange={(e) => onChangeTaskStatus(e)}
+              >
+                Done
+              </Checkbox>
+            </Row>
+            <Row>
+              <TextArea
+                rows={4}
+                defaultValue={description}
+                onChange={onChangeTaskDescription}
+                placeholder="Input type description"
+              />
+            </Row>
+          </Col>
+        </Row>
+      </Form>
+    </Modal>
+  );
+};
 
 EditTaskModal.propTypes = {
   taskTitle: PropTypes.string.isRequired,
@@ -166,4 +137,4 @@ EditTaskModal.propTypes = {
   handleCancel: PropTypes.func.isRequired,
 };
 
-export default connect()(EditTaskModal);
+export default connect()(memo(EditTaskModal));

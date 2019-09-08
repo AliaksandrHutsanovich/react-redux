@@ -19,7 +19,7 @@ const LoadableModal = Loadable({
   loading: MyLoadingComponent,
 });
 
-class CardTitle extends React.Component {
+class CardTitle extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = { visible: false, checked: false };

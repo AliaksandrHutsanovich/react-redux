@@ -8,30 +8,21 @@ import { getCategories } from '../selectors/selectors';
 const { TreeNode } = Tree;
 
 const treeOfCategories = (TreeNodeTitle) => {
+  const getTreeNode = (category, getChildNodes) => (
+    <TreeNode
+      key={category.key}
+      className="tree_node"
+      title={<TreeNodeTitle path={category.key} title={category.title} />}
+    >
+      {getChildNodes && getChildNodes(category.subCategories)}
+    </TreeNode>
+  );
+
   const getTreeNodes = (categories) => categories.map((category) => {
     if (category.subCategories.length) {
-      return (
-        <TreeNode
-          key={category.key}
-          className="tree_node"
-          title={<TreeNodeTitle path={category.key} title={category.title} />}
-        >
-          {getTreeNodes(category.subCategories)}
-        </TreeNode>
-      );
+      return getTreeNode(category, getTreeNodes);
     }
-    return (
-      <TreeNode
-        key={category.key}
-        className="tree_node"
-        title={(
-          <TreeNodeTitle
-            path={category.key}
-            title={category.title}
-          />
-        )}
-      />
-    );
+    return getTreeNode(category);
   });
 
   const TreeOfCategories = ({ onSelectCategory, categories }) => (

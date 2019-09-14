@@ -13,7 +13,7 @@ const HeaderContent = ({
 }) => (
   <div>
     <div className="header__menu">
-      <h1>Task Accountant</h1>
+      <h1 className="header__logo">Task Accountant</h1>
       <Button.Group size="small">
         <Button type="primary" disabled={!numUnDoObjs} onClick={() => dispatch(startUnDoProcess())}>
           <Icon type="left" />

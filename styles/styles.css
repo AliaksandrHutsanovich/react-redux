@@ -44,7 +44,7 @@
     /* border: 1px solid black; */
 }
 
-h1 {
+.header__logo {
     color: white;
     padding: 0px;
     line-height: 28px;

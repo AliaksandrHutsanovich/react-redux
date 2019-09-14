@@ -3,8 +3,10 @@ import 'antd/dist/antd.css';
 import { connect } from 'react-redux';
 import { Input, Button } from 'antd';
 import PropTypes from 'prop-types';
-import { clearReDo } from '../actions/actions';
-import { caseClickHandlers, kindsOfAddActions } from './utils/utils';
+import { clearReDo } from '../../actions/actions';
+import { caseClickHandlers, kindsOfAddActions } from '../utils/utils';
+
+import styles from './addForm.css';
 
 const addForm = (placeholder) => {
   const AddForm = (props) => {
@@ -23,16 +25,16 @@ const addForm = (placeholder) => {
     };
 
     return (
-      <div className="form_wrapper">
+      <div className={styles.formWrapper}>
         <Input
           placeholder={placeholder}
-          className="input"
+          className={styles.input}
           value={value}
           onChange={changeValue}
         />
         <Button
           type="primary"
-          className="button"
+          className={styles.button}
           onClick={() => { clickButton(addAction); }}
         >
           Add

@@ -1,0 +1,17 @@
+.formWrapper {
+    display: flex;
+    position: sticky;
+    top: 0px;
+}
+
+.button {
+    top: 10px;
+    left: 20px;
+}
+
+.input {
+    display: block !important;
+    width: 50% !important;
+    top: 10px;
+    left: 20px;
+}

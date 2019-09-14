@@ -43,24 +43,6 @@
     background: rgb(223, 217, 217) !important;
 }
 
-.input {
-    display: block !important;
-    width: 50% !important;
-    top: 10px;
-    left: 20px;
-}
-
-.form_wrapper {
-    display: flex;
-    position: sticky;
-    top: 0px;
-}
-
-.button {
-    top: 10px;
-    left: 20px;
-}
-
 .draggable-tree {
     /* border: 1px solid black; */
     margin-top: 20px !important;

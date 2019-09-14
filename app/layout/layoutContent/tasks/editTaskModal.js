@@ -5,7 +5,7 @@ import {
 } from 'antd';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import treeOfCategories from '../../../hightOrderComponents/treeOfCategories';
+import treeOfCategories from '../../../hightOrderComponents/treeOfCategories/treeOfCategories';
 import CategoryItem from './categoryItem';
 import {
   startEditTaskProcess,

@@ -43,16 +43,6 @@
     background: rgb(223, 217, 217) !important;
 }
 
-.draggable-tree {
-    /* border: 1px solid black; */
-    margin-top: 20px !important;
-    width: 90%;
-    align-self: center;
-    max-height: 85%;
-    overflow: auto;
-}
-
-
 .item__button:hover {
     color: rgb(0, 225, 255);
     cursor: pointer;

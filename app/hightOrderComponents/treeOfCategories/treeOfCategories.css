@@ -1,0 +1,7 @@
+.draggableTree {
+    margin-top: 20px !important;
+    width: 90%;
+    align-self: center;
+    max-height: 85%;
+    overflow: auto;
+}

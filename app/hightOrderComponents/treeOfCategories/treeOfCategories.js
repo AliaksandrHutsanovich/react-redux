@@ -3,7 +3,9 @@ import '!style-loader!css-loader!antd/dist/antd.css'; // eslint-disable-line
 import { Tree } from 'antd';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getCategories } from '../selectors/selectors';
+import { getCategories } from '../../selectors/selectors';
+
+import styles from './treeOfCategories.css';
 
 const { TreeNode } = Tree;
 
@@ -11,7 +13,6 @@ const treeOfCategories = (TreeNodeTitle) => {
   const getTreeNode = (category, getChildNodes) => (
     <TreeNode
       key={category.key}
-      className="tree_node"
       title={<TreeNodeTitle path={category.key} title={category.title} />}
     >
       {getChildNodes && getChildNodes(category.subCategories)}
@@ -27,7 +28,7 @@ const treeOfCategories = (TreeNodeTitle) => {
 
   const TreeOfCategories = ({ onSelectCategory, categories }) => (
     <Tree
-      className="draggable-tree"
+      className={styles.draggableTree}
       draggable
       onSelect={onSelectCategory}
     >

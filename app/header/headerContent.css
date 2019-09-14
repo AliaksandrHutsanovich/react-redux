@@ -1,0 +1,18 @@
+.headerMenu {
+    display: flex;
+    justify-content: space-between;
+}
+
+.headerLogo {
+    color: white;
+    padding: 0px;
+    line-height: 28px;
+    margin-top: 3vh;
+    margin-bottom: 0px; 
+}
+
+.progressBar {
+    position: static !important;
+    display: block !important;
+    margin-top: 1vh !important;
+}

@@ -24,11 +24,6 @@
     overflow: hidden;
 }
 
-.header__menu {
-    display: flex;
-    justify-content: space-between;
-}
-
 .wrapper__sider {
     background: transparent;
     /* border: 1px solid black; */
@@ -44,22 +39,8 @@
     /* border: 1px solid black; */
 }
 
-.header__logo {
-    color: white;
-    padding: 0px;
-    line-height: 28px;
-    margin-top: 3vh;
-    margin-bottom: 0px; 
-}
-
 .ant-progress-inner {
     background: rgb(223, 217, 217) !important;
-}
-
-.progress_bar {
-    position: static !important;
-    display: block !important;
-    margin-top: 1vh !important;
 }
 
 .input {

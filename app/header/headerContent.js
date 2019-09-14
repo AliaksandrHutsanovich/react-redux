@@ -5,6 +5,8 @@ import { Progress, Button, Icon } from 'antd';
 import { connect } from 'react-redux';
 import { startUnDoProcess, startReDoProcess } from '../actions/actions';
 
+import styles from './headerContent.css';
+
 const HeaderContent = ({
   percentage,
   numUnDoObjs,
@@ -12,8 +14,8 @@ const HeaderContent = ({
   dispatch,
 }) => (
   <div>
-    <div className="header__menu">
-      <h1 className="header__logo">Task Accountant</h1>
+    <div className={styles.headerMenu}>
+      <h1 className={styles.headerLogo}>Task Accountant</h1>
       <Button.Group size="small">
         <Button type="primary" disabled={!numUnDoObjs} onClick={() => dispatch(startUnDoProcess())}>
           <Icon type="left" />
@@ -25,7 +27,7 @@ const HeaderContent = ({
         </Button>
       </Button.Group>
     </div>
-    <Progress className="progress_bar" percent={percentage} strokeColor="red" showInfo={false} />
+    <Progress className={styles.progressBar} percent={percentage} strokeColor="red" showInfo={false} />
   </div>
 );
 

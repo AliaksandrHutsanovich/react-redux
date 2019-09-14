@@ -2,7 +2,7 @@ import React from 'react';
 import { Icon } from 'antd';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import changingDataModal from '../../../hightOrderComponents/changingDataModal';
+import changingDataModal from '../../../hightOrderComponents/changingDataModal/changingDataModal';
 
 const AddCategoryDialog = changingDataModal('Add new subcategory');
 const EditCategoryDialog = changingDataModal('Edit category');

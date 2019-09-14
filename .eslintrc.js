@@ -37,6 +37,7 @@ module.exports = {
     "react/jsx-props-no-spreading": [0, { "exceptions": ["Tasks"] }],
     "import/no-named-as-default": 0,
     "template-curly-spacing" : "off",
+    "import/no-webpack-loader-syntax": 0,
     indent : "off",
   },
   parser: "babel-eslint",

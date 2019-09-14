@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import 'antd/dist/antd.css';
+import '!style-loader!css-loader!antd/dist/antd.css'; // eslint-disable-line
 import { Checkbox, Input } from 'antd';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';

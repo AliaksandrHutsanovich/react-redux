@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import 'antd/dist/antd.css';
+import '!style-loader!css-loader!antd/dist/antd.css'; // eslint-disable-line
 import addForm from '../../hightOrderComponents/addForm';
 import Category from './categories/category';
 import treeOfCategories from '../../hightOrderComponents/treeOfCategories';

@@ -5,8 +5,8 @@
 */
 
 import React from 'react';
-import 'antd/dist/antd.css';
-import '../styles/styles.css';
+import '!style-loader!css-loader!antd/dist/antd.css'; // eslint-disable-line
+import '!style-loader!css-loader!../styles/styles.css'; // eslint-disable-line
 import PropTypes from 'prop-types';
 import { Layout } from 'antd';
 import { BrowserRouter, Route } from 'react-router-dom';

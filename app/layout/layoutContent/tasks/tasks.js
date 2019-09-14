@@ -1,7 +1,7 @@
 /* eslint react/forbid-prop-types: 0 */
 
 import React, { useEffect, memo } from 'react';
-import 'antd/dist/antd.css';
+import '!style-loader!css-loader!antd/dist/antd.css'; // eslint-disable-line
 import { List } from 'antd';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';

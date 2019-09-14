@@ -1,5 +1,5 @@
 import React from 'react';
-import 'antd/dist/antd.css';
+import '!style-loader!css-loader!antd/dist/antd.css'; // eslint-disable-line
 import { Checkbox, Icon } from 'antd';
 import { connect } from 'react-redux';
 import Loadable from 'react-loadable';

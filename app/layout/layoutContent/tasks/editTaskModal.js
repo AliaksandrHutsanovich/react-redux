@@ -1,5 +1,5 @@
 import React, { useState, memo } from 'react';
-import 'antd/dist/antd.css';
+import '!style-loader!css-loader!antd/dist/antd.css'; // eslint-disable-line
 import {
   Modal, Input, Form, Checkbox, Row, Col,
 } from 'antd';

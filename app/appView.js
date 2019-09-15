@@ -16,6 +16,7 @@ import LayoutSiderContent from './layout/layoutSider/layoutSiderContent';
 import LayoutContent from './layout/layoutContent/layoutContent';
 
 import { getUrls } from './selectors/selectors';
+import styles from './appView.css';
 
 const {
     Header, Sider, Content,
@@ -48,15 +49,15 @@ class AppView extends React.Component {
       ));
       return (
         <BrowserRouter>
-          <Layout className="wrapper">
-            <Header className="header">
+          <Layout className={styles.wrapper}>
+            <Header className={styles.header}>
               <HeaderContent />
             </Header>
-            <Layout className="wrapper__main" hasSider={true}>
-              <Sider className="wrapper__sider" width="30%">
+            <Layout className={styles.wrapperMain} hasSider={true}>
+              <Sider className={styles.wrapperSider} width="30%">
                 <LayoutSiderContent />
               </Sider>
-              <Content className="wrapper__content">
+              <Content>
                 {routes}
               </Content>
             </Layout>

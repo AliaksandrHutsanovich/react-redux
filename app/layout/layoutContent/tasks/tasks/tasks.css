@@ -1,0 +1,10 @@
+.list {
+    top: 8px;
+    height: calc(100vh - 15vh - 120px);
+    overflow: auto;
+}
+
+.listItem > div {
+    display: flex;
+    justify-content: center;
+}

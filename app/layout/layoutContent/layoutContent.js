@@ -3,7 +3,7 @@ import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import Filters from './filtersElems/filters';
 import addForm from '../../hightOrderComponents/addForm/addForm';
-import Tasks from './tasks/tasks';
+import Tasks from './tasks/tasks/tasks';
 
 const AddTask = addForm('Add new task');
 

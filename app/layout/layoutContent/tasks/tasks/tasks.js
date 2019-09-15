@@ -5,8 +5,10 @@ import '!style-loader!css-loader!antd/dist/antd.css'; // eslint-disable-line
 import { List } from 'antd';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { countPercentage } from '../../../actions/actions';
-import Task from './task/task';
+import { countPercentage } from '../../../../actions/actions';
+import Task from '../task/task';
+
+import styles from './tasks.css';
 
 
 const Tasks = ({
@@ -40,11 +42,11 @@ const Tasks = ({
       <List
         itemLayout="horizontal"
         dataSource={data}
-        className="list"
+        className={styles.list}
         split={false}
         renderItem={
           (item) => (
-            <List.Item className="list-item">
+            <List.Item className={styles.listItem}>
               <Task
                 index={item.index}
                 url={url}

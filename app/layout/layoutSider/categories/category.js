@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import changingDataModal from '../../../hightOrderComponents/changingDataModal/changingDataModal';
 
+import styles from './category.css';
+
 const AddCategoryDialog = changingDataModal('Add new subcategory');
 const EditCategoryDialog = changingDataModal('Edit category');
 const DeleteCategoryDialog = changingDataModal('Delete category');
@@ -81,9 +83,9 @@ class Category extends React.Component {
     return (
       <div>
         <span><Link to={`/${path}`}>{title}</Link></span>
-        <Icon className="item__button" type="edit" onClick={this.showEditModal} />
-        <Icon className="item__button" type="plus" onClick={this.showAddModal} />
-        <Icon className="item__button" type="delete" onClick={this.showDeleteModal} />
+        <Icon className={styles.itemButton} type="edit" onClick={this.showEditModal} />
+        <Icon className={styles.itemButton} type="plus" onClick={this.showAddModal} />
+        <Icon className={styles.itemButton} type="delete" onClick={this.showDeleteModal} />
         <AddCategoryDialog
           visible={addModalVisible}
           handleOk={this.handleAddModalOk}

@@ -6,7 +6,7 @@ import { List } from 'antd';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { countPercentage } from '../../../actions/actions';
-import Task from './task';
+import Task from './task/task';
 
 
 const Tasks = ({

@@ -2,7 +2,9 @@ import React, { memo } from 'react';
 import '!style-loader!css-loader!antd/dist/antd.css'; // eslint-disable-line
 import { Card, Collapse } from 'antd';
 import PropTypes from 'prop-types';
-import CardTitle from './cardTitle/cardTitle';
+import CardTitle from '../cardTitle/cardTitle';
+
+import styles from './task.css';
 
 const { Panel } = Collapse;
 
@@ -14,7 +16,7 @@ const Task = ({
   url,
 }) => (
   <Card
-    className="list-item__content"
+    className={styles.listItemContent}
     title={
       (
         <CardTitle

@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { showDoneTasks, searchTasks } from '../../../actions/actions';
 
+import styles from './filters.css';
+
 const onChange = (e, dispatch) => {
   dispatch(showDoneTasks(e.target.checked));
 };
@@ -14,7 +16,7 @@ const onChangePattern = (e, dispatch) => {
 };
 
 const Filters = ({ dispatch, searchKey, showDone }) => (
-  <div className="filters">
+  <div className={styles.filters}>
     <Checkbox defaultChecked={showDone} onClick={(e) => onChange(e, dispatch)}>
       Show done
     </Checkbox>

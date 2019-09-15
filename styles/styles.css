@@ -64,14 +64,6 @@
     color: red !important;
 }
 
-.filters {
-    margin-top: 40px;
-    display: flex;
-    justify-content: center;
-    position: sticky;
-    top: 75px;
-}
-
 .list {
     top: 8px;
     height: calc(100vh - 15vh - 120px);

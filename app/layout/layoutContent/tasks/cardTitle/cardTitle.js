@@ -17,7 +17,7 @@ import styles from './cardTitle.css';
 const MyLoadingComponent = () => (<div>Loading...</div>);
 
 const LoadableModal = Loadable({
-  loader: () => import('../editTaskModal'),
+  loader: () => import('../editTaskModal/editTaskModal'),
   loading: MyLoadingComponent,
 });
 

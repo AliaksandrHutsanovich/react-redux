@@ -6,7 +6,7 @@ import {
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import treeOfCategories from '../../../hightOrderComponents/treeOfCategories/treeOfCategories';
-import CategoryItem from './categoryItem';
+import CategoryItem from './categoryItem/categoryItem';
 import {
   startEditTaskProcess,
   clearReDo,

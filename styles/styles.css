@@ -43,11 +43,6 @@
     background: rgb(223, 217, 217) !important;
 }
 
-.item__button:hover {
-    color: rgb(0, 225, 255);
-    cursor: pointer;
-}
-
 .ant-tree-node-content-wrapper {
     background-color: rgb(41, 189, 226);
     border-radius: 10px !important;

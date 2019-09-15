@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import '!style-loader!css-loader!antd/dist/antd.css'; // eslint-disable-line
 import { Card, Collapse } from 'antd';
 import PropTypes from 'prop-types';
-import CardTitle from './cardTitle';
+import CardTitle from './cardTitle/cardTitle';
 
 const { Panel } = Collapse;
 

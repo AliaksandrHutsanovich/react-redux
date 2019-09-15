@@ -9,13 +9,15 @@ import {
   clearReDo,
   incrementInDone,
   decrementInDone,
-} from '../../../actions/actions';
-import { getPathParam, getSavingPath } from '../../../hightOrderComponents/utils/utils';
+} from '../../../../actions/actions';
+import { getPathParam, getSavingPath } from '../../../../hightOrderComponents/utils/utils';
+
+import styles from './cardTitle.css';
 
 const MyLoadingComponent = () => (<div>Loading...</div>);
 
 const LoadableModal = Loadable({
-  loader: () => import('./editTaskModal'),
+  loader: () => import('../editTaskModal'),
   loading: MyLoadingComponent,
 });
 
@@ -77,7 +79,7 @@ class CardTitle extends React.PureComponent {
       <div>
         <Checkbox checked={checked} onClick={(e) => this.onChange(e, url, index, dispatch)} />
         <span>{title}</span>
-        <Icon className="item__button" onClick={this.showAddModal} type="edit" />
+        <Icon className={styles.itemButton} onClick={this.showAddModal} type="edit" />
         <LoadableModal
           key={index}
           visible={visible}

@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit tests of add form component full render test 1`] = `
+<Connect(Component)
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <AddForm
+    dispatch={[Function]}
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+  >
+    <div
+      className="formWrapper"
+    >
+      <Input
+        className="input"
+        disabled={false}
+        onChange={[Function]}
+        placeholder="Add new category"
+        type="text"
+        value=""
+      >
+        <input
+          className="ant-input input"
+          disabled={false}
+          onChange={[Function]}
+          onKeyDown={[Function]}
+          placeholder="Add new category"
+          type="text"
+          value=""
+        />
+      </Input>
+      <Button
+        block={false}
+        className="button"
+        ghost={false}
+        loading={false}
+        onClick={[Function]}
+        type="primary"
+      >
+        <Wave>
+          <button
+            className="ant-btn button ant-btn-primary"
+            onClick={[Function]}
+            type="button"
+          >
+            <span
+              key=".0"
+            >
+              Add
+            </span>
+          </button>
+        </Wave>
+      </Button>
+    </div>
+  </AddForm>
+</Connect(Component)>
+`;

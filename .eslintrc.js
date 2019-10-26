@@ -40,5 +40,13 @@ module.exports = {
     "import/no-webpack-loader-syntax": 0,
     indent : "off",
   },
+  overrides: [
+    { 
+      files: ["*.spec.js"],
+      rules: {
+        "no-undef": "off"
+      }
+    }
+  ],
   parser: "babel-eslint",
 };

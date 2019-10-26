@@ -19,15 +19,12 @@ module.exports = {
         exclude: /(node_modules)/,
         loader: 'babel-loader',
         options: {
-          presets: ['env', 'react', 'es2015'],
+          presets: ['@babel/env', '@babel/react'],
           plugins: [
-            'transform-object-rest-spread',
+            '@babel/plugin-proposal-object-rest-spread',
             ['transform-class-properties', { spec: true }],
             ['import', { libraryName: 'antd', libraryDirectory: 'es', style: 'css' }],
-            ['transform-runtime', {
-              polyfill: false,
-              regenerator: true,
-            }],
+            '@babel/plugin-transform-runtime',
             'babel-plugin-syntax-dynamic-import',
           ],
         },

@@ -64,7 +64,7 @@ const Tasks = ({
 
 const mapStateToProps = (state, props) => ({
   tasks: state.actionReducers
-    .getIn((props.url + '-tasks').split('-'))
+    .getIn((props.match.url.replace('/', '') + '-tasks').split('-'))
     .toArray()
     .map((elem) => elem.toObject()),
 });

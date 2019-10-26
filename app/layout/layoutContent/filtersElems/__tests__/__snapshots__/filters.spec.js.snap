@@ -1,0 +1,108 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit test of filters full render test 1`] = `
+<Connect(Component)
+  searchKey=""
+  showDone={true}
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <Memo(Filters)
+    dispatch={[Function]}
+    searchKey=""
+    showDone={true}
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+  >
+    <div
+      className="filters"
+    >
+      <Checkbox
+        defaultChecked={true}
+        indeterminate={false}
+        onClick={[Function]}
+      >
+        <label
+          className="ant-checkbox-wrapper"
+        >
+          <Checkbox
+            className=""
+            defaultChecked={true}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            prefixCls="ant-checkbox"
+            style={Object {}}
+            type="checkbox"
+          >
+            <span
+              className="ant-checkbox ant-checkbox-checked"
+              style={Object {}}
+            >
+              <input
+                checked={true}
+                className="ant-checkbox-input"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                type="checkbox"
+              />
+              <span
+                className="ant-checkbox-inner"
+              />
+            </span>
+          </Checkbox>
+          <span>
+            Show done
+          </span>
+        </label>
+      </Checkbox>
+      <Input
+        defaultValue=""
+        disabled={false}
+        onChange={[Function]}
+        placeholder="search"
+        style={
+          Object {
+            "width": 200,
+          }
+        }
+        type="text"
+      >
+        <input
+          className="ant-input"
+          disabled={false}
+          onChange={[Function]}
+          onKeyDown={[Function]}
+          placeholder="search"
+          style={
+            Object {
+              "width": 200,
+            }
+          }
+          type="text"
+          value=""
+        />
+      </Input>
+    </div>
+  </Memo(Filters)>
+</Connect(Component)>
+`;

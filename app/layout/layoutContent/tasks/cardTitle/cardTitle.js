@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import '!style-loader!css-loader!antd/dist/antd.css'; // eslint-disable-line
 import { Checkbox, Icon } from 'antd';
 import { connect } from 'react-redux';
@@ -104,4 +104,4 @@ CardTitle.propTypes = {
   description: PropTypes.string.isRequired,
 };
 
-export default connect()(CardTitle);
+export default connect()(memo(CardTitle));

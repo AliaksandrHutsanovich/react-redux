@@ -17,6 +17,7 @@ module.exports = {
     collectCoverageFrom: [ // массив глобальных паттернов, определяющих набор
                            // файлов из которых должна быть собрана информация о покрытии
       'app/**/*.js',
+      '!app/*.js',
       '!images/**',
       '!**/node_modules/**',
       '!styles/**',
@@ -37,7 +38,7 @@ module.exports = {
     ],
     transform: { // объект с регулярными выражениями
                  //для трансформирования (компилирования отдельных файлов)
-      '^.+\\.jsx?$': 'babel-jest',
+      '^.+\\.[t|j]sx?$': 'babel-jest',
       '\\.svg$': '<rootDir>/config/jest/__mocks__/fileTransformer.js',
     },
     moduleFileExtensions: [ //список расширений которые используют модули
@@ -55,7 +56,6 @@ module.exports = {
     },
     unmockedModulePathPatterns: [ //массив путей к модулям,
                            //которые не будут автоматически мокнуты загрузчиком модулей
-      '/^imports\\/.*\\.jsx?$/',
       '/^node_modules/',
     ],
   };

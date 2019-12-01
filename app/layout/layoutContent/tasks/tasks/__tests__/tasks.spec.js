@@ -23,8 +23,9 @@ describe('Unit test of tasks component', () => {
   );
 
   it('Full render test of tasks component', () => {
-    expect(wrapper.dive().dive()).toMatchSnapshot();
-    expect(wrapper.dive().dive().find(List).dive()).toMatchSnapshot();
+    expect(wrapper.dive().shallow()).toMatchSnapshot();
+    expect(wrapper.dive().shallow().find(List)
+      .dive()).toMatchSnapshot();
     mount(
       <Provider store={dataStore}>
         <Tasks

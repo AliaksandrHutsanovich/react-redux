@@ -16,7 +16,7 @@ import getStateValue, { getOldPathParams } from '../utils/utils';
 const { TextArea } = Input;
 export const Categories = treeOfCategories(CategoryItem);
 
-const EditTaskModal = ({
+export const EditTaskModal = ({
   taskTitle,
   description,
   isFinished,

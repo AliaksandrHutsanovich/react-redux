@@ -23,6 +23,6 @@ describe('Unit test of layout content component', () => {
     </Provider>,
   );
   it('Full render test', () => {
-    expect(Component.dive().dive()).toMatchSnapshot();
+    expect(Component.shallow().shallow()).toMatchSnapshot();
   });
 });

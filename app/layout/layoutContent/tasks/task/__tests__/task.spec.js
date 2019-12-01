@@ -14,6 +14,6 @@ describe('Unit test of edit task', () => {
   );
 
   it('Full render test of task', () => {
-    expect(Component.dive()).toMatchSnapshot();
+    expect(Component).toMatchSnapshot();
   });
 });

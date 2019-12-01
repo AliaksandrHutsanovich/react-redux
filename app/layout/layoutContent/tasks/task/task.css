@@ -1,4 +1,7 @@
 .listItemContent {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
     width: 80%;
     border-radius: 10px !important;
 }

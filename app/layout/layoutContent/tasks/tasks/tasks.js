@@ -45,7 +45,7 @@ const Tasks = ({
         split={false}
         renderItem={
           (item) => (
-            <List.Item className={styles.listItem}>
+            <List.Item>
               <Task
                 index={item.index}
                 url={url}

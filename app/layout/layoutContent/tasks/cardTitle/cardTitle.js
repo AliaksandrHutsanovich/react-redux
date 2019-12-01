@@ -21,7 +21,7 @@ export const LoadableModal = Loadable({
   loading: MyLoadingComponent,
 });
 
-class CardTitle extends React.PureComponent {
+export class CardTitle extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = { visible: false, checked: false };
@@ -77,8 +77,9 @@ class CardTitle extends React.PureComponent {
     const { checked, visible } = this.state;
     return (
       <div>
-        <Checkbox checked={checked} onChange={(e) => this.onChange(e, url, index, dispatch)} />
-        <span>{title}</span>
+        <Checkbox checked={checked} onChange={(e) => this.onChange(e, url, index, dispatch)}>
+          {title}
+        </Checkbox>
         <Icon className={styles.itemButton} onClick={this.showAddModal} type="edit" />
         <LoadableModal
           key={index}

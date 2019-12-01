@@ -6,7 +6,6 @@ exports[`Unit tests of add form component full render test 1`] = `
 >
   <Input
     className="input"
-    disabled={false}
     onChange={[Function]}
     placeholder="Add new category"
     type="text"
@@ -16,6 +15,7 @@ exports[`Unit tests of add form component full render test 1`] = `
     block={false}
     className="button"
     ghost={false}
+    htmlType="button"
     loading={false}
     onClick={[Function]}
     type="primary"

@@ -4,7 +4,7 @@ import configureStore from 'redux-mock-store';
 import { Map } from 'immutable';
 import { Checkbox, Icon } from 'antd';
 import { initialState as store } from '../../../../../reducers/states/initialState';
-import CardTitle, { LoadableModal } from '../cardTitle';
+import CardTitle, { LoadableModal, CardTitle as WithoutWrapper } from '../cardTitle';
 
 const mockStore = configureStore();
 const initialState = Map().merge(store);
@@ -26,19 +26,20 @@ describe('Unit test of card title component', () => {
   );
 
   it('Full render test', () => {
-    expect(Component.dive()).toMatchSnapshot();
-    expect(Component.dive().find(LoadableModal).dive()).toMatchSnapshot();
-    expect(Component.dive().find(LoadableModal).dive().dive()).toMatchSnapshot();
+    expect(Component.shallow()).toMatchSnapshot();
+    expect(Component.shallow().find(LoadableModal).dive()).toMatchSnapshot();
+    expect(Component.shallow().find(LoadableModal).dive()
+      .dive()).toMatchSnapshot();
   });
 
   it('Status checkbox should be clickable', () => {
-    Component.dive().find(Checkbox).simulate('change', {
+    Component.shallow().find(Checkbox).simulate('change', {
       target: {
         checked: true,
       },
     });
     expect(dispatch).toHaveBeenCalled();
-    Component.dive().find(Checkbox).simulate('change', {
+    Component.shallow().find(Checkbox).simulate('change', {
       target: {
         checked: false,
       },
@@ -46,7 +47,15 @@ describe('Unit test of card title component', () => {
     expect(dispatch).toHaveBeenCalled();
   });
 
-  const fragment = Component.dive();
+  const Component1 = shallow(<WithoutWrapper
+    title="graph"
+    isFinished
+    url="categories-0-tasks-0"
+    index={0}
+    description="draw"
+    dispatch={() => {}}
+  />);
+  const fragment = Component1;
 
   it('Icon button for opening dialog should be clickable', () => {
     fragment.find(Icon).simulate('click');

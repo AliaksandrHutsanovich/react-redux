@@ -6,10 +6,9 @@ exports[`Unit test of card title component Full render test 1`] = `
     checked={true}
     indeterminate={false}
     onChange={[Function]}
-  />
-  <span>
+  >
     graph
-  </span>
+  </Checkbox>
   <Icon
     className="itemButton"
     onClick={[Function]}

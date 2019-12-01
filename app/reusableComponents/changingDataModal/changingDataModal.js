@@ -8,7 +8,7 @@ import { typesCategoryOperation } from '../../hightOrderComponents/utils/utils';
 
 import styles from './changingDataModal.css';
 
-const ChangingDataDialog = ({
+export const ChangingDataDialog = ({
   dispatch,
   title,
   visible,

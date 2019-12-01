@@ -2,10 +2,8 @@
 
 exports[`Unit tests of add changing data dialog full render test 1`] = `
 <Modal
-  cancelButtonDisabled={false}
   confirmLoading={false}
   maskTransitionName="fade"
-  okButtonDisabled={false}
   okType="primary"
   onCancel={[Function]}
   onOk={[Function]}
@@ -17,7 +15,6 @@ exports[`Unit tests of add changing data dialog full render test 1`] = `
   <Input
     className="modalInput"
     defaultValue="category"
-    disabled={false}
     onChange={[Function]}
     placeholder="input category title"
     type="text"

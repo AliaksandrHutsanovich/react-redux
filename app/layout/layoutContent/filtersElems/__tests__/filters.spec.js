@@ -18,11 +18,11 @@ describe('Unit test of filters', () => {
   store.dispatch = dispatch;
   const Component = shallow(<Filters store={store} searchKey="" showDone />);
   it('full render test', () => {
-    expect(Component.dive()).toMatchSnapshot();
+    expect(Component.shallow()).toMatchSnapshot();
   });
 
   it('checkbox should be clickable', () => {
-    Component.dive().find(Checkbox).simulate(
+    Component.shallow().find(Checkbox).simulate(
       'change',
       {
         target: {
@@ -34,7 +34,7 @@ describe('Unit test of filters', () => {
   });
 
   it('input text should be changable', () => {
-    Component.dive().find(Input).simulate(
+    Component.shallow().find(Input).simulate(
       'change',
       {
         target: {

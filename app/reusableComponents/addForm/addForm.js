@@ -8,7 +8,7 @@ import { caseClickHandlers, kindsOfAddActions } from '../../hightOrderComponents
 
 import styles from './addForm.css';
 
-const AddForm = (props) => {
+export const AddForm = (props) => {
   const { url, dispatch, placeholder } = props;
   const [value, setValue] = useState('');
   const addAction = kindsOfAddActions[placeholder];

@@ -13,7 +13,6 @@ exports[`Unit test of filters full render test 1`] = `
   </Checkbox>
   <Input
     defaultValue=""
-    disabled={false}
     onChange={[Function]}
     placeholder="search"
     style={

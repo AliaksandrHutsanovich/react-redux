@@ -2,10 +2,8 @@
 
 exports[`Unit test of edit task modal Full render test of edit task modal 1`] = `
 <Modal
-  cancelButtonDisabled={false}
   confirmLoading={false}
   maskTransitionName="fade"
-  okButtonDisabled={false}
   okText="Save changes"
   okType="primary"
   onCancel={[Function]}
@@ -16,6 +14,7 @@ exports[`Unit test of edit task modal Full render test of edit task modal 1`] = 
   width="900px"
 >
   <Form
+    colon={true}
     hideRequiredMark={false}
     layout="horizontal"
     onSubmit={[Function]}
@@ -38,7 +37,6 @@ exports[`Unit test of edit task modal Full render test of edit task modal 1`] = 
         >
           <Input
             defaultValue="Buy a new stearing wheal"
-            disabled={false}
             onChange={[Function]}
             placeholder="Input task title"
             required={true}

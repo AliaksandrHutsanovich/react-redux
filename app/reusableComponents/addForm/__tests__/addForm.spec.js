@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import configureStore from 'redux-mock-store';
 import { Input, Button } from 'antd';
-import AddForm from '../addForm';
+import AddForm, { AddForm as WithoutWrapper } from '../addForm';
 
 const mockStore = configureStore();
 const initialState = {};
@@ -13,10 +13,11 @@ describe('Unit tests of add form component', () => {
   store.dispatch = dispatch;
   const Component = shallow(<AddForm placeholder="Add new category" store={store} />);
   it('full render test', () => {
-    expect(Component.dive()).toMatchSnapshot();
+    expect(Component.shallow()).toMatchSnapshot();
   });
 
-  const fragment = Component.dive();
+  const Component1 = shallow(<WithoutWrapper placeholder="Add new category" dispatch={dispatch} />);
+  const fragment = Component1;
   it('input should be changable', () => {
     fragment.find(Input).simulate(
       'change',

@@ -23,15 +23,17 @@ describe('Unit test of HeaderContent', () => {
   const Component = shallow(<HeaderContent store={store} />);
 
   it('full render test', () => {
-    expect(Component.dive().dive()).toMatchSnapshot();
+    expect(Component.shallow().shallow()).toMatchSnapshot();
   });
 
   it('should be clickable', () => {
-    Component.dive().dive().find(Button).first()
+    Component.shallow().shallow().find(Button)
+      .first()
       .simulate('click');
     expect(dispatch).toHaveBeenCalled();
 
-    Component.dive().dive().find(Button).at(1)
+    Component.shallow().shallow().find(Button)
+      .at(1)
       .simulate('click');
     expect(dispatch).toHaveBeenCalled();
   });

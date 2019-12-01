@@ -25,7 +25,7 @@ describe('Unit test of Category component', () => {
     </Provider>,
   );
 
-  const fragment = Component.find(Category).dive();
+  const fragment = Component.find(Category).shallow();
   it('Full render test', () => {
     expect(fragment).toMatchSnapshot();
   });

@@ -20,6 +20,6 @@ describe('Unit test of layout sider content component', () => {
     </Provider>,
   );
   it('Full render test', () => {
-    expect(Component.find(LayoutSiderContent).dive()).toMatchSnapshot();
+    expect(Component.find(LayoutSiderContent).shallow()).toMatchSnapshot();
   });
 });

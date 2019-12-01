@@ -1,7 +1,36 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Unit test of edit task Full render test of task 1`] = `
-<ContextConsumer>
-  <Component />
-</ContextConsumer>
+<Card
+  className="listItemContent"
+  title={
+    <UNDEFINED
+      description="New car in dealer house"
+      index={0}
+      isFinished={false}
+      title="Buy a new car"
+      url="categories-0-tasks-0"
+    />
+  }
+>
+  <Collapse
+    bordered={false}
+    expandIconPosition="left"
+    openAnimation={
+      Object {
+        "appear": [Function],
+        "enter": [Function],
+        "leave": [Function],
+      }
+    }
+  >
+    <CollapsePanel
+      header="Card content"
+    >
+      <p>
+        New car in dealer house
+      </p>
+    </CollapsePanel>
+  </Collapse>
+</Card>
 `;

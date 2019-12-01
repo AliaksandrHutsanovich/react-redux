@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import configureStore from 'redux-mock-store';
 import { Map } from 'immutable';
 import { Provider } from 'react-redux';
@@ -13,7 +13,7 @@ jest.mock('rc-animate', () => () => <div />); //eslint-disable-line
 
 describe('Unit test of layout content component', () => {
   const dataStore = mockStore({ actionReducers: initialState });
-  const Component = mount(
+  const Component = shallow(
     <Provider store={dataStore}>
       <LayoutContent
         showDone
@@ -23,6 +23,6 @@ describe('Unit test of layout content component', () => {
     </Provider>,
   );
   it('Full render test', () => {
-    expect(Component).toMatchSnapshot();
+    expect(Component.dive().dive()).toMatchSnapshot();
   });
 });

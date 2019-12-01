@@ -10,7 +10,6 @@ import Task from '../task/task';
 
 import styles from './tasks.css';
 
-
 const Tasks = ({
   dispatch,
   tasks,

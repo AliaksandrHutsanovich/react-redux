@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit tests of add form component full render test 1`] = `
+<div
+  className="formWrapper"
+>
+  <Input
+    className="input"
+    disabled={false}
+    onChange={[Function]}
+    placeholder="Add new category"
+    type="text"
+    value=""
+  />
+  <Button
+    block={false}
+    className="button"
+    ghost={false}
+    loading={false}
+    onClick={[Function]}
+    type="primary"
+  >
+    Add
+  </Button>
+</div>
+`;

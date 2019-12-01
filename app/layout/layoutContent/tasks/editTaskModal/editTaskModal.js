@@ -14,7 +14,7 @@ import {
 import getStateValue, { getOldPathParams } from '../utils/utils';
 
 const { TextArea } = Input;
-const Categories = treeOfCategories(CategoryItem);
+export const Categories = treeOfCategories(CategoryItem);
 
 const EditTaskModal = ({
   taskTitle,
@@ -37,7 +37,6 @@ const EditTaskModal = ({
   };
 
   const onSaveTask = (
-    e,
     newPath,
     oldPathProp,
     oldPathParamProp,
@@ -78,8 +77,7 @@ const EditTaskModal = ({
     <Modal
       title="Edit task"
       visible={visible}
-      onOk={(e) => onSaveTask(
-        e,
+      onOk={() => onSaveTask(
         newPath,
         oldPathParams.oldPath,
         oldPathParams.oldPathParam,

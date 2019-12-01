@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import configureStore from 'redux-mock-store';
 import { Map } from 'immutable';
 import { Provider } from 'react-redux';
@@ -12,7 +12,7 @@ const initialState = Map().merge(store);
 
 describe('Unit test of layout sider content component', () => {
   const dataStore = mockStore({ actionReducers: initialState });
-  const Component = mount(
+  const Component = shallow(
     <Provider store={dataStore}>
       <BrowserRouter>
         <LayoutSiderContent />
@@ -20,6 +20,6 @@ describe('Unit test of layout sider content component', () => {
     </Provider>,
   );
   it('Full render test', () => {
-    expect(Component).toMatchSnapshot();
+    expect(Component.find(LayoutSiderContent).dive()).toMatchSnapshot();
   });
 });

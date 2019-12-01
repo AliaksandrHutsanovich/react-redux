@@ -1,13 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Unit test of category item component full render test 1`] = `
-<Memo(CategoryItem)
-  title="A title of category"
+<p
+  className="itemText"
 >
-  <p
-    className="itemText"
-  >
-    A title of category
-  </p>
-</Memo(CategoryItem)>
+  A title of category
+</p>
 `;

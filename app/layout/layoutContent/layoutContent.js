@@ -2,10 +2,8 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import Filters from './filtersElems/filters';
-import addForm from '../../hightOrderComponents/addForm/addForm';
+import AddTask from '../../reusableComponents/addForm/addForm';
 import Tasks from './tasks/tasks/tasks';
-
-const AddTask = addForm('Add new task');
 
 const LayoutContent = (props) => {
   const {
@@ -15,7 +13,7 @@ const LayoutContent = (props) => {
   } = props;
   return (
     <div>
-      <AddTask url={url} />
+      <AddTask url={url} placeholder="Add new task" />
       <Filters showDone={showDone} searchKey={searchKey} />
       <Tasks {...props} />
     </div>

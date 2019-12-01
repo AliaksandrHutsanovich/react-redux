@@ -1,7 +1,8 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import { Map, List } from 'immutable';
 import configureStore from 'redux-mock-store';
+import { Button } from 'antd';
 import HeaderContent from '../headerContent';
 
 const mockStore = configureStore();
@@ -16,16 +17,22 @@ const initialState = {
 };
 
 describe('Unit test of HeaderContent', () => {
+  const dispatch = jest.fn();
+  const store = mockStore(initialState);
+  store.dispatch = dispatch;
+  const Component = shallow(<HeaderContent store={store} />);
+
   it('full render test', () => {
-    const store = mockStore(initialState);
-    const Component = mount(<HeaderContent store={store} />);
-    expect(Component).toMatchSnapshot();
+    expect(Component.dive().dive()).toMatchSnapshot();
   });
 
   it('should be clickable', () => {
-    const store = mockStore(initialState);
-    const Component = mount(<HeaderContent store={store} />);
-    Component.find('button').first().simulate('click');
-    Component.find('button').at(1).simulate('click');
+    Component.dive().dive().find(Button).first()
+      .simulate('click');
+    expect(dispatch).toHaveBeenCalled();
+
+    Component.dive().dive().find(Button).at(1)
+      .simulate('click');
+    expect(dispatch).toHaveBeenCalled();
   });
 });

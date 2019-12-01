@@ -1,18 +1,20 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import { BrowserRouter } from 'react-router-dom';
 import { Map } from 'immutable';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
+import { Icon } from 'antd';
 import { initialState as store } from '../../../../reducers/states/initialState';
 import Category from '../category';
+import ChangingDataModal from '../../../../reusableComponents/changingDataModal/changingDataModal';
 
 const mockStore = configureStore();
 const initialState = Map().merge(store);
 
 describe('Unit test of Category component', () => {
   const dataStore = mockStore({ actionReducers: initialState });
-  const Component = mount(
+  const Component = shallow(
     <Provider store={dataStore}>
       <BrowserRouter>
         <Category
@@ -23,25 +25,41 @@ describe('Unit test of Category component', () => {
     </Provider>,
   );
 
+  const fragment = Component.find(Category).dive();
   it('Full render test', () => {
-    expect(Component).toMatchSnapshot();
+    expect(fragment).toMatchSnapshot();
   });
   it('Delete modal should be openable', () => {
-    Component.find('i[aria-label="icon: delete"]').simulate('click');
-    Component.find('.ant-modal-footer').find('button').at(0).simulate('click');
-    Component.find('i[aria-label="icon: delete"]').simulate('click');
-    Component.find('.ant-modal-footer').find('button').at(1).simulate('click');
+    fragment.find(Icon).at(2).simulate('click');
+    expect(fragment.find(ChangingDataModal).at(2).prop('visible')).toBeTruthy();
+
+    fragment.find(ChangingDataModal).at(2).prop('handleOk')();
+    expect(fragment.find(ChangingDataModal).at(2).prop('visible')).toBeFalsy();
+
+    fragment.find(Icon).at(2).simulate('click');
+    fragment.find(ChangingDataModal).at(2).prop('handleCancel')();
+    expect(fragment.find(ChangingDataModal).at(2).prop('visible')).toBeFalsy();
   });
   it('Edit modal should be openable and closable', () => {
-    Component.find('i[aria-label="icon: edit"]').simulate('click');
-    Component.find('.ant-modal-footer').find('button').at(0).simulate('click');
-    Component.find('i[aria-label="icon: edit"]').simulate('click');
-    Component.find('.ant-modal-footer').find('button').at(1).simulate('click');
+    fragment.find(Icon).at(0).simulate('click');
+    expect(fragment.find(ChangingDataModal).at(1).prop('visible')).toBeTruthy();
+
+    fragment.find(ChangingDataModal).at(1).prop('handleOk')();
+    expect(fragment.find(ChangingDataModal).at(1).prop('visible')).toBeFalsy();
+
+    fragment.find(Icon).at(0).simulate('click');
+    fragment.find(ChangingDataModal).at(1).prop('handleCancel')();
+    expect(fragment.find(ChangingDataModal).at(1).prop('visible')).toBeFalsy();
   });
   it('Add modal should be openable and closable', () => {
-    Component.find('i[aria-label="icon: plus"]').simulate('click');
-    Component.find('.ant-modal-footer').find('button').at(0).simulate('click');
-    Component.find('i[aria-label="icon: plus"]').simulate('click');
-    Component.find('.ant-modal-footer').find('button').at(1).simulate('click');
+    fragment.find(Icon).at(1).simulate('click');
+    expect(fragment.find(ChangingDataModal).at(0).prop('visible')).toBeTruthy();
+
+    fragment.find(ChangingDataModal).at(0).prop('handleOk')();
+    expect(fragment.find(ChangingDataModal).at(0).prop('visible')).toBeFalsy();
+
+    fragment.find(Icon).at(1).simulate('click');
+    fragment.find(ChangingDataModal).at(0).prop('handleCancel')();
+    expect(fragment.find(ChangingDataModal).at(0).prop('visible')).toBeFalsy();
   });
 });

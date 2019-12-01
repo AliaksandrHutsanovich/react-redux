@@ -16,7 +16,7 @@ import styles from './cardTitle.css';
 
 const MyLoadingComponent = () => (<div>Loading...</div>);
 
-const LoadableModal = Loadable({
+export const LoadableModal = Loadable({
   loader: () => import('../editTaskModal/editTaskModal'),
   loading: MyLoadingComponent,
 });
@@ -77,7 +77,7 @@ class CardTitle extends React.PureComponent {
     const { checked, visible } = this.state;
     return (
       <div>
-        <Checkbox checked={checked} onClick={(e) => this.onChange(e, url, index, dispatch)} />
+        <Checkbox checked={checked} onChange={(e) => this.onChange(e, url, index, dispatch)} />
         <span>{title}</span>
         <Icon className={styles.itemButton} onClick={this.showAddModal} type="edit" />
         <LoadableModal

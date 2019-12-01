@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit test of tasks component Full render test of tasks component 1`] = `
+<div>
+  <List
+    bordered={false}
+    className="list"
+    dataSource={
+      Array [
+        Object {
+          "Description": "draw",
+          "index": 0,
+          "isFinished": true,
+          "title": "graph",
+        },
+        Object {
+          "Description": "count",
+          "index": 1,
+          "isFinished": true,
+          "title": "counting",
+        },
+      ]
+    }
+    itemLayout="horizontal"
+    loading={false}
+    pagination={false}
+    renderItem={[Function]}
+    split={false}
+  />
+</div>
+`;
+
+exports[`Unit test of tasks component Full render test of tasks component 2`] = `
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
+`;

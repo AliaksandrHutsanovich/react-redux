@@ -2,13 +2,9 @@ import React from 'react';
 import { Icon } from 'antd';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import changingDataModal from '../../../hightOrderComponents/changingDataModal/changingDataModal';
+import ChangingDataModal from '../../../reusableComponents/changingDataModal/changingDataModal';
 
 import styles from './category.css';
-
-const AddCategoryDialog = changingDataModal('Add new subcategory');
-const EditCategoryDialog = changingDataModal('Edit category');
-const DeleteCategoryDialog = changingDataModal('Delete category');
 
 class Category extends React.Component {
   constructor(props) {
@@ -86,25 +82,28 @@ class Category extends React.Component {
         <Icon className={styles.itemButton} type="edit" onClick={this.showEditModal} />
         <Icon className={styles.itemButton} type="plus" onClick={this.showAddModal} />
         <Icon className={styles.itemButton} type="delete" onClick={this.showDeleteModal} />
-        <AddCategoryDialog
+        <ChangingDataModal
           visible={addModalVisible}
           handleOk={this.handleAddModalOk}
           handleCancel={this.handleAddModalCancel}
           path={path}
+          operationTitle="Add new subcategory"
         />
-        <EditCategoryDialog
+        <ChangingDataModal
           visible={editModalVisible}
-          handleOk={this.handleEditModalCancel}
+          handleOk={this.handleEditModalOk}
           handleCancel={this.handleEditModalCancel}
           path={path}
           title={title}
+          operationTitle="Edit category"
         />
-        <DeleteCategoryDialog
+        <ChangingDataModal
           visible={deleteModalVisible}
           handleOk={this.handleDeleteModalOk}
           handleCancel={this.handleDeleteModalCancel}
           path={path}
           titleCategory={title}
+          operationTitle="Delete category"
         />
       </div>
     );

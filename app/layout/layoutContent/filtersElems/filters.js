@@ -17,7 +17,7 @@ const onChangePattern = (e, dispatch) => {
 
 const Filters = ({ dispatch, searchKey, showDone }) => (
   <div className={styles.filters}>
-    <Checkbox defaultChecked={showDone} onClick={(e) => onChange(e, dispatch)}>
+    <Checkbox defaultChecked={showDone} onChange={(e) => onChange(e, dispatch)}>
       Show done
     </Checkbox>
     <Input

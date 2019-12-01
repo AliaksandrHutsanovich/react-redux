@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit test of edit task Full render test of task 1`] = `
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
+`;

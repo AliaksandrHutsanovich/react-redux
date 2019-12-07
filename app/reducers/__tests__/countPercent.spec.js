@@ -1,10 +1,9 @@
 import configureStore from 'redux-mock-store';
 import * as actions from '../../actions/actions';
-import initialState from '../states/initialState';
 import countPerсent from '../countPercent';
 
 const mockStore = configureStore();
-const store = mockStore(initialState);
+const store = mockStore({});
 
 describe('select actions', () => {
   beforeEach(() => {

@@ -38,21 +38,21 @@ export const getObjFromRedoOperation = (state) => {
   return obj;
 };
 
-export const getUndoOperationFromRedo = (state) => state
-  .reDoReducer.getIn([
-    'redoOperations',
-    state.reDoReducer
-      .get('redoOperations').toArray().length - 1,
-    'undoOperation',
-  ]);
+// export const getUndoOperationFromRedo = (state) => state
+//   .reDoReducer.getIn([
+//     'redoOperations',
+//     state.reDoReducer
+//       .get('redoOperations').toArray().length - 1,
+//     'undoOperation',
+//   ]);
 
-export const getReDoOperationFromUndo = (state) => state
-  .unDoReducer.getIn([
-    'undoOperations',
-    state.unDoReducer
-      .get('undoOperations').toArray().length - 1,
-    'redoOperation',
-  ]);
+// export const getReDoOperationFromUndo = (state) => state
+//   .unDoReducer.getIn([
+//     'undoOperations',
+//     state.unDoReducer
+//       .get('undoOperations').toArray().length - 1,
+//     'redoOperation',
+//   ]);
 
 export const getObjWrapperFromUndoOperation = (state) => state
   .unDoReducer.getIn([

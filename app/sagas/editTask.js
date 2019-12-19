@@ -2,7 +2,7 @@ import { takeEvery, put, select } from 'redux-saga/effects';
 import { editTask, addToUnDo, editTaskRevive } from '../actions/actions';
 import { getEntityByPath } from '../selectors/selectorsForEntities';
 
-function* editTaskGen(action) {
+export function* editTaskGen(action) {
   const task = yield select(
     getEntityByPath(
       action.payload.oldPath,

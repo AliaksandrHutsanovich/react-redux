@@ -16,9 +16,9 @@ describe('Unit tests of add form component', () => {
     expect(Component.shallow()).toMatchSnapshot();
   });
 
-  const Component1 = shallow(<WithoutWrapper placeholder="Add new category" dispatch={dispatch} />);
-  const fragment = Component1;
-  it('input should be changable', () => {
+  const fragment = shallow(<WithoutWrapper placeholder="Add new category" dispatch={dispatch} />);
+
+  it('input should be changable for adding new category', () => {
     fragment.find(Input).simulate(
       'change',
       {
@@ -30,8 +30,27 @@ describe('Unit tests of add form component', () => {
     expect(fragment.find(Input).prop('value')).toEqual('javascript');
   });
 
-  it('button should be clickable', () => {
+  it('button should be clickable for adding new category', () => {
     fragment.find(Button).simulate('click');
+    expect(dispatch).toHaveBeenCalled();
+  });
+
+  const withoutWrapper = shallow(<WithoutWrapper placeholder="Add new task" dispatch={dispatch} />);
+
+  it('input should be changable for adding new task', () => {
+    withoutWrapper.find(Input).simulate(
+      'change',
+      {
+        target: {
+          value: 'javascript',
+        },
+      },
+    );
+    expect(withoutWrapper.find(Input).prop('value')).toEqual('javascript');
+  });
+
+  it('button should be clickable for adding new task', () => {
+    withoutWrapper.find(Button).simulate('click');
     expect(dispatch).toHaveBeenCalled();
   });
 });

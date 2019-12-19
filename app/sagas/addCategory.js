@@ -2,7 +2,7 @@ import { takeEvery, put, select } from 'redux-saga/effects';
 import { addCategory, deleteCategory, addToUnDo } from '../actions/actions';
 import { getCategoryPath } from '../selectors/selectorsForPaths';
 
-function* addCategoryGen(action) {
+export function* addCategoryGen(action) {
   yield put(addCategory({ title: action.payload.title }));
   const path = yield select(getCategoryPath);
   yield put(addToUnDo({

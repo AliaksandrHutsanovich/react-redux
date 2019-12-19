@@ -1,7 +1,7 @@
 import { takeEvery, put } from 'redux-saga/effects';
 import { editTaskStatus, addToUnDo } from '../actions/actions';
 
-function* editTaskStatusGen(action) {
+export function* editTaskStatusGen(action) {
   yield put(editTaskStatus({
     path: action.payload.path,
     pathParam: action.payload.pathParam,

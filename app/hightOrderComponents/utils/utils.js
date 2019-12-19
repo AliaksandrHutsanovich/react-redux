@@ -39,7 +39,10 @@ export const kindsOfAddActions = {
 
 export const typesCategoryOperation = {
   'Add new subcategory': (path, dispatch, value) => {
-    dispatch(startAddSubCategoryProcess({ path: (path + '-subCategories').split('-'), title: value }));
+    dispatch(startAddSubCategoryProcess({
+      path: (path + '-subCategories').split('-'),
+      title: value,
+    }));
   },
   'Edit category': (path, dispatch, value, title) => {
     dispatch(startEditCategoryProcess({

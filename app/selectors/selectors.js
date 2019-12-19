@@ -31,55 +31,55 @@ export const getCategories = (state) => {
 };
 
 
-export const getTasks = (state) => {
-  const categories = state.actionReducers.get('categories').toArray();
+// export const getTasks = (state) => {
+//   const categories = state.actionReducers.get('categories').toArray();
 
-  const urlsArr = [];
-  const arrayOfTaskGroups = [];
+//   const urlsArr = [];
+//   const arrayOfTaskGroups = [];
 
-  const getTasksFun = (key, subCategories) => {
-    if (subCategories.length > 0) {
-      subCategories.forEach((subCategory, num) => {
-        const subCategoryObj = subCategory.toObject();
-        urlsArr.push(key + '-subCategories-' + num);
+//   const getTasksFun = (key, subCategories) => {
+//     if (subCategories.length > 0) {
+//       subCategories.forEach((subCategory, num) => {
+//         const subCategoryObj = subCategory.toObject();
+//         urlsArr.push(key + '-subCategories-' + num);
 
-        arrayOfTaskGroups.push(
-          subCategoryObj.tasks.toArray()
-            .map((task) => task.toObject()),
-        );
+//         arrayOfTaskGroups.push(
+//           subCategoryObj.tasks.toArray()
+//             .map((task) => task.toObject()),
+//         );
 
-        if (subCategoryObj.subCategories.toArray().length > 0) {
-          getTasksFun(
-            key + '-subCategories-' + num,
-            subCategoryObj.subCategories.toArray(),
-          );
-        }
-      });
-    }
-  };
+//         if (subCategoryObj.subCategories.toArray().length > 0) {
+//           getTasksFun(
+//             key + '-subCategories-' + num,
+//             subCategoryObj.subCategories.toArray(),
+//           );
+//         }
+//       });
+//     }
+//   };
 
-  categories.forEach((category, num) => {
-    const categoryObj = category.toObject();
-    urlsArr.push('categories-' + num);
+//   categories.forEach((category, num) => {
+//     const categoryObj = category.toObject();
+//     urlsArr.push('categories-' + num);
 
-    arrayOfTaskGroups.push(
-      categoryObj.tasks.toArray()
-        .map(
-          (task) => task.toObject(),
-        ),
-    );
+//     arrayOfTaskGroups.push(
+//       categoryObj.tasks.toArray()
+//         .map(
+//           (task) => task.toObject(),
+//         ),
+//     );
 
-    getTasksFun(
-      'categories-' + num,
-      categoryObj.subCategories.toArray(),
-    );
-  });
+//     getTasksFun(
+//       'categories-' + num,
+//       categoryObj.subCategories.toArray(),
+//     );
+//   });
 
-  return {
-    urls: urlsArr,
-    taskGroups: arrayOfTaskGroups,
-  };
-};
+//   return {
+//     urls: urlsArr,
+//     taskGroups: arrayOfTaskGroups,
+//   };
+// };
 
 export const getUrls = (state) => {
   const categories = state.actionReducers.get('categories').toArray();

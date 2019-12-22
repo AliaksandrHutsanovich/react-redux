@@ -9,15 +9,15 @@ import {
   clearReDo,
   incrementInDone,
   decrementInDone,
-} from '../../../../actions/actions';
-import { getPathParam, getSavingPath } from '../../../../hightOrderComponents/utils/utils';
+} from '../../../../actions';
+import { getPathParam, getSavingPath } from '../../../../hightOrderComponents';
 
 import styles from './cardTitle.css';
 
 const MyLoadingComponent = () => (<div>Loading...</div>);
 
 export const LoadableModal = Loadable({
-  loader: () => import('../editTaskModal/editTaskModal'),
+  loader: () => import('../editTaskModal'),
   loading: MyLoadingComponent,
 });
 

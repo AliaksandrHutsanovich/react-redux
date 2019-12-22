@@ -1,14 +1,14 @@
 import React, { memo } from 'react';
 import '!style-loader!css-loader!antd/dist/antd.css'; // eslint-disable-line
-import AddCategory from '../../reusableComponents/addForm/addForm';
-import Category from './categories/category';
-import treeOfCategories from '../../hightOrderComponents/treeOfCategories/treeOfCategories';
+import { AddForm } from '../../reusableComponents';
+import Category from './categories';
+import treeOfCategories from '../../hightOrderComponents';
 
 const Categories = treeOfCategories(Category);
 
 const LayoutSiderContent = () => (
   <div>
-    <AddCategory placeholder="Add new category" />
+    <AddForm placeholder="Add new category" />
     <Categories />
   </div>
 );

@@ -3,7 +3,7 @@ import '!style-loader!css-loader!antd/dist/antd.css'; // eslint-disable-line
 import { Checkbox, Input } from 'antd';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { showDoneTasks, searchTasks } from '../../../actions/actions';
+import { showDoneTasks, searchTasks } from '../../../actions';
 
 import styles from './filters.css';
 

@@ -5,8 +5,8 @@ import '!style-loader!css-loader!antd/dist/antd.css'; // eslint-disable-line
 import { List } from 'antd';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { countPercentage } from '../../../../actions/actions';
-import Task from '../task/task';
+import { countPercentage } from '../../../../actions';
+import Task from '../task';
 
 import styles from './tasks.css';
 

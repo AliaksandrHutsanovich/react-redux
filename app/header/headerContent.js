@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import '!style-loader!css-loader!antd/dist/antd.css'; // eslint-disable-line
 import { Progress, Button, Icon } from 'antd';
 import { connect } from 'react-redux';
-import { startUnDoProcess, startReDoProcess } from '../actions/actions';
+import { startUnDoProcess, startReDoProcess } from '../actions';
 
 import styles from './headerContent.css';
 

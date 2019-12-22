@@ -3,7 +3,7 @@ import '!style-loader!css-loader!antd/dist/antd.css'; // eslint-disable-line
 import { Tree } from 'antd';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getCategories } from '../../selectors/selectors';
+import { getCategories } from '../../selectors';
 
 import styles from './treeOfCategories.css';
 

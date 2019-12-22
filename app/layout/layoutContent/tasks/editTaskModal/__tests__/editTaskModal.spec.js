@@ -3,10 +3,10 @@ import { shallow } from 'enzyme';
 import configureStore from 'redux-mock-store';
 import { Map } from 'immutable';
 import { Modal, Checkbox, Input } from 'antd';
-import { initialState as store } from '../../../../../reducers/states/initialState';
+import { initialState as store } from '../../../../../reducers';
 import EditTaskModal, { Categories, EditTaskModal as WithoutWrapper } from '../editTaskModal';
-import { getOldPathParams } from '../../utils/utils';
-import { startEditTaskProcess } from '../../../../../actions/actions';
+import { getOldPathParams } from '../../utils';
+import { startEditTaskProcess } from '../../../../../actions';
 
 const { TextArea } = Input;
 const mockStore = configureStore();

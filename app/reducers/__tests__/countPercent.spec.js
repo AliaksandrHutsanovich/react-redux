@@ -1,5 +1,5 @@
 import configureStore from 'redux-mock-store';
-import * as actions from '../../actions/actions';
+import * as actions from '../../actions';
 import countPerсent from '../countPercent';
 
 const mockStore = configureStore();

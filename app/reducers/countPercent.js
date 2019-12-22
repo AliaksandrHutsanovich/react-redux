@@ -6,7 +6,7 @@ import {
   decrementInDone,
   incrementInAll,
   decrementInAll,
-} from '../actions/actions';
+} from '../actions';
 
 const countPerсent = handleActions({
   [countPercentage]: {

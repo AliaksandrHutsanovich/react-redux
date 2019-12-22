@@ -11,11 +11,10 @@ import PropTypes from 'prop-types';
 import { Layout } from 'antd';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import HeaderContent from './header/headerContent';
-import LayoutSiderContent from './layout/layoutSider/layoutSiderContent';
-import LayoutContent from './layout/layoutContent/layoutContent';
+import HeaderContent from './header';
+import { LayoutSiderContent, LayoutContent } from './layout';
 
-import { getUrls } from './selectors/selectors';
+import { getUrls } from './selectors';
 import styles from './appView.css';
 
 const {

@@ -22,6 +22,15 @@ module.exports = {
   plugins: [
     'react',
   ],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": [
+          "app"
+        ]
+      }
+    }
+  },
   rules: {
     "getter-return": 2,
     "no-console": 2,

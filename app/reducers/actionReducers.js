@@ -13,7 +13,7 @@ import {
   insertTask,
   editCategoryRevive,
   editTaskRevive,
-} from '../actions/actions';
+} from '../actions';
 
 import initialState from './states/initialState';
 

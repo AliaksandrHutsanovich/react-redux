@@ -1,6 +1,6 @@
 import { Map } from 'immutable';
 import { getEntityByPath } from '../selectorsForEntities';
-import { initialState } from '../../reducers/states/initialState';
+import { initialState } from '../../reducers';
 
 const argsConfig = {
   oldPath: ['categories', 0, 'tasks'],

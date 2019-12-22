@@ -5,7 +5,7 @@ import { Map } from 'immutable';
 import { List } from 'antd';
 import { Provider } from 'react-redux';
 import Tasks from '../tasks';
-import { initialState as store } from '../../../../../reducers/states/initialState';
+import { initialState as store } from '../../../../../reducers';
 
 const initialState = Map().merge(store);
 const mockStore = configureStore();

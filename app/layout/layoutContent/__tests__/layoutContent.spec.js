@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import configureStore from 'redux-mock-store';
 import { Map } from 'immutable';
 import { Provider } from 'react-redux';
-import { initialState as store } from '../../../reducers/states/initialState';
+import { initialState as store } from '../../../reducers';
 import LayoutContent from '../layoutContent';
 
 const mockStore = configureStore();

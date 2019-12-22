@@ -12,6 +12,13 @@ module.exports = {
     filename: 'bundle.js',
   },
   devtool: '#sourcemap',
+  resolve: {
+    modules: [
+      path.resolve('./app'),
+      path.resolve('./node_modules'),
+    ],
+    extensions: ['.js'],
+  },
   module: {
     rules: [
       {

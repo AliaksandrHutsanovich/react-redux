@@ -1,6 +1,6 @@
 import { takeEvery, put, select } from 'redux-saga/effects';
-import { editCategory, addToUnDo, editCategoryRevive } from '../actions/actions';
-import { getEntity } from '../selectors/selectorsForEntities';
+import { editCategory, addToUnDo, editCategoryRevive } from '../actions';
+import { getEntity } from '../selectors';
 
 export function* editCategoryGen(action) {
   const category = yield select(getEntity(

@@ -3,8 +3,8 @@ import { shallow, mount } from 'enzyme';
 import configureStore from 'redux-mock-store';
 import { Map } from 'immutable';
 import treeOfCategories from '../treeOfCategories';
-import { initialState as store } from '../../../reducers/states/initialState';
-import CategoryItem from '../../../layout/layoutContent/tasks/categoryItem/categoryItem';
+import { initialState as store } from '../../../reducers';
+import { CategoryItem } from '../../../layout/layoutContent/tasks';
 
 const mockStore = configureStore();
 const initialState = Map().merge(store);

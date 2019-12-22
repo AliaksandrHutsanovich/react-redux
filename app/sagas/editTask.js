@@ -1,6 +1,6 @@
 import { takeEvery, put, select } from 'redux-saga/effects';
-import { editTask, addToUnDo, editTaskRevive } from '../actions/actions';
-import { getEntityByPath } from '../selectors/selectorsForEntities';
+import { editTask, addToUnDo, editTaskRevive } from '../actions';
+import { getEntityByPath } from '../selectors';
 
 export function* editTaskGen(action) {
   const task = yield select(

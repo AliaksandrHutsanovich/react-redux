@@ -2,7 +2,7 @@ import React from 'react';
 import { Icon } from 'antd';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import ChangingDataModal from '../../../reusableComponents/changingDataModal/changingDataModal';
+import { ChangingDataDialog } from '../../../reusableComponents';
 
 import styles from './category.css';
 
@@ -82,14 +82,14 @@ class Category extends React.Component {
         <Icon className={styles.itemButton} type="edit" onClick={this.showEditModal} />
         <Icon className={styles.itemButton} type="plus" onClick={this.showAddModal} />
         <Icon className={styles.itemButton} type="delete" onClick={this.showDeleteModal} />
-        <ChangingDataModal
+        <ChangingDataDialog
           visible={addModalVisible}
           handleOk={this.handleAddModalOk}
           handleCancel={this.handleAddModalCancel}
           path={path}
           operationTitle="Add new subcategory"
         />
-        <ChangingDataModal
+        <ChangingDataDialog
           visible={editModalVisible}
           handleOk={this.handleEditModalOk}
           handleCancel={this.handleEditModalCancel}
@@ -97,7 +97,7 @@ class Category extends React.Component {
           title={title}
           operationTitle="Edit category"
         />
-        <ChangingDataModal
+        <ChangingDataDialog
           visible={deleteModalVisible}
           handleOk={this.handleDeleteModalOk}
           handleCancel={this.handleDeleteModalCancel}

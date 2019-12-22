@@ -1,6 +1,10 @@
 import { takeEvery, put, select } from 'redux-saga/effects';
-import { deleteFromUnDo, addToReDo } from '../actions/actions';
-import { getUndoOperation, getObjFromUndoOperation, getObjWrapperFromUndoOperation } from '../selectors/selectorsForOperation';
+import { deleteFromUnDo, addToReDo } from '../actions';
+import {
+  getUndoOperation,
+  getObjFromUndoOperation,
+  getObjWrapperFromUndoOperation,
+} from '../selectors';
 
 export function* undoOperationGen() {
   const operation = yield select(getUndoOperation);

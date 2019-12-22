@@ -5,7 +5,7 @@ import {
   startAddSubCategoryProcess,
   startEditCategoryProcess,
   startDeleteCategoryProcess,
-} from '../../actions/actions';
+} from '../../actions';
 
 export const getPathParam = (path) => ({
   savingPath: path.split('-'),

@@ -1,5 +1,5 @@
 import { takeEvery, put } from 'redux-saga/effects';
-import { editTaskStatus, addToUnDo } from '../actions/actions';
+import { editTaskStatus, addToUnDo } from '../actions';
 
 export function* editTaskStatusGen(action) {
   yield put(editTaskStatus({

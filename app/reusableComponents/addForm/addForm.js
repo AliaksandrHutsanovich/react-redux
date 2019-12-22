@@ -3,8 +3,8 @@ import 'antd/dist/antd.css';
 import { connect } from 'react-redux';
 import { Input, Button } from 'antd';
 import PropTypes from 'prop-types';
-import { clearReDo } from '../../actions/actions';
-import { caseClickHandlers, kindsOfAddActions } from '../../hightOrderComponents/utils/utils';
+import { clearReDo } from '../../actions';
+import { caseClickHandlers, kindsOfAddActions } from '../../hightOrderComponents';
 
 import styles from './addForm.css';
 

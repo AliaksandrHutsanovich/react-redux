@@ -1,9 +1,9 @@
 /* eslint react/forbid-prop-types: 0 */
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
-import Filters from './filtersElems/filters';
-import AddTask from '../../reusableComponents/addForm/addForm';
-import Tasks from './tasks/tasks/tasks';
+import Filters from './filtersElems';
+import { AddForm } from '../../reusableComponents';
+import { Tasks } from './tasks';
 
 const LayoutContent = (props) => {
   const {
@@ -13,7 +13,7 @@ const LayoutContent = (props) => {
   } = props;
   return (
     <div>
-      <AddTask url={url} placeholder="Add new task" />
+      <AddForm url={url} placeholder="Add new task" />
       <Filters showDone={showDone} searchKey={searchKey} />
       <Tasks {...props} />
     </div>

@@ -1,6 +1,6 @@
 import { takeEvery, put, select } from 'redux-saga/effects';
-import { addSubCategory, deleteCategory, addToUnDo } from '../actions/actions';
-import { getSubCategoryPath } from '../selectors/selectorsForPaths';
+import { getSubCategoryPath } from '../selectors';
+import { addSubCategory, deleteCategory, addToUnDo } from '../actions';
 
 export function* addSubCategoryGen(action) {
   yield put(addSubCategory({ path: action.payload.path, title: action.payload.title }));

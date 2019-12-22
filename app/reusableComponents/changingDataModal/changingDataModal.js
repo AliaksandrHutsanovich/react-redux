@@ -3,8 +3,8 @@ import 'antd/dist/antd.css';
 import { Modal, Input } from 'antd';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { clearReDo } from '../../actions/actions';
-import { typesCategoryOperation } from '../../hightOrderComponents/utils/utils';
+import { clearReDo } from '../../actions';
+import { typesCategoryOperation } from '../../hightOrderComponents';
 
 import styles from './changingDataModal.css';
 

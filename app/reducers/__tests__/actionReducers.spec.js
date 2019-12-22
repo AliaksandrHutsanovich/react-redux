@@ -1,5 +1,5 @@
 import configureStore from 'redux-mock-store';
-import * as actions from '../../actions/actions';
+import * as actions from '../../actions';
 import initialState from '../states/initialState';
 import actionReducers from '../actionReducers';
 

@@ -5,13 +5,13 @@ import {
 } from 'antd';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import treeOfCategories from '../../../../hightOrderComponents/treeOfCategories/treeOfCategories';
-import CategoryItem from '../categoryItem/categoryItem';
+import treeOfCategories from '../../../../hightOrderComponents';
+import CategoryItem from '../categoryItem';
 import {
   startEditTaskProcess,
   clearReDo,
-} from '../../../../actions/actions';
-import getStateValue, { getOldPathParams } from '../utils/utils';
+} from '../../../../actions';
+import getStateValue, { getOldPathParams } from '../utils';
 
 const { TextArea } = Input;
 export const Categories = treeOfCategories(CategoryItem);

@@ -3,7 +3,7 @@ import { handleActions } from 'redux-actions';
 import {
   showDoneTasks,
   searchTasks,
-} from '../actions/actions';
+} from '../actions';
 
 const filters = handleActions({
 

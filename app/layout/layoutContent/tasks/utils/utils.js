@@ -1,7 +1,7 @@
 import {
   incrementInDone,
   decrementInDone,
-} from '../../../../actions/actions';
+} from '../../../../actions';
 
 const changeInDone = (
   isFinishedTask,

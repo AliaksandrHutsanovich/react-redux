@@ -1,6 +1,6 @@
 import { takeEvery, put, select } from 'redux-saga/effects';
-import { deleteCategory, addToUnDo, insertCategory } from '../actions/actions';
-import { getEntity } from '../selectors/selectorsForEntities';
+import { deleteCategory, addToUnDo, insertCategory } from '../actions';
+import { getEntity } from '../selectors';
 
 export function* deleteCategoryGen(action) {
   const category = yield select(getEntity(action.payload.path, action.payload.pathParam));

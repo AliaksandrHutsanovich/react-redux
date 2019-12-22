@@ -1,6 +1,6 @@
 import { Map, List } from 'immutable';
 import { handleActions } from 'redux-actions';
-import { addToUnDo, deleteFromUnDo } from '../actions/actions';
+import { addToUnDo, deleteFromUnDo } from '../actions';
 
 const unDoReducer = handleActions({
 

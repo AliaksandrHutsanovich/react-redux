@@ -1,6 +1,6 @@
 import { Map } from 'immutable';
 import { getUrls } from '../selectors';
-import { initialState } from '../../reducers/states/initialState';
+import { initialState } from '../../reducers';
 
 const state = {
   actionReducers: Map().merge(initialState),

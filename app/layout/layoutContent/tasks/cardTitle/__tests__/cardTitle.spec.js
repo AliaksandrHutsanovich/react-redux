@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import configureStore from 'redux-mock-store';
 import { Map } from 'immutable';
 import { Checkbox, Icon } from 'antd';
-import { initialState as store } from '../../../../../reducers/states/initialState';
+import { initialState as store } from '../../../../../reducers';
 import CardTitle, { LoadableModal, CardTitle as WithoutWrapper } from '../cardTitle';
 
 const mockStore = configureStore();

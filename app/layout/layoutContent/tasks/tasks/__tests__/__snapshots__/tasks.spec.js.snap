@@ -11,12 +11,14 @@ exports[`Unit test of tasks component Full render test of tasks component 1`] = 
           "Description": "draw",
           "index": 0,
           "isFinished": true,
+          "location": Object {},
           "title": "graph",
         },
         Object {
           "Description": "count",
           "index": 1,
           "isFinished": true,
+          "location": Object {},
           "title": "counting",
         },
       ]

@@ -2,17 +2,9 @@ import { takeEvery, put, select } from 'redux-saga/effects';
 import { editCategory, addToUnDo, editCategoryRevive } from '../actions';
 import { getEntity } from '../selectors';
 
-export function* editCategoryGen(action) {
-  const category = yield select(getEntity(
-    action.payload.path,
-    action.payload.pathParam,
-    action.payload.title,
-  ));
-  yield put(editCategory({
-    path: action.payload.path,
-    pathParam: action.payload.pathParam,
-    title: action.payload.title,
-  }));
+export function* editCategoryGen({ payload: { path, pathParam, title } }) {
+  const category = yield select(getEntity(path, pathParam, title));
+  yield put(editCategory({ path, pathParam, title }));
   yield put(addToUnDo({
     undoOperation: editCategory,
     redoOperation: editCategoryRevive,

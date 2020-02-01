@@ -8,6 +8,7 @@ const argsConfig = {
   title: 'new title of this task',
   description: 'new description of this task',
   isFinished: true,
+  location: Map({}),
 };
 
 const state = {
@@ -23,6 +24,7 @@ describe('getEntityByPath', () => {
         argsConfig.title,
         argsConfig.description,
         argsConfig.isFinished,
+        argsConfig.location,
         argsConfig.oldPathParam,
         argsConfig.newPathParam,
       )(state),
@@ -38,6 +40,8 @@ describe('getEntityByPath', () => {
       description: 'count',
       isFinished: true,
       title: 'counting',
+      location: Map({}),
+      locationPrimary: Map({}),
     });
   });
 });

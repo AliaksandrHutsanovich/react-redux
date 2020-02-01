@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Unit test of layout content component Full render test 1`] = `
-<div>
+<div
+  className="layoutContent"
+>
   <Connect(Component)
     placeholder="Add new task"
     url="categories-0"
@@ -11,6 +13,7 @@ exports[`Unit test of layout content component Full render test 1`] = `
     showDone={true}
   />
   <Connect(Component)
+    isDisplayed={true}
     match={
       Object {
         "url": "categories-0",

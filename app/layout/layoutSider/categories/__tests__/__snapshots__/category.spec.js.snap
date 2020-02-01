@@ -44,7 +44,7 @@ exports[`Unit test of Category component Full render test 1`] = `
     handleOk={[Function]}
     operationTitle="Delete category"
     path="category-0"
-    titleCategory="My category"
+    title="My category"
     visible={false}
   />
 </div>

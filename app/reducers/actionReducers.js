@@ -20,13 +20,13 @@ import initialState from './states/initialState';
 const actionReducers = handleActions({
 
   [addCategory]: {
-    next(state, { payload }) {
+    next(state, { payload: { title } }) {
       return state
         .update(
           'categories',
           (categories) => categories.push(
             Map({
-              title: payload.title,
+              title,
               subCategories: List([]),
               tasks: List([]),
             }),
@@ -36,13 +36,13 @@ const actionReducers = handleActions({
   },
 
     [addSubCategory]: {
-      next(state, { payload }) {
+      next(state, { payload: { path, title } }) {
         return state
           .updateIn(
-            payload.path,
+            path,
             (subCategories) => subCategories.push(
               Map({
-                title: payload.title,
+                title,
                 subCategories: List([]),
                 tasks: List([]),
               }),
@@ -52,47 +52,42 @@ const actionReducers = handleActions({
     },
 
     [deleteCategory]: {
-      next(state, { payload }) {
-        const fullPath = Object.assign([], payload.path);
-        fullPath.push(payload.pathParam);
-        return state.deleteIn(fullPath);
+      next(state, { payload: { path, pathParam } }) {
+        return state.deleteIn([...path, pathParam]);
       },
     },
 
     [editCategory]: {
-      next(state, { payload }) {
-        const fullPath = Object.assign([], payload.path);
-        fullPath.push(payload.pathParam);
+      next(state, { payload: { path, pathParam, title } }) {
         return state
           .updateIn(
-            fullPath,
-            (category) => category.set('title', payload.title),
+            [...path, pathParam],
+            (category) => category.set('title', title),
           );
       },
     },
 
     [editTaskStatus]: {
-      next(state, { payload }) {
-        const fullPath = Object.assign([], payload.path);
-        fullPath.push(payload.pathParam);
+      next(state, { payload: { path, pathParam, value } }) {
         return state
           .updateIn(
-            fullPath,
-            (task) => task.set('isFinished', payload.value),
+            [...path, pathParam],
+            (task) => task.set('isFinished', value),
           );
       },
     },
 
     [addTask]: {
-      next(state, { payload }) {
+      next(state, { payload: { path, title } }) {
         return state
           .updateIn(
-            payload.path,
+            path,
             (tasks) => tasks.push(
               Map({
-                title: payload.title,
+                title,
                 Description: '',
                 isFinished: false,
+                location: Map({}),
               }),
             ),
           );
@@ -100,75 +95,91 @@ const actionReducers = handleActions({
     },
 
     [editTask]: {
-      next(state, { payload }) {
-        if (payload.newPath) {
+      next(state, {
+        payload: {
+          newPath,
+          newPathParam,
+          title,
+          description,
+          isFinished,
+          oldPath,
+          oldPathParam,
+          location,
+        },
+      }) {
+        if (newPath) {
           let newState;
-          if (payload.newPathParam) {
+          if (newPathParam) {
             newState = state
               .updateIn(
-                payload.newPath,
+                newPath,
                 (tasks) => tasks.insert(
-                  payload.newPathParam,
+                  newPathParam,
                   Map({
-                    title: payload.title,
-                    Description: payload.description,
-                    isFinished: payload.isFinished,
+                    title,
+                    Description: description,
+                    isFinished,
+                    location: Map(location),
                   }),
                 ),
               );
             } else {
               newState = state
                 .updateIn(
-                  payload.newPath,
+                  newPath,
                   (tasks) => tasks.push(
                     Map({
-                      title: payload.title,
-                      Description: payload.description,
-                      isFinished: payload.isFinished,
+                      title,
+                      Description: description,
+                      isFinished,
+                      location: Map(location),
                     }),
                   ),
                 );
             }
-            if (payload.oldPath) {
-              const fullOldPath = Object.assign([], payload.oldPath);
-              fullOldPath.push(payload.oldPathParam);
-              return newState.deleteIn(fullOldPath);
+            if (oldPath) {
+              return newState.deleteIn([...oldPath, oldPathParam]);
             }
             return newState;
         }
-        const fullOldPath = Object.assign([], payload.oldPath);
-        fullOldPath.push(payload.oldPathParam);
         return state
           .updateIn(
-            fullOldPath,
+            [...oldPath, oldPathParam],
             (task) => task
-              .set('title', payload.title)
-              .set('Description', payload.description)
-              .set('isFinished', payload.isFinished),
+              .set('title', title)
+              .set('Description', description)
+              .set('isFinished', isFinished)
+              .set('location', Map(location)),
           );
         },
     },
 
     [deleteTask]: {
-      next(state, { payload }) {
-        const fullPath = Object.assign([], payload.path);
-        fullPath.push(payload.pathParam);
-        return state.deleteIn(fullPath);
+      next(state, { payload: { path, pathParam } }) {
+        return state.deleteIn([...path, pathParam]);
       },
     },
 
     [insertCategory]: {
-      next(state, { payload }) {
+      next(state, {
+        payload: {
+          path,
+          pathParam,
+          title,
+          subCategories,
+          tasks,
+        },
+      }) {
         return state
           .updateIn(
-            payload.path,
+            path,
             (categories) => categories
               .insert(
-                payload.pathParam,
+                pathParam,
                 Map({
-                  title: payload.title,
-                  subCategories: payload.subCategories,
-                  tasks: payload.tasks,
+                  title,
+                  subCategories,
+                  tasks,
                 }),
               ),
           );
@@ -176,17 +187,27 @@ const actionReducers = handleActions({
     },
 
     [insertTask]: {
-      next(state, { payload }) {
+      next(state, {
+        payload: {
+          path,
+          pathParam,
+          title,
+          description,
+          isFinished,
+          location,
+        },
+      }) {
         return state
           .updateIn(
-            payload.path,
+            path,
             (tasks) => tasks
               .insert(
-                payload.pathParam,
+                pathParam,
                 Map({
-                  title: payload.title,
-                  Description: payload.description,
-                  isFinished: payload.isFinished,
+                  title,
+                  Description: description,
+                  isFinished,
+                  location,
                 }),
               ),
           );
@@ -194,47 +215,60 @@ const actionReducers = handleActions({
     },
 
     [editCategoryRevive]: {
-      next(state, { payload }) {
-        const fullPath = Object.assign([], payload.path);
-        fullPath.push(payload.pathParam);
+      next(state, {
+        payload: {
+          path,
+          pathParam,
+          titlePrimary,
+        },
+      }) {
         return state
           .updateIn(
-            fullPath,
+            [...path, pathParam],
             (category) => category
-              .set('title', payload.titlePrimary),
+              .set('title', titlePrimary),
           );
       },
     },
 
     [editTaskRevive]: {
-      next(state, { payload }) {
-        if (payload.newPath) {
-          const fullNewPath = Object.assign([], payload.newPath);
-          fullNewPath.push(payload.newPathParam);
+      next(state, {
+        payload: {
+          newPath,
+          newPathParam,
+          oldPath,
+          oldPathParam,
+          titlePrimary,
+          descriptionPrimary,
+          isFinishedValuePrimary,
+          locationPrimary,
+        },
+      }) {
+        if (newPath) {
           return state
             .updateIn(
-              payload.oldPath,
+              oldPath,
               (tasks) => tasks
                 .insert(
-                  payload.oldPathParam,
+                  oldPathParam,
                   Map({
-                    title: payload.titlePrimary,
-                    Description: payload.descriptionPrimary,
-                    isFinished: payload.isFinishedValuePrimary,
+                    title: titlePrimary,
+                    Description: descriptionPrimary,
+                    isFinished: isFinishedValuePrimary,
+                    location: Map(locationPrimary),
                   }),
                 ),
             )
-            .deleteIn(fullNewPath);
+            .deleteIn([...newPath, newPathParam]);
         }
-        const fullOldPath = Object.assign([], payload.oldPath);
-        fullOldPath.push(payload.oldPathParam);
         return state
           .updateIn(
-            fullOldPath,
+            [...oldPath, oldPathParam],
             (task) => task
-              .set('title', payload.titlePrimary)
-              .set('Description', payload.descriptionPrimary)
-              .set('isFinished', payload.isFinishedValuePrimary),
+              .set('title', titlePrimary)
+              .set('Description', descriptionPrimary)
+              .set('isFinished', isFinishedValuePrimary)
+              .set('location', Map(locationPrimary)),
           );
       },
     },

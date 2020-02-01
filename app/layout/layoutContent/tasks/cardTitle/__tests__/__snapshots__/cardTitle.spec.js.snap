@@ -6,9 +6,13 @@ exports[`Unit test of card title component Full render test 1`] = `
     checked={true}
     indeterminate={false}
     onChange={[Function]}
+  />
+  <span
+    className="label red"
+    onClick={[Function]}
   >
     graph
-  </Checkbox>
+  </span>
   <Icon
     className="itemButton"
     onClick={[Function]}
@@ -20,10 +24,22 @@ exports[`Unit test of card title component Full render test 1`] = `
     handleOk={[Function]}
     isFinished={true}
     key="0"
+    location={Object {}}
     oldPath="categories-0-tasks-0-tasks-0"
     taskTitle="graph"
     visible={false}
   />
+  <Button
+    block={false}
+    className="button"
+    ghost={false}
+    htmlType="button"
+    loading={false}
+    onClick={[Function]}
+    type="primary"
+  >
+    Note place
+  </Button>
 </div>
 `;
 

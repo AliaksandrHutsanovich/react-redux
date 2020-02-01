@@ -33,4 +33,5 @@ export {
   addToReDo,
   deleteFromReDo,
   clearReDo,
+  switchContentDisplay,
 } from './actions';

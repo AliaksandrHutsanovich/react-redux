@@ -1,4 +1,10 @@
-import React, { useState, memo } from 'react';
+/* eslint react/forbid-prop-types: 0 */
+import React, {
+  useState,
+  memo,
+  useCallback,
+  useMemo,
+} from 'react';
 import '!style-loader!css-loader!antd/dist/antd.css'; // eslint-disable-line
 import {
   Modal, Input, Form, Checkbox, Row, Col,
@@ -25,6 +31,7 @@ export const EditTaskModal = ({
   dispatch,
   visible,
   handleCancel,
+  location,
 }) => {
   const [selectedPath, setSelectPath] = useState('');
   const [stateTitle, setStateTitle] = useState('');
@@ -36,11 +43,12 @@ export const EditTaskModal = ({
     setSelectPath(e[0]);
   };
 
-  const onSaveTask = (
+  const onSaveTask = useCallback((
     newPath,
     oldPathProp,
     oldPathParamProp,
     newPathParam,
+    geoLocation,
   ) => {
     dispatch(clearReDo());
     dispatch(startEditTaskProcess({
@@ -51,11 +59,22 @@ export const EditTaskModal = ({
       title: stateTitle || taskTitle,
       description: stateDescription || description,
       isFinished: stateIsFinished === '' ? isFinished : getStateValue(stateIsFinished, isStatusChanged, dispatch),
+      location: geoLocation,
     }));
     handleOk();
-  };
+  }, [
+    description,
+    dispatch,
+    handleOk,
+    isFinished,
+    isStatusChanged,
+    stateDescription,
+    stateIsFinished,
+    stateTitle,
+    taskTitle,
+  ]);
 
-  const onChangeTaskStatus = (e) => {
+  const onChangeTaskStatus = useCallback((e) => {
     if (e.target.checked === isFinished) {
       setStateIsFinished(e.target.checked);
       setIsStatusChanged(false);
@@ -63,26 +82,33 @@ export const EditTaskModal = ({
       setStateIsFinished(e.target.checked);
       setIsStatusChanged(true);
     }
-  };
+  }, [isFinished]);
 
-  const onChangeTaskDescription = (e) => { setStateDescription(e.target.value); };
+  const onChangeTaskDescription = useCallback((e) => { setStateDescription(e.target.value); }, []);
 
-  const onChangeTaskTitle = (e) => { setStateTitle(e.target.value); };
+  const onChangeTaskTitle = useCallback((e) => { setStateTitle(e.target.value); }, []);
 
-  const oldPathParams = getOldPathParams(oldPath.split('-'));
-  const newPath = selectedPath ? (selectedPath + '-tasks').split('-') : '';
+  const oldPathParams = useMemo(() => getOldPathParams(oldPath.split('-')), [oldPath]);
+  const newPath = useMemo(() => (selectedPath ? (selectedPath + '-tasks').split('-') : ''), [selectedPath]);
   const newPathParam = '';
 
   return (
     <Modal
       title="Edit task"
       visible={visible}
-      onOk={() => onSaveTask(
+      onOk={useCallback(() => onSaveTask(
         newPath,
         oldPathParams.oldPath,
         oldPathParams.oldPathParam,
         newPathParam,
-      )}
+        location,
+      ), [
+        location,
+        newPath,
+        oldPathParams.oldPath,
+        oldPathParams.oldPathParam,
+        onSaveTask,
+      ])}
       onCancel={handleCancel}
       okText="Save changes"
       width="900px"
@@ -104,7 +130,7 @@ export const EditTaskModal = ({
             <Row>
               <Checkbox
                 defaultChecked={isFinished}
-                onChange={(e) => onChangeTaskStatus(e)}
+                onChange={useCallback((e) => onChangeTaskStatus(e), [onChangeTaskStatus])}
               >
                 Done
               </Checkbox>
@@ -133,6 +159,7 @@ EditTaskModal.propTypes = {
   dispatch: PropTypes.func.isRequired,
   visible: PropTypes.bool.isRequired,
   handleCancel: PropTypes.func.isRequired,
+  location: PropTypes.object.isRequired,
 };
 
 export default connect()(memo(EditTaskModal));

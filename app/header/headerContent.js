@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import '!style-loader!css-loader!antd/dist/antd.css'; // eslint-disable-line
 import { Progress, Button, Icon } from 'antd';
@@ -17,11 +17,11 @@ const HeaderContent = ({
     <div className={styles.headerMenu}>
       <h1 className={styles.headerLogo}>Task Accountant</h1>
       <Button.Group size="small">
-        <Button type="primary" disabled={!numUnDoObjs} onClick={() => dispatch(startUnDoProcess())}>
+        <Button type="primary" disabled={!numUnDoObjs} onClick={useCallback(() => dispatch(startUnDoProcess()), [dispatch])}>
           <Icon type="left" />
           Backward
         </Button>
-        <Button type="primary" disabled={!numReDoObjs} onClick={() => dispatch(startReDoProcess())}>
+        <Button type="primary" disabled={!numReDoObjs} onClick={useCallback(() => dispatch(startReDoProcess()), [dispatch])}>
           Forward
           <Icon type="right" />
         </Button>

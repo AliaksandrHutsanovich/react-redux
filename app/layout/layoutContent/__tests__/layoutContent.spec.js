@@ -19,6 +19,7 @@ describe('Unit test of layout content component', () => {
         showDone
         searchKey=""
         match={{ url: 'categories-0' }}
+        isDisplayed
       />
     </Provider>,
   );

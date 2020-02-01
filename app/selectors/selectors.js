@@ -1,3 +1,5 @@
+import { Map } from 'immutable';
+
 const getSubCategories = (key, subCategories) => {
   let arrSubCategories = [];
   if (subCategories.length > 0) {
@@ -111,4 +113,11 @@ export const getUrls = (state) => {
     });
 
     return urls;
+};
+
+export const getTaskByUrl = (url) => (state) => {
+  const task = state.getIn(url.split('-'));
+  return task
+    ? task.update('location', (location) => location.toObject())
+    : Map({});
 };

@@ -1,5 +1,6 @@
 .list {
     top: 8px;
+    left: 10%;
     height: calc(100vh - 15vh - 120px);
     overflow: auto;
 }

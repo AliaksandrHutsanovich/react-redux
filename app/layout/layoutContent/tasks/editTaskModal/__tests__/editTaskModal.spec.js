@@ -40,6 +40,7 @@ describe('Unit test of edit task modal', () => {
       visible
       handleCancel={() => {}}
       store={dataStore}
+      location={{}}
     />,
   );
 
@@ -58,6 +59,7 @@ describe('Unit test of edit task modal', () => {
       handleCancel={() => {}}
       store={dataStore}
       dispatch={() => {}}
+      location={{}}
     />,
   );
 
@@ -114,6 +116,7 @@ describe('Unit test of edit task modal', () => {
       title: newTaskTitle,
       description: newDescription,
       isFinished: newTasksStatus,
+      location: {},
     });
   });
 });

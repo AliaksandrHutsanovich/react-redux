@@ -1,6 +1,11 @@
 import { takeEvery, put, select } from 'redux-saga/effects';
 import { Map } from 'immutable';
-import { editTask, addToUnDo, editTaskRevive } from '../../actions/actions';
+import {
+  editTask,
+  addToUnDo,
+  editTaskRevive,
+  switchContentDisplay,
+} from '../../actions/actions';
 import { getEntityByPath } from '../../selectors/selectorsForEntities';
 import editTaskWatcher, { editTaskGen } from '../editTask';
 import { initialState } from '../../reducers/states/initialState';
@@ -16,6 +21,7 @@ describe('every saga should work step by step', () => {
       title: 'new title of this task',
       description: 'new description of this task',
       isFinished: false,
+      location: Map({}),
     },
   };
 
@@ -28,6 +34,8 @@ describe('every saga should work step by step', () => {
     task.description = task.Description;
     task.titlePrimary = 'new title of this task';
     task.descriptionPrimary = 'new description of this task';
+    task.locationPrimary = Map({});
+    task.isFinishedValuePrimary = false;
 
     const addUndoObj = {
       undoOperation: editTask,
@@ -41,6 +49,7 @@ describe('every saga should work step by step', () => {
       action.payload.title,
       action.payload.description,
       action.payload.isFinished,
+      action.payload.location,
       action.payload.oldPathParam,
       action.payload.newPathParam,
     );
@@ -60,7 +69,13 @@ describe('every saga should work step by step', () => {
           title: action.payload.title,
           description: action.payload.description,
           isFinished: action.payload.isFinished,
+          location: action.payload.location,
         })));
+    });
+
+    it('should dispatch action to switch content display', () => {
+      expect(gen.next().value)
+        .toEqual(put(switchContentDisplay({ isDisplayed: true })));
     });
 
     it('should dispatch action to add object to addUndo selector', () => {

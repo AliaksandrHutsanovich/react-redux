@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit test of map component shallow render test 1`] = `
+<Map
+  center={
+    Array [
+      52.093,
+      23.695,
+    ]
+  }
+  className="map"
+  onClick={[Function]}
+  zoom={12}
+>
+  <ForwardRef(Leaflet(TileLayer))
+    attribution="Map data © <a href=\\"https://www.openstreetmap.org/\\">OpenStreetMap</a> contributors, <a href=\\"https://creativecommons.org/licenses/by-sa/2.0/\\">CC-BY-SA</a>, Imagery © <a href=\\"https://www.mapbox.com/\\">Mapbox</a>"
+    url="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic2FuZGVyYXMiLCJhIjoiY2s0bGJ2aW44Mjg5NjNubzJ2NXlvMmk1eiJ9.U4UYcWGp-W0S9CeW5EFcpg"
+  />
+  0
+</Map>
+`;

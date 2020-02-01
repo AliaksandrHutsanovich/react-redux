@@ -6,12 +6,12 @@
 
 .button {
     top: 10px;
-    left: 20px;
+    left: 70px;
 }
 
 .input {
     display: block !important;
     width: 50% !important;
     top: 10px;
-    left: 20px;
+    left: 50px;
 }

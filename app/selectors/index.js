@@ -1,4 +1,4 @@
-export { getCategories, getUrls } from './selectors';
+export { getCategories, getUrls, getTaskByUrl } from './selectors';
 export { getEntity, getEntityByPath } from './selectorsForEntities';
 export {
   getUndoOperation,

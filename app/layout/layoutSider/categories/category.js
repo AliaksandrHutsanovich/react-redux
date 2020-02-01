@@ -102,7 +102,7 @@ class Category extends React.Component {
           handleOk={this.handleDeleteModalOk}
           handleCancel={this.handleDeleteModalCancel}
           path={path}
-          titleCategory={title}
+          title={title}
           operationTitle="Delete category"
         />
       </div>

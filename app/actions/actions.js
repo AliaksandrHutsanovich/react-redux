@@ -46,3 +46,5 @@ export const addToReDo = createAction('ADD_TO_REDO');
 export const deleteFromReDo = createAction('DELETE_FROM_REDO');
 
 export const clearReDo = createAction('CLEAR_REDO');
+
+export const switchContentDisplay = createAction('SWITCH_DISPLAY');

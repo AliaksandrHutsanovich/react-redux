@@ -1,14 +1,9 @@
-export const getEntity = (path, pathParam, titlePrimary) => (state) => {
-  const fullPath = Object.assign([], path);
-  fullPath.push(pathParam);
-  const entity = state.actionReducers.getIn(fullPath).toObject();
-  entity.path = path;
-  entity.pathParam = pathParam;
-  if (titlePrimary) {
-    entity.titlePrimary = titlePrimary;
-  }
-  return entity;
-};
+export const getEntity = (path, pathParam, titlePrimary) => (state) => ({
+  ...state.actionReducers.getIn([...path, pathParam]).toObject(),
+  path,
+  pathParam,
+  titlePrimary,
+});
 
 export const getEntityByPath = (
   oldPath,
@@ -16,36 +11,38 @@ export const getEntityByPath = (
   newTitle,
   newDescription,
   newIsFinishedValue,
+  location,
   oldPathParam,
   newPathParam,
 ) => (state) => {
-  const fullOldPath = Object.assign([], oldPath);
-  fullOldPath.push(oldPathParam);
-  const entity = state.actionReducers.getIn(fullOldPath).toObject();
+  let entity = state
+    .actionReducers
+    .getIn([...oldPath, oldPathParam])
+    .toObject();
+
   if (newPath) {
-    entity.newPath = oldPath;
-    entity.newPathParam = oldPathParam;
-    entity.oldPath = newPath;
-    let newPathParamVar = newPathParam;
-    if (!newPathParamVar) {
-      newPathParamVar = state.actionReducers.getIn(newPath).toArray().length;
-    }
-    entity.oldPathParam = newPathParamVar;
+    entity = {
+      ...entity,
+      newPath: oldPath,
+      newPathParam: oldPathParam,
+      oldPath: newPath,
+      oldPathParam: newPathParam || state.actionReducers.getIn(newPath).toArray().length,
+    };
   } else {
-    entity.newPath = newPath;
-    entity.newPathParam = newPathParam;
-    entity.oldPath = oldPath;
-    entity.oldPathParam = oldPathParam;
+    entity = {
+      ...entity,
+      newPath,
+      newPathParam,
+      oldPath,
+      oldPathParam,
+    };
   }
-  entity.description = entity.Description;
-  if (newTitle) {
-    entity.titlePrimary = newTitle;
-  }
-  if (newDescription) {
-    entity.descriptionPrimary = newDescription;
-  }
-  if (newIsFinishedValue) {
-    entity.isFinishedValuePrimary = newIsFinishedValue;
-  }
-  return entity;
+  return {
+    ...entity,
+    description: entity.Description,
+    titlePrimary: newTitle,
+    descriptionPrimary: newDescription,
+    isFinishedValuePrimary: newIsFinishedValue,
+    locationPrimary: location,
+  };
 };

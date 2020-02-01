@@ -11,7 +11,10 @@ const initialState = Map().merge(store);
 const mockStore = configureStore();
 
 describe('Unit test of tasks component', () => {
-  const dataStore = mockStore({ actionReducers: initialState });
+  const dataStore = mockStore({
+    actionReducers: initialState,
+    contentDisplay: Map().merge({ isDisplayed: true, url: '' }),
+  });
 
   const wrapper = shallow(
     <Tasks

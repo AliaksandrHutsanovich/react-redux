@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useCallback } from 'react';
 import '!style-loader!css-loader!antd/dist/antd.css'; // eslint-disable-line
 import { Checkbox, Input } from 'antd';
 import { connect } from 'react-redux';
@@ -17,14 +17,17 @@ const onChangePattern = (e, dispatch) => {
 
 const Filters = ({ dispatch, searchKey, showDone }) => (
   <div className={styles.filters}>
-    <Checkbox defaultChecked={showDone} onChange={(e) => onChange(e, dispatch)}>
+    <Checkbox
+      defaultChecked={showDone}
+      onChange={useCallback((e) => onChange(e, dispatch), [dispatch])}
+    >
       Show done
     </Checkbox>
     <Input
       placeholder="search"
       style={{ width: 200 }}
       defaultValue={searchKey}
-      onChange={(e) => onChangePattern(e, dispatch)}
+      onChange={useCallback((e) => onChangePattern(e, dispatch), [dispatch])}
     />
   </div>
 );

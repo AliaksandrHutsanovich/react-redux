@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import configureStore from 'redux-mock-store';
 import { Map } from 'immutable';
-import { Checkbox, Icon } from 'antd';
+import { Checkbox, Icon, Button } from 'antd';
 import { initialState as store } from '../../../../../reducers';
 import CardTitle, { LoadableModal, CardTitle as WithoutWrapper } from '../cardTitle';
 
@@ -22,6 +22,8 @@ describe('Unit test of card title component', () => {
       index={0}
       description="draw"
       store={dataStore}
+      isOutlined
+      location={{}}
     />,
   );
 
@@ -47,15 +49,16 @@ describe('Unit test of card title component', () => {
     expect(dispatch).toHaveBeenCalled();
   });
 
-  const Component1 = shallow(<WithoutWrapper
+  const fragment = shallow(<WithoutWrapper
     title="graph"
     isFinished
     url="categories-0-tasks-0"
     index={0}
     description="draw"
-    dispatch={() => {}}
+    dispatch={dispatch}
+    isOutlined
+    location={{}}
   />);
-  const fragment = Component1;
 
   it('Icon button for opening dialog should be clickable', () => {
     fragment.find(Icon).simulate('click');
@@ -70,5 +73,15 @@ describe('Unit test of card title component', () => {
   it('Dialog should closable when click on OK button', async () => {
     fragment.find(LoadableModal).prop('handleOk')();
     expect(fragment.state().visible).toBeFalsy();
+  });
+
+  it('dispatch should be called to show the location', () => {
+    Component.shallow().find('span').simulate('click');
+    expect(dispatch).toHaveBeenCalled();
+  });
+
+  it('dispatch should be called to switch content display', () => {
+    Component.shallow().find(Button).simulate('click');
+    expect(dispatch).toHaveBeenCalled();
   });
 });

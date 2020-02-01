@@ -1,0 +1,8 @@
+.map {
+    position: absolute;
+    width: 70%;
+    height: calc(100vh - 15%);
+    overflow: hidden;
+    top: 15%;
+    z-index: 1;
+}

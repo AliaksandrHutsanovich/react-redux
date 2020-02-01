@@ -1,4 +1,4 @@
-import React, { useState, memo } from 'react';
+import React, { useState, memo, useCallback } from 'react';
 import 'antd/dist/antd.css';
 import { connect } from 'react-redux';
 import { Input, Button } from 'antd';
@@ -13,15 +13,15 @@ export const AddForm = (props) => {
   const [value, setValue] = useState('');
   const addAction = kindsOfAddActions[placeholder];
 
-  const changeValue = (event) => {
+  const changeValue = useCallback((event) => {
     setValue(event.target.value);
-  };
+  }, []);
 
-  const clickButton = () => {
+  const clickButton = useCallback(() => {
     dispatch(clearReDo());
     caseClickHandlers[placeholder](dispatch, value, addAction, url);
     setValue('');
-  };
+  }, [placeholder, addAction, dispatch, url, value]);
 
   return (
     <div className={styles.formWrapper}>
@@ -34,7 +34,7 @@ export const AddForm = (props) => {
       <Button
         type="primary"
         className={styles.button}
-        onClick={() => { clickButton(addAction); }}
+        onClick={clickButton}
       >
         Add
       </Button>

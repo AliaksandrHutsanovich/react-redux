@@ -4,4 +4,9 @@
     flex-direction: column;
     width: 80%;
     border-radius: 10px !important;
+    opacity: 0.3;
+}
+
+.listItemContent:hover {
+    opacity: 0.6;
 }

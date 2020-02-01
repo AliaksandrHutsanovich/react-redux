@@ -1,28 +1,47 @@
 import { takeEvery, put, select } from 'redux-saga/effects';
-import { editTask, addToUnDo, editTaskRevive } from '../actions';
+import {
+  editTask,
+  addToUnDo,
+  editTaskRevive,
+  switchContentDisplay,
+} from '../actions';
 import { getEntityByPath } from '../selectors';
 
-export function* editTaskGen(action) {
+export function* editTaskGen({
+  payload: {
+    oldPath,
+    newPath,
+    title,
+    description,
+    isFinished,
+    location,
+    oldPathParam,
+    newPathParam,
+  },
+}) {
   const task = yield select(
     getEntityByPath(
-      action.payload.oldPath,
-      action.payload.newPath,
-      action.payload.title,
-      action.payload.description,
-      action.payload.isFinished,
-      action.payload.oldPathParam,
-      action.payload.newPathParam,
+      oldPath,
+      newPath,
+      title,
+      description,
+      isFinished,
+      location,
+      oldPathParam,
+      newPathParam,
     ),
   );
   yield put(editTask({
-    newPath: action.payload.newPath,
-    oldPath: action.payload.oldPath,
-    oldPathParam: action.payload.oldPathParam,
-    newPathParam: action.payload.newPathParam,
-    title: action.payload.title,
-    description: action.payload.description,
-    isFinished: action.payload.isFinished,
+    newPath,
+    oldPath,
+    oldPathParam,
+    newPathParam,
+    title,
+    description,
+    isFinished,
+    location,
   }));
+  yield put(switchContentDisplay({ isDisplayed: true }));
   yield put(addToUnDo({
     undoOperation: editTask,
     redoOperation: editTaskRevive,

@@ -14,10 +14,10 @@ exports[`Unit tests of add changing data dialog full render test 1`] = `
 >
   <Input
     className="modalInput"
-    defaultValue="category"
     onChange={[Function]}
     placeholder="input category title"
     type="text"
+    value=""
   />
 </Modal>
 `;

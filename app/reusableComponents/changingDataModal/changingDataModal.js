@@ -1,4 +1,5 @@
-import React, { useState, memo } from 'react';
+/* eslint react/display-name: 0 */
+import React, { useState, memo, useCallback } from 'react';
 import 'antd/dist/antd.css';
 import { Modal, Input } from 'antd';
 import { connect } from 'react-redux';
@@ -8,28 +9,47 @@ import { typesCategoryOperation } from '../../hightOrderComponents';
 
 import styles from './changingDataModal.css';
 
+const renderByOpearionTitle = {
+  'Delete category': (title) => <p>{title}</p>,
+  'Edit category': (title, handleChange, className) => (
+    <Input
+      placeholder="input category title"
+      defaultValue={title}
+      onChange={handleChange}
+      className={className}
+    />
+  ),
+  'Add new subcategory': (title, handleChange, className, value) => (
+    <Input
+      placeholder="input category title"
+      value={value}
+      onChange={handleChange}
+      className={className}
+    />
+  ),
+};
+
 export const ChangingDataDialog = ({
   dispatch,
   title,
   visible,
   handleOk,
-  titleCategory,
   handleCancel,
   path,
   operationTitle,
 }) => {
   const [value, setValue] = useState('');
 
-  const handleChange = (e) => {
+  const handleChange = useCallback((e) => {
     setValue(e.target.value);
-  };
+  }, []);
 
-  const handleClickOk = () => {
+  const handleClickOk = useCallback(() => {
     dispatch(clearReDo());
     typesCategoryOperation[operationTitle](path, dispatch, value, title);
     setValue('');
     handleOk();
-  };
+  }, [dispatch, handleOk, operationTitle, path, title, value]);
 
   return (
     <Modal
@@ -38,25 +58,13 @@ export const ChangingDataDialog = ({
       onOk={() => handleClickOk(handleOk, path, dispatch, title)}
       onCancel={handleCancel}
     >
-      {
-        operationTitle === 'Delete category'
-          ? <p>{titleCategory}</p>
-          : (
-            <Input
-              placeholder="input category title"
-              defaultValue={title}
-              onChange={handleChange}
-              className={styles.modalInput}
-            />
-          )
-        }
+      {renderByOpearionTitle[operationTitle](title, handleChange, styles.modalInput, value)}
     </Modal>
   );
 };
 
 ChangingDataDialog.defaultProps = {
   title: '',
-  titleCategory: '',
 };
 
 ChangingDataDialog.propTypes = {
@@ -65,7 +73,6 @@ ChangingDataDialog.propTypes = {
   visible: PropTypes.bool.isRequired,
   handleOk: PropTypes.func.isRequired,
   path: PropTypes.string.isRequired,
-  titleCategory: PropTypes.string,
   handleCancel: PropTypes.func.isRequired,
   operationTitle: PropTypes.string.isRequired,
 };

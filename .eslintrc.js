@@ -2,6 +2,7 @@ module.exports = {
   env: {
     browser: true,
     es6: true,
+    jest: true,
   },
   extends: [
     'airbnb',
@@ -21,6 +22,8 @@ module.exports = {
   },
   plugins: [
     'react',
+    'react-hooks',
+    "jest"
   ],
   "settings": {
     "import/resolver": {
@@ -47,6 +50,10 @@ module.exports = {
     "import/no-named-as-default": 0,
     "template-curly-spacing" : "off",
     "import/no-webpack-loader-syntax": 0,
+    "jsx-a11y/click-events-have-key-events": 0,
+    "jsx-a11y/no-static-element-interactions": 0,
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
     indent : "off",
   },
   overrides: [

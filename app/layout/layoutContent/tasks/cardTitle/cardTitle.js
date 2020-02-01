@@ -1,14 +1,17 @@
+/* eslint react/forbid-prop-types: 0 */
 import React, { memo } from 'react';
 import '!style-loader!css-loader!antd/dist/antd.css'; // eslint-disable-line
-import { Checkbox, Icon } from 'antd';
+import { Checkbox, Icon, Button } from 'antd';
 import { connect } from 'react-redux';
 import Loadable from 'react-loadable';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import {
   startEditTaskStatusProcess,
   clearReDo,
   incrementInDone,
   decrementInDone,
+  switchContentDisplay,
 } from '../../../../actions';
 import { getPathParam, getSavingPath } from '../../../../hightOrderComponents';
 
@@ -28,6 +31,7 @@ export class CardTitle extends React.PureComponent {
     this.showAddModal = this.showAddModal.bind(this);
     this.handleModalCancel = this.handleModalCancel.bind(this);
     this.handleModalOk = this.handleModalOk.bind(this);
+    this.handleClickText = this.handleClickText.bind(this);
   }
 
   static getDerivedStateFromProps = (nextProps) => ({ checked: nextProps.isFinished });
@@ -65,6 +69,11 @@ export class CardTitle extends React.PureComponent {
     });
   }
 
+  handleClickText() {
+    const { url, index, dispatch } = this.props;
+    dispatch(switchContentDisplay({ url: url.replace('/', '') + '-tasks-' + index }));
+  }
+
   render() {
     const {
       title,
@@ -73,13 +82,19 @@ export class CardTitle extends React.PureComponent {
       index,
       dispatch,
       description,
+      location,
+      isOutlined,
     } = this.props;
     const { checked, visible } = this.state;
     return (
       <div>
-        <Checkbox checked={checked} onChange={(e) => this.onChange(e, url, index, dispatch)}>
+        <Checkbox checked={checked} onChange={(e) => this.onChange(e, url, index, dispatch)} />
+        <span
+          className={clsx(styles.label, isOutlined && styles.red)}
+          onClick={this.handleClickText}
+        >
           {title}
-        </Checkbox>
+        </span>
         <Icon className={styles.itemButton} onClick={this.showAddModal} type="edit" />
         <LoadableModal
           key={index}
@@ -90,7 +105,15 @@ export class CardTitle extends React.PureComponent {
           description={description}
           isFinished={isFinished}
           oldPath={url.replace('/', '') + '-tasks-' + index}
+          location={location}
         />
+        <Button
+          type="primary"
+          className={styles.button}
+          onClick={() => dispatch(switchContentDisplay({ isDisplayed: false, url: url.replace('/', '') + '-tasks-' + index }))}
+        >
+          Note place
+        </Button>
       </div>
     );
   }
@@ -103,6 +126,8 @@ CardTitle.propTypes = {
   index: PropTypes.number.isRequired,
   dispatch: PropTypes.func.isRequired,
   description: PropTypes.string.isRequired,
+  location: PropTypes.object.isRequired,
+  isOutlined: PropTypes.bool.isRequired,
 };
 
 export default connect()(memo(CardTitle));

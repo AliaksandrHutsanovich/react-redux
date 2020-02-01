@@ -1,3 +1,4 @@
+/* eslint react/forbid-prop-types: 0 */
 import React, { memo } from 'react';
 import '!style-loader!css-loader!antd/dist/antd.css'; // eslint-disable-line
 import { Card, Collapse } from 'antd';
@@ -9,21 +10,15 @@ import styles from './task.css';
 const { Panel } = Collapse;
 
 const Task = ({
-  title,
   description,
-  isFinished,
-  index,
-  url,
+  ...props
 }) => (
   <Card
     className={styles.listItemContent}
     title={
       (
         <CardTitle
-          index={index}
-          url={url}
-          title={title}
-          isFinished={isFinished}
+          {...props}
           description={description}
         />
       )
@@ -38,11 +33,7 @@ const Task = ({
 );
 
 Task.propTypes = {
-  title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  isFinished: PropTypes.bool.isRequired,
-  index: PropTypes.number.isRequired,
-  url: PropTypes.string.isRequired,
 };
 
 export default memo(Task);

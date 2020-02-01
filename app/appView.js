@@ -12,7 +12,7 @@ import { Layout } from 'antd';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import HeaderContent from './header';
-import { LayoutSiderContent, LayoutContent } from './layout';
+import { LayoutSiderContent, LayoutContent, Map } from './layout';
 
 import { getUrls } from './selectors';
 import styles from './appView.css';
@@ -29,20 +29,33 @@ class AppView extends React.Component {
       urls: {
         length,
       },
+      isDisplayed,
     } = this.props;
     return !(showDone === nextProps.showDone
       && searchKey === nextProps.searchKey
-      && length === nextProps.urls.length);
+      && length === nextProps.urls.length
+      && isDisplayed === nextProps.isDisplayed);
     }
 
     render() {
-      const { showDone, searchKey, urls } = this.props;
+      const {
+        showDone,
+        searchKey,
+        urls,
+        isDisplayed,
+      } = this.props;
       const routes = urls.map((url, index) => (
         <Route
           key={index}
           path={`/${url}`}
           render={(props) => (
-            <LayoutContent {...props} url={url} showDone={showDone} searchKey={searchKey} />
+            <LayoutContent
+              {...props}
+              url={url}
+              showDone={showDone}
+              searchKey={searchKey}
+              isDisplayed={isDisplayed}
+            />
           )}
         />
       ));
@@ -57,6 +70,7 @@ class AppView extends React.Component {
                 <LayoutSiderContent />
               </Sider>
               <Content>
+                <Map />
                 {routes}
               </Content>
             </Layout>
@@ -70,6 +84,7 @@ const mapStateToProps = (state) => ({
   urls: getUrls(state),
   showDone: state.filters.get('showDone'),
   searchKey: state.filters.get('searchKey'),
+  isDisplayed: state.contentDisplay.get('isDisplayed'),
 });
 
 AppView.defaultProps = {
@@ -80,6 +95,7 @@ AppView.propTypes = {
   showDone: PropTypes.bool.isRequired,
   searchKey: PropTypes.string,
   urls: PropTypes.arrayOf(PropTypes.string).isRequired,
+  isDisplayed: PropTypes.bool.isRequired,
 };
 
 export default connect(mapStateToProps)(AppView);

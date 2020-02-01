@@ -1,6 +1,6 @@
 /* eslint react/forbid-prop-types: 0 */
 
-import React, { useEffect, memo } from 'react';
+import React, { useEffect, memo, useMemo } from 'react';
 import '!style-loader!css-loader!antd/dist/antd.css'; // eslint-disable-line
 import { List } from 'antd';
 import { connect } from 'react-redux';
@@ -15,7 +15,8 @@ const Tasks = ({
   tasks,
   showDone,
   searchKey,
-  match,
+  match: { url },
+  chosenUrl,
 }) => {
   useEffect(() => {
     dispatch(
@@ -26,16 +27,15 @@ const Tasks = ({
     );
   });
 
-  const { url } = match;
   let data = tasks || [];
-  data = data
+  data = useMemo(() => data
     .map((elem, index) => {
       const newElem = elem;
       newElem.index = index;
       return newElem;
     })
     .filter((elem) => elem.isFinished === showDone)
-    .filter((elem) => elem.title.match(searchKey));
+    .filter((elem) => elem.title.match(searchKey)), [data, searchKey, showDone]);
   return (
     <div>
       <List
@@ -44,14 +44,22 @@ const Tasks = ({
         className={styles.list}
         split={false}
         renderItem={
-          (item) => (
+          ({
+            index,
+            title,
+            Description,
+            isFinished,
+            location,
+          }) => (
             <List.Item>
               <Task
-                index={item.index}
+                index={index}
                 url={url}
-                title={item.title}
-                description={item.Description}
-                isFinished={item.isFinished}
+                title={title}
+                description={Description}
+                isFinished={isFinished}
+                location={location}
+                isOutlined={chosenUrl === url.replace('/', '') + '-tasks-' + index}
               />
             </List.Item>
           )
@@ -65,7 +73,13 @@ const mapStateToProps = (state, props) => ({
   tasks: state.actionReducers
     .getIn((props.match.url.replace('/', '') + '-tasks').split('-'))
     .toArray()
-    .map((elem) => elem.toObject()),
+    .map(
+      (elem) => elem.update(
+        'location',
+        (location) => location.toObject(),
+      ).toObject(),
+    ),
+  chosenUrl: state.contentDisplay.get('url'),
 });
 
 Tasks.propTypes = {
@@ -74,6 +88,7 @@ Tasks.propTypes = {
   showDone: PropTypes.bool.isRequired,
   searchKey: PropTypes.string.isRequired,
   match: PropTypes.object.isRequired,
+  chosenUrl: PropTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps)(memo(Tasks));

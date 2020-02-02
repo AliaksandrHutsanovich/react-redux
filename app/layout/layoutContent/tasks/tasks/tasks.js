@@ -6,7 +6,7 @@ import { List } from 'antd';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { countPercentage } from '../../../../actions';
-import Task from '../task';
+import TaskItem from './taskItem';
 
 import styles from './tasks.css';
 
@@ -34,7 +34,7 @@ const Tasks = ({
       return newElem;
     })
     .filter((elem) => elem.isFinished === showDone)
-    .filter((elem) => elem.title.match(searchKey)), [data, searchKey, showDone]);
+    .filter((elem) => elem.title.match(searchKey)), [tasks, searchKey, showDone]);
   return (
     <div>
       <List
@@ -43,24 +43,12 @@ const Tasks = ({
         className={styles.list}
         split={false}
         renderItem={
-          ({
-            index,
-            title,
-            Description,
-            isFinished,
-            location,
-          }) => (
-            <List.Item>
-              <Task
-                index={index}
-                url={url}
-                title={title}
-                description={Description}
-                isFinished={isFinished}
-                location={location}
-                isOutlined={chosenUrl === url.replace('/', '') + '-tasks-' + index}
-              />
-            </List.Item>
+          (task) => (
+            <TaskItem
+              {...task}
+              url={url}
+              chosenUrl={chosenUrl}
+            />
           )
         }
       />

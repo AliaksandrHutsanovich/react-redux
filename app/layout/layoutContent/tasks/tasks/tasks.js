@@ -27,8 +27,7 @@ const Tasks = ({
     );
   });
 
-  let data = tasks || [];
-  data = useMemo(() => data
+  const data = useMemo(() => (tasks || [])
     .map((elem, index) => {
       const newElem = elem;
       newElem.index = index;

@@ -20,7 +20,7 @@ const WorldMap = ({
     title,
     Description,
     isFinished,
-    location,
+    location = {},
   },
   dispatch,
 }) => {

@@ -276,7 +276,7 @@ describe('select_actions', () => {
         newState.getIn(['categories', 1, 'tasks']).size - 1,
       ]);
       expect(task.get('title')).toEqual('New task title');
-      expect(task.get('Description')).toEqual('This task was moved');
+      expect(task.get('description')).toEqual('This task was moved');
       expect(task.get('isFinished')).toEqual(false);
     });
 
@@ -398,7 +398,7 @@ describe('select_actions', () => {
             path: ['categories', 0, 'tasks'],
             pathParam: 1,
             title: 'New task title',
-            Description: 'This task is very important',
+            description: 'This task is very important',
             isFinished: false,
           },
         },
@@ -407,7 +407,7 @@ describe('select_actions', () => {
         path: ['categories', 0, 'tasks'],
         pathParam: 1,
         title: 'New task title',
-        Description: 'This task is very important',
+        description: 'This task is very important',
         isFinished: false,
       }));
       expect(store.getActions()).toEqual(expectedActions);
@@ -423,7 +423,7 @@ describe('select_actions', () => {
             path: ['categories', 0, 'tasks'],
             pathParam: 1,
             title: 'New task title',
-            Description: 'This task is very important',
+            description: 'This task is very important',
             isFinished: false,
           },
         },

@@ -1,14 +1,15 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import configureStore from 'redux-mock-store';
+import { Controller } from 'react-hook-form';
 import { Map } from 'immutable';
-import { Modal, Checkbox, Input } from 'antd';
+import { Form, Modal } from 'antd';
+import { act } from 'react-dom/test-utils';
 import { initialState as store } from '../../../../../reducers';
 import EditTaskModal, { Categories, EditTaskModal as WithoutWrapper } from '../editTaskModal';
 import { getOldPathParams } from '../../utils';
 import { startEditTaskProcess } from '../../../../../actions';
 
-const { TextArea } = Input;
 const mockStore = configureStore();
 const initialState = Map().merge(store);
 const oldPath = '/task';
@@ -25,6 +26,7 @@ jest.mock('../../../../../actions/actions', () => ({
   clearReDo: () => {},
   decrementInDone: () => {},
 }));
+jest.mock('../../../../../sagas/execute', () => () => false);
 
 describe('Unit test of edit task modal', () => {
   const dataStore = mockStore({ actionReducers: initialState });
@@ -48,27 +50,28 @@ describe('Unit test of edit task modal', () => {
     expect(Component.shallow()).toMatchSnapshot();
   });
 
-  const Component1 = shallow(
-    <WithoutWrapper
-      taskTitle={taskTitle}
-      description={description}
-      isFinished
-      oldPath={oldPath}
-      handleOk={() => {}}
-      visible
-      handleCancel={() => {}}
-      store={dataStore}
-      dispatch={() => {}}
-      location={{}}
-    />,
-  );
-
-  const fragment = Component1;
   it('Category should be clickable', async () => {
+    const fragment = shallow(
+      <WithoutWrapper
+        taskTitle={taskTitle}
+        description={description}
+        isFinished
+        oldPath={oldPath}
+        handleOk={() => {}}
+        visible
+        handleCancel={() => {}}
+        store={dataStore}
+        dispatch={() => {}}
+        location={{}}
+      />,
+    );
     // set a new tast path
     fragment.find(Categories).prop('onSelectCategory')([newTestPath]);
+    const checkbox = fragment.find(Controller).at(1).dive();
+    const input = fragment.find(Controller).at(0).dive();
+    const textarea = fragment.find(Controller).at(2).dive();
     // change task status
-    fragment.find(Checkbox).simulate(
+    checkbox.simulate(
       'change',
       {
         target: {
@@ -76,7 +79,8 @@ describe('Unit test of edit task modal', () => {
         },
       },
     );
-    fragment.find(Checkbox).simulate(
+
+    checkbox.simulate(
       'change',
       {
         target: {
@@ -84,8 +88,9 @@ describe('Unit test of edit task modal', () => {
         },
       },
     );
+
     // change task title
-    fragment.find(Input).simulate(
+    input.simulate(
       'change',
       {
         target: {
@@ -93,8 +98,9 @@ describe('Unit test of edit task modal', () => {
         },
       },
     );
+
     // change task description
-    fragment.find(TextArea).simulate(
+    textarea.simulate(
       'change',
       {
         target: {
@@ -106,7 +112,7 @@ describe('Unit test of edit task modal', () => {
     const oldPathParams = getOldPathParams(oldPath.split('-'));
     const newPath = (`${newTestPath}-tasks`).split('-');
     const newPathParam = '';
-    fragment.find(Modal).prop('onOk')();
+    await fragment.find(Form).prop('onSubmit')();
 
     expect(startEditTaskProcess).toHaveBeenCalledWith({
       newPath,
@@ -118,5 +124,28 @@ describe('Unit test of edit task modal', () => {
       isFinished: newTasksStatus,
       location: {},
     });
+  });
+
+  it('dialog should be closable', async () => {
+    const testFun = jest.fn();
+    const fragment = shallow(
+      <WithoutWrapper
+        taskTitle={taskTitle}
+        description={description}
+        isFinished
+        oldPath={oldPath}
+        handleOk={() => {}}
+        visible
+        handleCancel={testFun}
+        store={dataStore}
+        dispatch={() => {}}
+        location={{}}
+      />,
+    );
+
+    await act(async () => {
+      fragment.find(Modal).prop('onCancel')();
+    });
+    expect(testFun).toHaveBeenCalled();
   });
 });

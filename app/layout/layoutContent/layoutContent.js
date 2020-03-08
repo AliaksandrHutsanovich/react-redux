@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Filters from './filtersElems';
 import { AddForm } from '../../reusableComponents';
 import { Tasks } from './tasks';
+import OPERATION_TITLES from '../../constants';
 
 import styles from './layoutContent.css';
 
@@ -17,7 +18,7 @@ const LayoutContent = (props) => {
 
   return (
     <div className={isDisplayed ? styles.layoutContent : styles.none}>
-      <AddForm url={url} placeholder="Add new task" />
+      <AddForm url={url} placeholder={OPERATION_TITLES.ADD_NEW_TASK} />
       <Filters showDone={showDone} searchKey={searchKey} />
       <Tasks {...props} />
     </div>

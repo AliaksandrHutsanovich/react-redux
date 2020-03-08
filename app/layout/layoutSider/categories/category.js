@@ -2,6 +2,7 @@ import React from 'react';
 import { Icon } from 'antd';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import OPERATION_TITLES from '../../../constants';
 import { ChangingDataDialog } from '../../../reusableComponents';
 
 import styles from './category.css';
@@ -87,7 +88,8 @@ class Category extends React.Component {
           handleOk={this.handleAddModalOk}
           handleCancel={this.handleAddModalCancel}
           path={path}
-          operationTitle="Add new subcategory"
+          operationTitle={OPERATION_TITLES.ADD_NEW_SUBCATEGORY}
+          formId={`addNewSubCategory-${title}`}
         />
         <ChangingDataDialog
           visible={editModalVisible}
@@ -95,7 +97,8 @@ class Category extends React.Component {
           handleCancel={this.handleEditModalCancel}
           path={path}
           title={title}
-          operationTitle="Edit category"
+          operationTitle={OPERATION_TITLES.EDIT_CATEGORY}
+          formId={`editCategory-${title}`}
         />
         <ChangingDataDialog
           visible={deleteModalVisible}
@@ -103,7 +106,7 @@ class Category extends React.Component {
           handleCancel={this.handleDeleteModalCancel}
           path={path}
           title={title}
-          operationTitle="Delete category"
+          operationTitle={OPERATION_TITLES.DELETE_CATEGORY}
         />
       </div>
     );

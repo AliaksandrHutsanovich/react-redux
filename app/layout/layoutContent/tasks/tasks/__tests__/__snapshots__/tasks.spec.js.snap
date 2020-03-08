@@ -8,14 +8,14 @@ exports[`Unit test of tasks component shallow render test of tasks component 1`]
     dataSource={
       Array [
         Object {
-          "Description": "draw",
+          "description": "draw",
           "index": 0,
           "isFinished": true,
           "location": Object {},
           "title": "graph",
         },
         Object {
-          "Description": "count",
+          "description": "count",
           "index": 1,
           "isFinished": true,
           "location": Object {},

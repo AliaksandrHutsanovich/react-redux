@@ -25,6 +25,7 @@ exports[`Unit test of Category component Full render test 1`] = `
     type="delete"
   />
   <Connect(Component)
+    formId="addNewSubCategory-My category"
     handleCancel={[Function]}
     handleOk={[Function]}
     operationTitle="Add new subcategory"
@@ -32,6 +33,7 @@ exports[`Unit test of Category component Full render test 1`] = `
     visible={false}
   />
   <Connect(Component)
+    formId="editCategory-My category"
     handleCancel={[Function]}
     handleOk={[Function]}
     operationTitle="Edit category"

@@ -5,6 +5,7 @@ import {
   addToUnDo,
   editTaskRevive,
   switchContentDisplay,
+  clearReDo,
 } from '../../actions/actions';
 import { getEntityByPath } from '../../selectors/selectorsForEntities';
 import editTaskWatcher, { editTaskGen } from '../editTask';
@@ -31,7 +32,6 @@ describe('every saga should work step by step', () => {
     task.newPathParam = 1;
     task.oldPath = ['categories', 1, 'tasks'];
     task.oldPathParam = 2;
-    task.description = task.Description;
     task.titlePrimary = 'new title of this task';
     task.descriptionPrimary = 'new description of this task';
     task.locationPrimary = Map({});
@@ -53,6 +53,11 @@ describe('every saga should work step by step', () => {
       action.payload.oldPathParam,
       action.payload.newPathParam,
     );
+
+    it('should dispatch action to clear redo', () => {
+      expect(gen.next().value)
+        .toEqual(put(clearReDo()));
+    });
 
     it('should take selector', () => {
       expect(gen.next().value.SELECT.selector.toString())

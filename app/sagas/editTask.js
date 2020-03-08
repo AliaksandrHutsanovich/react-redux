@@ -4,6 +4,7 @@ import {
   addToUnDo,
   editTaskRevive,
   switchContentDisplay,
+  clearReDo,
 } from '../actions';
 import { getEntityByPath } from '../selectors';
 
@@ -19,6 +20,7 @@ export function* editTaskGen({
     newPathParam,
   },
 }) {
+  yield put(clearReDo());
   const task = yield select(
     getEntityByPath(
       oldPath,

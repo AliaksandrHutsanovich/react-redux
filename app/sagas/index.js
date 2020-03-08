@@ -8,3 +8,5 @@ export { default as editTaskWatcher } from './editTask';
 export { default as editTaskStatusWatcher } from './editTaskStatus';
 export { default as redoOperationWatcher } from './redoOperation';
 export { default as undoOperationWatcher } from './undoOperation';
+export { default as validate } from './validate';
+export { default as execute, sagaMiddleware } from './execute';

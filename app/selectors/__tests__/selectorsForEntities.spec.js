@@ -36,7 +36,6 @@ describe('getEntityByPath', () => {
       titlePrimary: argsConfig.title,
       descriptionPrimary: argsConfig.description,
       isFinishedValuePrimary: argsConfig.isFinished,
-      Description: 'count',
       description: 'count',
       isFinished: true,
       title: 'counting',

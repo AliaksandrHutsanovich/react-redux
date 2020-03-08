@@ -18,7 +18,7 @@ const WorldMap = ({
   url,
   task: {
     title,
-    Description,
+    description,
     isFinished,
     location = {},
   },
@@ -35,12 +35,12 @@ const WorldMap = ({
         oldPathParam,
         newPathParam: '',
         title,
-        description: Description,
+        description,
         isFinished,
         location: e.latlng,
       }));
     }
-  }, [Description, dispatch, isFinished, title, oldPath, oldPathParam]);
+  }, [description, dispatch, isFinished, title, oldPath, oldPathParam]);
 
   return (
     <Map
@@ -64,7 +64,7 @@ WorldMap.propTypes = {
   url: PropTypes.string.isRequired,
   task: PropTypes.shape({
     title: PropTypes.string,
-    Description: PropTypes.string,
+    description: PropTypes.string,
     isFinished: PropTypes.bool,
     location: PropTypes.shape({
       lat: PropTypes.number,
@@ -80,9 +80,9 @@ WorldMap.defaultProps = {
   },
 };
 
-const mapStateToProps = (state) => ({
-  url: state.contentDisplay.get('url') || '',
-  task: getTaskByUrl(state.contentDisplay.get('url'))(state.actionReducers).toObject(),
+const mapStateToProps = ({ contentDisplay, actionReducers }) => ({
+  url: contentDisplay.get('url') || '',
+  task: getTaskByUrl(contentDisplay.get('url'))(actionReducers).toObject(),
 });
 
 export default connect(mapStateToProps)(memo(WorldMap));

@@ -6,7 +6,7 @@ import Task from '../task';
 const TaskItem = ({
   index,
   title,
-  Description,
+  description,
   isFinished,
   location,
   url,
@@ -17,7 +17,7 @@ const TaskItem = ({
       index={index}
       url={url}
       title={title}
-      description={Description}
+      description={description}
       isFinished={isFinished}
       location={location}
       isOutlined={chosenUrl === url.replace('/', '') + '-tasks-' + index}
@@ -28,7 +28,7 @@ const TaskItem = ({
 TaskItem.propTypes = {
   index: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
-  Description: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
   isFinished: PropTypes.bool.isRequired,
   location: PropTypes.shape({}).isRequired,
   url: PropTypes.string.isRequired,

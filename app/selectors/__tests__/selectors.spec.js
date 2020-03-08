@@ -22,7 +22,7 @@ describe('selectors', () => {
   it('function getTaskByUrl should return proper value', () => {
     const task = {
       title: 'integral',
-      Description: 'find',
+      description: 'find',
       isFinished: false,
       location: {},
     };

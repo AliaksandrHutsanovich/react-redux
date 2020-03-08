@@ -1,8 +1,15 @@
 import { takeEvery, put, select } from 'redux-saga/effects';
-import { addCategory, deleteCategory, addToUnDo } from '../actions';
+import {
+  addCategory,
+  deleteCategory,
+  addToUnDo,
+  clearReDo,
+} from '../actions';
 import { getCategoryPath } from '../selectors';
 
 export function* addCategoryGen({ payload: { title } }) {
+  yield put(clearReDo());
+
   yield put(addCategory({ title }));
   const path = yield select(getCategoryPath);
   yield put(addToUnDo({

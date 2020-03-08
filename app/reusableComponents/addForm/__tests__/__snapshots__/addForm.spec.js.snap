@@ -1,26 +1,99 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Unit tests of add form component full render test 1`] = `
-<div
+<form
+  autoComplete="off"
   className="formWrapper"
+  name="addCategoryForm"
+  onBlur={[Function]}
+  onSubmit={[Function]}
 >
-  <Input
-    className="input"
-    onChange={[Function]}
-    placeholder="Add new category"
-    type="text"
-    value=""
+  <Controller
+    as={
+      <Input
+        className="input"
+        placeholder="Add new category"
+        type="text"
+      />
+    }
+    control={
+      Object {
+        "defaultValuesRef": Object {
+          "current": Object {},
+        },
+        "errorsRef": Object {
+          "current": Object {},
+        },
+        "fieldArrayNamesRef": Object {
+          "current": Set {},
+        },
+        "fieldsRef": Object {
+          "current": Object {},
+        },
+        "formState": Object {
+          "dirty": false,
+          "dirtyFields": Set {},
+          "isSubmitted": false,
+          "isSubmitting": false,
+          "isValid": false,
+          "submitCount": 0,
+          "touched": Object {},
+        },
+        "getValues": [Function],
+        "isDirtyRef": Object {
+          "current": false,
+        },
+        "mode": Object {
+          "isOnBlur": false,
+          "isOnSubmit": true,
+        },
+        "reValidateMode": Object {
+          "isReValidateOnBlur": false,
+          "isReValidateOnSubmit": false,
+        },
+        "readFormStateRef": Object {
+          "current": Object {
+            "dirty": false,
+            "dirtyFields": false,
+            "isSubmitted": true,
+            "isSubmitting": false,
+            "isValid": false,
+            "submitCount": false,
+            "touched": false,
+          },
+        },
+        "register": [Function],
+        "removeFieldEventListener": [Function],
+        "resetFieldArrayFunctionRef": Object {
+          "current": Object {},
+        },
+        "setValue": [Function],
+        "touchedFieldsRef": Object {
+          "current": Object {},
+        },
+        "triggerValidation": [Function],
+        "unregister": [Function],
+        "watchFieldArrayRef": Object {
+          "current": Object {},
+        },
+      }
+    }
+    name="title"
+    rules={
+      Object {
+        "required": "This is required",
+      }
+    }
   />
   <Button
     block={false}
     className="button"
     ghost={false}
-    htmlType="button"
+    htmlType="submit"
     loading={false}
-    onClick={[Function]}
     type="primary"
   >
     Add
   </Button>
-</div>
+</form>
 `;

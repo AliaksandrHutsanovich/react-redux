@@ -56,8 +56,11 @@ const Tasks = ({
   );
 };
 
-const mapStateToProps = (state, props) => ({
-  tasks: state.actionReducers
+const mapStateToProps = ({
+  actionReducers,
+  contentDisplay,
+}, props) => ({
+  tasks: actionReducers
     .getIn((props.match.url.replace('/', '') + '-tasks').split('-'))
     .toArray()
     .map(
@@ -66,7 +69,7 @@ const mapStateToProps = (state, props) => ({
         (location) => location.toObject(),
       ).toObject(),
     ),
-  chosenUrl: state.contentDisplay.get('url'),
+  chosenUrl: contentDisplay.get('url'),
 });
 
 Tasks.propTypes = {

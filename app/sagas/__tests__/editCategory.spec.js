@@ -1,6 +1,11 @@
 import { takeEvery, put, select } from 'redux-saga/effects';
 import { Map } from 'immutable';
-import { editCategory, addToUnDo, editCategoryRevive } from '../../actions/actions';
+import {
+  editCategory,
+  addToUnDo,
+  editCategoryRevive,
+  clearReDo,
+} from '../../actions/actions';
 import { getEntity } from '../../selectors/selectorsForEntities';
 import editCategoryWatcher, { editCategoryGen } from '../editCategory';
 import { initialState } from '../../reducers/states/initialState';
@@ -32,6 +37,11 @@ describe('every saga should work step by step', () => {
       action.payload.pathParam,
       action.payload.title,
     );
+
+    it('should dispatch action to clear redo', () => {
+      expect(gen.next().value)
+        .toEqual(put(clearReDo()));
+    });
 
     it('should take selector', () => {
       expect(gen.next().value.SELECT.selector.toString())

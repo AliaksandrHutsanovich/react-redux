@@ -80,11 +80,11 @@ class AppView extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = ({ contentDisplay, filters, ...state }) => ({
   urls: getUrls(state),
-  showDone: state.filters.get('showDone'),
-  searchKey: state.filters.get('searchKey'),
-  isDisplayed: state.contentDisplay.get('isDisplayed'),
+  showDone: filters.get('showDone'),
+  searchKey: filters.get('searchKey'),
+  isDisplayed: contentDisplay.get('isDisplayed'),
 });
 
 AppView.defaultProps = {

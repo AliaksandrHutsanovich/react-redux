@@ -16,13 +16,13 @@ exports[`Unit tests for tree of categories full render test 1`] = `
               "tasks": Immutable.List [
                 Immutable.Map {
                   "title": "integral",
-                  "Description": "find",
+                  "description": "find",
                   "isFinished": false,
                   "location": Immutable.Map {},
                 },
                 Immutable.Map {
                   "title": "different",
-                  "Description": "find",
+                  "description": "find",
                   "isFinished": false,
                   "location": Immutable.Map {},
                 },
@@ -35,13 +35,13 @@ exports[`Unit tests for tree of categories full render test 1`] = `
               "tasks": Immutable.List [
                 Immutable.Map {
                   "title": "table",
-                  "Description": "constit",
+                  "description": "constit",
                   "isFinished": true,
                   "location": Immutable.Map {},
                 },
                 Immutable.Map {
                   "title": "multi",
-                  "Description": "count",
+                  "description": "count",
                   "isFinished": false,
                   "location": Immutable.Map {},
                 },
@@ -52,13 +52,13 @@ exports[`Unit tests for tree of categories full render test 1`] = `
           "tasks": Immutable.List [
             Immutable.Map {
               "title": "graph",
-              "Description": "draw",
+              "description": "draw",
               "isFinished": true,
               "location": Immutable.Map {},
             },
             Immutable.Map {
               "title": "counting",
-              "Description": "count",
+              "description": "count",
               "isFinished": true,
               "location": Immutable.Map {},
             },
@@ -77,13 +77,13 @@ exports[`Unit tests for tree of categories full render test 1`] = `
                   "tasks": Immutable.List [
                     Immutable.Map {
                       "title": "peoples",
-                      "Description": "study",
+                      "description": "study",
                       "isFinished": true,
                       "location": Immutable.Map {},
                     },
                     Immutable.Map {
                       "title": "capitals",
-                      "Description": "study",
+                      "description": "study",
                       "isFinished": false,
                       "location": Immutable.Map {},
                     },
@@ -94,13 +94,13 @@ exports[`Unit tests for tree of categories full render test 1`] = `
               "tasks": Immutable.List [
                 Immutable.Map {
                   "title": "polit",
-                  "Description": "study",
+                  "description": "study",
                   "isFinished": false,
                   "location": Immutable.Map {},
                 },
                 Immutable.Map {
                   "title": "mountain",
-                  "Description": "study",
+                  "description": "study",
                   "isFinished": false,
                   "location": Immutable.Map {},
                 },
@@ -111,13 +111,13 @@ exports[`Unit tests for tree of categories full render test 1`] = `
           "tasks": Immutable.List [
             Immutable.Map {
               "title": "map",
-              "Description": "study",
+              "description": "study",
               "isFinished": false,
               "location": Immutable.Map {},
             },
             Immutable.Map {
               "title": "drawing",
-              "Description": "draw",
+              "description": "draw",
               "isFinished": false,
               "location": Immutable.Map {},
             },

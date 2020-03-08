@@ -1,7 +1,12 @@
 import { takeEvery, put, select } from 'redux-saga/effects';
 import { Map } from 'immutable';
 import addTaskWatcher, { addTaskGen } from '../addTask';
-import { addTask, deleteTask, addToUnDo } from '../../actions/actions';
+import {
+  addTask,
+  deleteTask,
+  addToUnDo,
+  clearReDo,
+} from '../../actions/actions';
 import { initialState } from '../../reducers/states/initialState';
 import { getTaskPath } from '../../selectors/selectorsForPaths';
 
@@ -26,6 +31,11 @@ describe('every saga should work step by step', () => {
       },
     };
     const gen = addTaskGen(action);
+
+    it('should dispatch action to clear redo', () => {
+      expect(gen.next().value)
+        .toEqual(put(clearReDo()));
+    });
 
     it('should dispatch action to add new task', () => {
       expect(gen.next().value)

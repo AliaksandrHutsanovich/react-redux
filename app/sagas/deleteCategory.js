@@ -1,8 +1,14 @@
 import { takeEvery, put, select } from 'redux-saga/effects';
-import { deleteCategory, addToUnDo, insertCategory } from '../actions';
+import {
+  deleteCategory,
+  addToUnDo,
+  insertCategory,
+  clearReDo,
+} from '../actions';
 import { getEntity } from '../selectors';
 
 export function* deleteCategoryGen({ payload: { path, pathParam } }) {
+  yield put(clearReDo());
   const category = yield select(getEntity(path, pathParam));
   yield put(deleteCategory({ path, pathParam }));
   yield put(addToUnDo({

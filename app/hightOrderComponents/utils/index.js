@@ -4,4 +4,6 @@ export {
   caseClickHandlers,
   kindsOfAddActions,
   typesCategoryOperation,
+  formNameByPlaceholder,
+  getPathByOperation,
 } from './utils';

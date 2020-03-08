@@ -1,3 +1,4 @@
+import OPERATION_TITLES from '../../constants';
 import {
   incrementInAll,
   startAddCategoryProcess,
@@ -19,42 +20,48 @@ export const getSavingPath = (path) => {
 };
 
 export const caseClickHandlers = {
-  'Add new category': (dispatch, value, addAction) => {
-    if (value) {
-      dispatch(addAction({ title: value }));
-    }
+  [OPERATION_TITLES.ADD_NEW_CATEGORY]: (dispatch, title, addAction) => {
+    dispatch(addAction({ title }));
   },
-  'Add new task': (dispatch, value, addAction, url) => {
-    if (value) {
-      dispatch(incrementInAll());
-      dispatch(addAction({ path: (url.replace('/', '') + '-tasks').split('-'), title: value }));
-    }
+  [OPERATION_TITLES.ADD_NEW_TASK]: (dispatch, title, addAction, url) => {
+    dispatch(incrementInAll());
+    dispatch(addAction({ path: (url.replace('/', '') + '-tasks').split('-'), title }));
   },
 };
 
 export const kindsOfAddActions = {
-  'Add new category': startAddCategoryProcess,
-  'Add new task': startAddTaskProcess,
+  [OPERATION_TITLES.ADD_NEW_CATEGORY]: startAddCategoryProcess,
+  [OPERATION_TITLES.ADD_NEW_TASK]: startAddTaskProcess,
+};
+
+export const getPathByOperation = {
+  [OPERATION_TITLES.ADD_NEW_SUBCATEGORY]: (path) => (path + '-subCategories').split('-'),
+  [OPERATION_TITLES.EDIT_CATEGORY]: (path) => getSavingPath(path),
 };
 
 export const typesCategoryOperation = {
-  'Add new subcategory': (path, dispatch, value) => {
+  [OPERATION_TITLES.ADD_NEW_SUBCATEGORY]: (path, dispatch, value) => {
     dispatch(startAddSubCategoryProcess({
       path: (path + '-subCategories').split('-'),
       title: value,
     }));
   },
-  'Edit category': (path, dispatch, value, title) => {
+  [OPERATION_TITLES.EDIT_CATEGORY]: (path, dispatch, value, title) => {
     dispatch(startEditCategoryProcess({
       path: getSavingPath(path),
       pathParam: getPathParam(path).param,
       title: value || title,
     }));
   },
-  'Delete category': (path, dispatch) => {
+  [OPERATION_TITLES.DELETE_CATEGORY]: (path, dispatch) => {
     dispatch(startDeleteCategoryProcess({
       path: getSavingPath(path),
       pathParam: getPathParam(path).param,
     }));
   },
+};
+
+export const formNameByPlaceholder = {
+  [OPERATION_TITLES.ADD_NEW_CATEGORY]: 'addCategoryForm',
+  [OPERATION_TITLES.ADD_NEW_TASK]: 'addTaskForm',
 };

@@ -3,21 +3,97 @@
 exports[`Unit tests of add changing data dialog full render test 1`] = `
 <Modal
   confirmLoading={false}
+  footer={Array []}
   maskTransitionName="fade"
   okType="primary"
   onCancel={[Function]}
-  onOk={[Function]}
   title="Add new subcategory"
   transitionName="zoom"
   visible={true}
   width={520}
 >
-  <Input
-    className="modalInput"
-    onChange={[Function]}
-    placeholder="input category title"
-    type="text"
-    value=""
-  />
+  <form
+    autoComplete="off"
+    onSubmit={[Function]}
+  >
+    <Controller
+      as={
+        <Input
+          className="modalInput"
+          placeholder="input category title"
+          type="text"
+        />
+      }
+      control={
+        Object {
+          "defaultValuesRef": Object {
+            "current": Object {},
+          },
+          "errorsRef": Object {
+            "current": Object {},
+          },
+          "fieldArrayNamesRef": Object {
+            "current": Set {},
+          },
+          "fieldsRef": Object {
+            "current": Object {},
+          },
+          "formState": Object {
+            "dirty": false,
+            "dirtyFields": Set {},
+            "isSubmitted": false,
+            "isSubmitting": false,
+            "isValid": false,
+            "submitCount": 0,
+            "touched": Object {},
+          },
+          "getValues": [Function],
+          "isDirtyRef": Object {
+            "current": false,
+          },
+          "mode": Object {
+            "isOnBlur": false,
+            "isOnSubmit": true,
+          },
+          "reValidateMode": Object {
+            "isReValidateOnBlur": false,
+            "isReValidateOnSubmit": false,
+          },
+          "readFormStateRef": Object {
+            "current": Object {
+              "dirty": false,
+              "dirtyFields": false,
+              "isSubmitted": true,
+              "isSubmitting": false,
+              "isValid": false,
+              "submitCount": false,
+              "touched": false,
+            },
+          },
+          "register": [Function],
+          "removeFieldEventListener": [Function],
+          "resetFieldArrayFunctionRef": Object {
+            "current": Object {},
+          },
+          "setValue": [Function],
+          "touchedFieldsRef": Object {
+            "current": Object {},
+          },
+          "triggerValidation": [Function],
+          "unregister": [Function],
+          "watchFieldArrayRef": Object {
+            "current": Object {},
+          },
+        }
+      }
+      defaultValue="category"
+      name="title"
+      rules={
+        Object {
+          "required": "This is required",
+        }
+      }
+    />
+  </form>
 </Modal>
 `;

@@ -39,14 +39,18 @@ HeaderContent.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => {
-  const done = state.countPerсent.get('done');
-  const all = state.countPerсent.get('all');
+const mapStateToProps = ({
+  countPerсent,
+  unDoReducer,
+  reDoReducer,
+}) => {
+  const done = countPerсent.get('done');
+  const all = countPerсent.get('all');
   const percent = all ? (done / all) * 100 : 0;
   return {
     percentage: percent,
-    numUnDoObjs: state.unDoReducer.get('undoOperations').toArray().length,
-    numReDoObjs: state.reDoReducer.get('redoOperations').toArray().length,
+    numUnDoObjs: unDoReducer.get('undoOperations').toArray().length,
+    numReDoObjs: reDoReducer.get('redoOperations').toArray().length,
   };
 };
 

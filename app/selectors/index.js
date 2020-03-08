@@ -13,3 +13,4 @@ export {
   getSubCategoryPath,
   getTaskPath,
 } from './selectorsForPaths';
+export { default as isExist } from './selectorsForValidation';

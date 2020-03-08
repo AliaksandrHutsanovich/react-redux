@@ -2,7 +2,12 @@ import { takeEvery, put, select } from 'redux-saga/effects';
 import { Map } from 'immutable';
 import addSubCategoryWatcher, { addSubCategoryGen } from '../addSubCategory';
 import { getSubCategoryPath } from '../../selectors/selectorsForPaths';
-import { addSubCategory, deleteCategory, addToUnDo } from '../../actions/actions';
+import {
+  addSubCategory,
+  deleteCategory,
+  addToUnDo,
+  clearReDo,
+} from '../../actions/actions';
 import { initialState } from '../../reducers/states/initialState';
 
 describe('every saga should work step by step', () => {
@@ -26,6 +31,11 @@ describe('every saga should work step by step', () => {
       },
     };
     const gen = addSubCategoryGen(action);
+
+    it('should dispatch action to clear redo', () => {
+      expect(gen.next().value)
+        .toEqual(put(clearReDo()));
+    });
 
     it('should dispatch action to add new subcategory', () => {
       expect(gen.next().value)

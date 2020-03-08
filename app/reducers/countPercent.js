@@ -10,10 +10,10 @@ import {
 
 const countPerсent = handleActions({
   [countPercentage]: {
-    next(state, { payload }) {
+    next(state, { payload: { done, all } }) {
       return state
-        .set('done', payload.done)
-        .set('all', payload.all);
+        .set('done', done)
+        .set('all', all);
     },
   },
 

@@ -7,19 +7,20 @@ import React, {
 } from 'react';
 import '!style-loader!css-loader!antd/dist/antd.css'; // eslint-disable-line
 import {
-  Modal, Input, Form, Checkbox, Row, Col,
+  Modal, Input, Form, Checkbox, Row, Col, Typography,
 } from 'antd';
+import { useForm, Controller } from 'react-hook-form';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import treeOfCategories from '../../../../hightOrderComponents';
 import CategoryItem from '../categoryItem';
-import {
-  startEditTaskProcess,
-  clearReDo,
-} from '../../../../actions';
+import { startEditTaskProcess } from '../../../../actions';
 import getStateValue, { getOldPathParams } from '../utils';
+import { validate, execute } from '../../../../sagas';
+import usePrevious, { usePrimaryValuesInForm } from '../../../../hooks';
 
 const { TextArea } = Input;
+const { Text } = Typography;
 export const Categories = treeOfCategories(CategoryItem);
 
 export const EditTaskModal = ({
@@ -33,15 +34,28 @@ export const EditTaskModal = ({
   handleCancel,
   location,
 }) => {
+  const {
+    handleSubmit,
+    control,
+    errors,
+    getValues,
+    reset,
+    setError,
+  } = useForm();
+
   const [selectedPath, setSelectPath] = useState('');
-  const [stateTitle, setStateTitle] = useState('');
-  const [stateDescription, setStateDescription] = useState('');
-  const [stateIsFinished, setStateIsFinished] = useState('');
-  const [isStatusChanged, setIsStatusChanged] = useState('');
 
   const onSelectCategory = (e) => {
     setSelectPath(e[0]);
   };
+
+  const previousVisibleValue = usePrevious(visible);
+
+  usePrimaryValuesInForm(
+    visible,
+    previousVisibleValue,
+    { title: taskTitle, description, isFinished },
+  );
 
   const onSaveTask = useCallback((
     newPath,
@@ -49,98 +63,143 @@ export const EditTaskModal = ({
     oldPathParamProp,
     newPathParam,
     geoLocation,
+    stateTitle,
+    stateDescription,
+    stateIsFinished,
   ) => {
-    dispatch(clearReDo());
+    const isStatusChanged = getValues().isFinished !== isFinished;
     dispatch(startEditTaskProcess({
       newPath,
       oldPath: oldPathProp,
       oldPathParam: oldPathParamProp,
       newPathParam,
-      title: stateTitle || taskTitle,
-      description: stateDescription || description,
-      isFinished: stateIsFinished === '' ? isFinished : getStateValue(stateIsFinished, isStatusChanged, dispatch),
+      title: stateTitle,
+      description: stateDescription,
+      isFinished: getStateValue(stateIsFinished, isStatusChanged, dispatch),
       location: geoLocation,
     }));
-    handleOk();
   }, [
-    description,
     dispatch,
-    handleOk,
     isFinished,
-    isStatusChanged,
-    stateDescription,
-    stateIsFinished,
-    stateTitle,
-    taskTitle,
+    getValues,
   ]);
 
-  const onChangeTaskStatus = useCallback((e) => {
-    if (e.target.checked === isFinished) {
-      setStateIsFinished(e.target.checked);
-      setIsStatusChanged(false);
-    } else {
-      setStateIsFinished(e.target.checked);
-      setIsStatusChanged(true);
-    }
-  }, [isFinished]);
-
-  const onChangeTaskDescription = useCallback((e) => { setStateDescription(e.target.value); }, []);
-
-  const onChangeTaskTitle = useCallback((e) => { setStateTitle(e.target.value); }, []);
+  const handleCloseDialog = () => {
+    handleCancel();
+    reset({
+      title: taskTitle,
+      isFinished,
+      description,
+    });
+  };
 
   const oldPathParams = useMemo(() => getOldPathParams(oldPath.split('-')), [oldPath]);
   const newPath = useMemo(() => (selectedPath ? (selectedPath + '-tasks').split('-') : ''), [selectedPath]);
   const newPathParam = '';
 
-  return (
-    <Modal
-      title="Edit task"
-      visible={visible}
-      onOk={useCallback(() => onSaveTask(
+  const onSubmit = useCallback(async ({
+    title,
+    isFinished: stateIsFinished,
+    description: stateDescription,
+  }) => {
+    const isError = newPath ? await execute(
+      validate, {
+        payload: { path: newPath, title },
+      },
+    ) : await execute(
+      validate, {
+        payload: { path: oldPathParams.oldPath, title },
+      },
+    );
+
+    if ((isError && newPath) || (isError && !newPath && taskTitle !== title)) {
+      setError('title', 'notMatch', 'An item with the same name exists');
+    } else {
+      handleOk();
+      onSaveTask(
         newPath,
         oldPathParams.oldPath,
         oldPathParams.oldPathParam,
         newPathParam,
         location,
-      ), [
-        location,
-        newPath,
-        oldPathParams.oldPath,
-        oldPathParams.oldPathParam,
-        onSaveTask,
-      ])}
-      onCancel={handleCancel}
+        title,
+        stateDescription,
+        stateIsFinished,
+      );
+    }
+  }, [
+    location,
+    newPath,
+    oldPathParams.oldPath,
+    oldPathParams.oldPathParam,
+    onSaveTask,
+    setError,
+    handleOk,
+    taskTitle,
+  ]);
+
+  return (
+    <Modal
+      title="Edit task"
+      visible={visible}
+      onCancel={handleCloseDialog}
       okText="Save changes"
       width="900px"
+      okButtonProps={{
+        htmlType: 'submit',
+        form: `editTaskForm-${taskTitle}`,
+      }}
     >
-      <Form>
+      <Form
+        id={`editTaskForm-${taskTitle}`}
+        autoComplete="off"
+        onSubmit={handleSubmit(onSubmit)}
+        data-testid="edit-task-form"
+      >
         <Row>
           <Col span={12}>
             <Categories onSelectCategory={onSelectCategory} />
           </Col>
           <Col span={12}>
             <Row>
-              <Input
+              <Controller
+                as={(<Input placeholder="Input task title" />)}
+                rules={{ required: 'This is required' }}
+                control={control}
+                name="title"
                 defaultValue={taskTitle}
-                placeholder="Input task title"
-                onChange={onChangeTaskTitle}
-                required
+              />
+              {
+                errors.title
+                  && (
+                    <Text
+                      type="danger"
+                    >
+                      {errors.title.message}
+                    </Text>
+                  )
+              }
+            </Row>
+            <Row>
+              <Controller
+                as={(<Checkbox>Done</Checkbox>)}
+                control={control}
+                name="isFinished"
+                valueName="checked"
+                defaultValue={isFinished}
               />
             </Row>
             <Row>
-              <Checkbox
-                defaultChecked={isFinished}
-                onChange={useCallback((e) => onChangeTaskStatus(e), [onChangeTaskStatus])}
-              >
-                Done
-              </Checkbox>
-            </Row>
-            <Row>
-              <TextArea
-                rows={4}
+              <Controller
+                as={(
+                  <TextArea
+                    rows={4}
+                    placeholder="Input type description"
+                  />
+                )}
+                control={control}
+                name="description"
                 defaultValue={description}
-                onChange={onChangeTaskDescription}
-                placeholder="Input type description"
               />
             </Row>
           </Col>

@@ -9,13 +9,13 @@ export const initialState = {
           tasks: [
             {
               title: 'integral',
-              Description: 'find',
+              description: 'find',
               isFinished: false,
               location: {},
             },
             {
               title: 'different',
-              Description: 'find',
+              description: 'find',
               isFinished: false,
               location: {},
             },
@@ -27,13 +27,13 @@ export const initialState = {
           tasks: [
             {
               title: 'table',
-              Description: 'constit',
+              description: 'constit',
               isFinished: true,
               location: {},
             },
             {
               title: 'multi',
-              Description: 'count',
+              description: 'count',
               isFinished: false,
               location: {},
             },
@@ -43,13 +43,13 @@ export const initialState = {
       tasks: [
         {
           title: 'graph',
-          Description: 'draw',
+          description: 'draw',
           isFinished: true,
           location: {},
         },
         {
           title: 'counting',
-          Description: 'count',
+          description: 'count',
           isFinished: true,
           location: {},
         },
@@ -67,13 +67,13 @@ export const initialState = {
               tasks: [
                 {
                   title: 'peoples',
-                  Description: 'study',
+                  description: 'study',
                   isFinished: true,
                   location: {},
                 },
                 {
                   title: 'capitals',
-                  Description: 'study',
+                  description: 'study',
                   isFinished: false,
                   location: {},
                 },
@@ -83,13 +83,13 @@ export const initialState = {
           tasks: [
             {
               title: 'polit',
-              Description: 'study',
+              description: 'study',
               isFinished: false,
               location: {},
             },
             {
               title: 'mountain',
-              Description: 'study',
+              description: 'study',
               isFinished: false,
               location: {},
             },
@@ -99,13 +99,13 @@ export const initialState = {
       tasks: [
         {
           title: 'map',
-          Description: 'study',
+          description: 'study',
           isFinished: false,
           location: {},
         },
         {
           title: 'drawing',
-          Description: 'draw',
+          description: 'draw',
           isFinished: false,
           location: {},
         },

@@ -1,7 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { act } from 'react-dom/test-utils';
 import configureStore from 'redux-mock-store';
-import { Modal, Input } from 'antd';
+import { Controller } from 'react-hook-form';
+import { Modal } from 'antd';
 import ChangingDataDialog, { ChangingDataDialog as WithoutWrapper } from '../changingDataModal';
 import {
   startAddSubCategoryProcess,
@@ -22,42 +24,44 @@ const dispatch = jest.fn();
 //     'Add new subcategory': jest.fn(),
 //   },
 // }));
+jest.mock('../../../sagas/execute', () => () => false);
 
 describe('Unit tests of add changing data dialog', () => {
   const store = mockStore(initialState);
   store.dispatch = dispatch;
-  const Component = shallow(
-    <ChangingDataDialog
-      store={store}
-      title="category"
-      visible
-      handleOk={() => {}}
-      handleCancel={() => {}}
-      path="/category"
-      operationTitle="Add new subcategory"
-    />,
-  );
 
-  const fragment = Component.shallow();
   it('full render test', () => {
+    const Component = shallow(
+      <ChangingDataDialog
+        store={store}
+        title="category"
+        visible
+        handleOk={() => {}}
+        handleCancel={() => {}}
+        path="/category"
+        operationTitle="Add new subcategory"
+      />,
+    );
+    const fragment = Component.shallow();
     expect(fragment).toMatchSnapshot();
   });
 
-  const withoutWrapper1 = shallow(
-    <WithoutWrapper
-      store={store}
-      title="category"
-      visible
-      handleOk={() => {}}
-      handleCancel={() => {}}
-      path="/category"
-      operationTitle="Add new subcategory"
-      dispatch={dispatch}
-    />,
-  );
+  it('input should be changable for adding new subcategory', async () => {
+    const withoutWrapper1 = shallow(
+      <WithoutWrapper
+        store={store}
+        title="category"
+        visible
+        handleOk={() => {}}
+        handleCancel={() => {}}
+        path="/category"
+        operationTitle="Add new subcategory"
+        dispatch={dispatch}
+      />,
+    );
 
-  it('input should be changable for adding new subcategory', () => {
-    withoutWrapper1.find(Input).simulate(
+    const input = withoutWrapper1.find(Controller).dive();
+    input.simulate(
       'change',
       {
         target: {
@@ -66,7 +70,9 @@ describe('Unit tests of add changing data dialog', () => {
       },
     );
 
-    withoutWrapper1.find(Modal).prop('onOk')();
+    await act(async () => {
+      withoutWrapper1.find('form').prop('onSubmit')();
+    });
     expect(dispatch)
       .toHaveBeenCalledWith(startAddSubCategoryProcess({
         path: ('/category-subCategories').split('-'),
@@ -74,21 +80,22 @@ describe('Unit tests of add changing data dialog', () => {
       }));
   });
 
-  const withoutWrapper2 = shallow(
-    <WithoutWrapper
-      store={store}
-      title="sub-category"
-      visible
-      handleOk={() => {}}
-      handleCancel={() => {}}
-      path="/category-0-subCategories-0"
-      operationTitle="Edit category"
-      dispatch={dispatch}
-    />,
-  );
+  it('input should be changable for editting category', async () => {
+    const withoutWrapper2 = shallow(
+      <WithoutWrapper
+        store={store}
+        title="sub-category"
+        visible
+        handleOk={() => {}}
+        handleCancel={() => {}}
+        path="/category-0-subCategories-0"
+        operationTitle="Edit category"
+        dispatch={dispatch}
+      />,
+    );
 
-  it('input should be changable for editting category', () => {
-    withoutWrapper2.find(Input).simulate(
+    const input = withoutWrapper2.find(Controller).dive();
+    input.simulate(
       'change',
       {
         target: {
@@ -97,7 +104,9 @@ describe('Unit tests of add changing data dialog', () => {
       },
     );
 
-    withoutWrapper2.find(Modal).prop('onOk')();
+    await act(async () => {
+      withoutWrapper2.find('form').prop('onSubmit')();
+    });
     expect(dispatch)
       .toHaveBeenCalledWith(startEditCategoryProcess({
         path: getSavingPath('/category-0-subCategories-0'),
@@ -106,20 +115,22 @@ describe('Unit tests of add changing data dialog', () => {
       }));
   });
 
-  const withoutWrapper3 = shallow(
-    <WithoutWrapper
-      store={store}
-      visible
-      handleOk={() => {}}
-      handleCancel={() => {}}
-      path="/category-0-subCategories-0"
-      operationTitle="Delete category"
-      dispatch={dispatch}
-    />,
-  );
+  it('category should be deletable', async () => {
+    const withoutWrapper3 = shallow(
+      <WithoutWrapper
+        store={store}
+        visible
+        handleOk={() => {}}
+        handleCancel={() => {}}
+        path="/category-0-subCategories-0"
+        operationTitle="Delete category"
+        dispatch={dispatch}
+      />,
+    );
 
-  it('category should be deletable', () => {
-    withoutWrapper3.find(Modal).prop('onOk')();
+    await act(async () => {
+      withoutWrapper3.find(Modal).prop('onOk')();
+    });
     expect(dispatch)
       .toHaveBeenCalledWith(startDeleteCategoryProcess({
         path: getSavingPath('/category-0-subCategories-0'),

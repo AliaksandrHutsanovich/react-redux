@@ -19,8 +19,8 @@ const getSubCategories = (key, subCategories) => {
   return arrSubCategories;
 };
 
-export const getCategories = (state) => {
-  const categories = state.actionReducers.get('categories').toArray();
+export const getCategories = ({ actionReducers }) => {
+  const categories = actionReducers.get('categories').toArray();
 
   const arrCategories = categories.map((category, num) => {
     const categoryElem = category.toObject();
@@ -83,8 +83,8 @@ export const getCategories = (state) => {
 //   };
 // };
 
-export const getUrls = (state) => {
-  const categories = state.actionReducers.get('categories').toArray();
+export const getUrls = ({ actionReducers }) => {
+  const categories = actionReducers.get('categories').toArray();
     const urls = [];
 
     const getTasksFun = (key, subCategories) => {

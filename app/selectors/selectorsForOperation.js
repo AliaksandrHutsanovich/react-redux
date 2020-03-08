@@ -1,24 +1,24 @@
-export const getUndoOperation = (state) => state
-  .unDoReducer.getIn([
+export const getUndoOperation = ({ unDoReducer }) => unDoReducer
+  .getIn([
     'undoOperations',
-    state.unDoReducer
+    unDoReducer
       .get('undoOperations').toArray().length - 1,
     'undoOperation',
   ]);
 
-export const getRedoOperation = (state) => state
-  .reDoReducer.getIn([
+export const getRedoOperation = ({ reDoReducer }) => reDoReducer
+  .getIn([
     'redoOperations',
-    state.reDoReducer
+    reDoReducer
       .get('redoOperations').toArray().length - 1,
     'redoOperation',
   ]);
 
-export const getObjFromUndoOperation = (state) => {
-  const obj = state.unDoReducer
+export const getObjFromUndoOperation = ({ unDoReducer }) => {
+  const obj = unDoReducer
     .getIn([
       'undoOperations',
-      state.unDoReducer
+      unDoReducer
         .get('undoOperations').toArray().length - 1,
       'obj',
     ]);
@@ -26,11 +26,11 @@ export const getObjFromUndoOperation = (state) => {
   return obj;
 };
 
-export const getObjFromRedoOperation = (state) => {
-  const obj = state.reDoReducer
+export const getObjFromRedoOperation = ({ reDoReducer }) => {
+  const obj = reDoReducer
     .getIn([
       'redoOperations',
-      state.reDoReducer
+      reDoReducer
         .get('redoOperations').toArray().length - 1,
       'obj',
     ]);
@@ -54,16 +54,16 @@ export const getObjFromRedoOperation = (state) => {
 //     'redoOperation',
 //   ]);
 
-export const getObjWrapperFromUndoOperation = (state) => state
-  .unDoReducer.getIn([
+export const getObjWrapperFromUndoOperation = ({ unDoReducer }) => unDoReducer
+  .getIn([
     'undoOperations',
-    state.unDoReducer.get('undoOperations')
+    unDoReducer.get('undoOperations')
       .toArray().length - 1,
   ]);
 
-export const getObjWrapperFromRedoOperation = (state) => state
-  .reDoReducer.getIn([
+export const getObjWrapperFromRedoOperation = ({ reDoReducer }) => reDoReducer
+  .getIn([
     'redoOperations',
-    state.reDoReducer.get('redoOperations')
+    reDoReducer.get('redoOperations')
       .toArray().length - 1,
   ]);

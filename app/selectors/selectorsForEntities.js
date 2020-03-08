@@ -1,5 +1,5 @@
-export const getEntity = (path, pathParam, titlePrimary) => (state) => ({
-  ...state.actionReducers.getIn([...path, pathParam]).toObject(),
+export const getEntity = (path, pathParam, titlePrimary) => ({ actionReducers }) => ({
+  ...actionReducers.getIn([...path, pathParam]).toObject(),
   path,
   pathParam,
   titlePrimary,
@@ -14,9 +14,8 @@ export const getEntityByPath = (
   location,
   oldPathParam,
   newPathParam,
-) => (state) => {
-  let entity = state
-    .actionReducers
+) => ({ actionReducers }) => {
+  let entity = actionReducers
     .getIn([...oldPath, oldPathParam])
     .toObject();
 
@@ -26,7 +25,7 @@ export const getEntityByPath = (
       newPath: oldPath,
       newPathParam: oldPathParam,
       oldPath: newPath,
-      oldPathParam: newPathParam || state.actionReducers.getIn(newPath).toArray().length,
+      oldPathParam: newPathParam || actionReducers.getIn(newPath).toArray().length,
     };
   } else {
     entity = {
@@ -39,7 +38,6 @@ export const getEntityByPath = (
   }
   return {
     ...entity,
-    description: entity.Description,
     titlePrimary: newTitle,
     descriptionPrimary: newDescription,
     isFinishedValuePrimary: newIsFinishedValue,

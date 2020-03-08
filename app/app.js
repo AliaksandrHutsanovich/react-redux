@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
-import createSagaMiddleware from 'redux-saga';
 import { Provider } from 'react-redux';
 import { all } from 'redux-saga/effects';
 import { composeWithDevTools } from 'redux-devtools-extension';
@@ -18,9 +17,9 @@ import {
   editTaskStatusWatcher,
   redoOperationWatcher,
   undoOperationWatcher,
+  sagaMiddleware,
 } from './sagas';
 
-const sagaMiddleware = createSagaMiddleware();
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(sagaMiddleware)));
 
 function* rootSaga() {

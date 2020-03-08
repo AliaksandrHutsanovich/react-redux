@@ -4,18 +4,26 @@ exports[`Unit test of edit task modal Full render test of edit task modal 1`] = 
 <Modal
   confirmLoading={false}
   maskTransitionName="fade"
+  okButtonProps={
+    Object {
+      "form": "editTaskForm-Buy a new stearing wheal",
+      "htmlType": "submit",
+    }
+  }
   okText="Save changes"
   okType="primary"
   onCancel={[Function]}
-  onOk={[Function]}
   title="Edit task"
   transitionName="zoom"
   visible={true}
   width="900px"
 >
   <Form
+    autoComplete="off"
     colon={true}
+    data-testid="edit-task-form"
     hideRequiredMark={false}
+    id="editTaskForm-Buy a new stearing wheal"
     layout="horizontal"
     onSubmit={[Function]}
   >
@@ -35,33 +43,236 @@ exports[`Unit test of edit task modal Full render test of edit task modal 1`] = 
         <Row
           gutter={0}
         >
-          <Input
+          <Controller
+            as={
+              <Input
+                placeholder="Input task title"
+                type="text"
+              />
+            }
+            control={
+              Object {
+                "defaultValuesRef": Object {
+                  "current": Object {},
+                },
+                "errorsRef": Object {
+                  "current": Object {},
+                },
+                "fieldArrayNamesRef": Object {
+                  "current": Set {},
+                },
+                "fieldsRef": Object {
+                  "current": Object {},
+                },
+                "formState": Object {
+                  "dirty": false,
+                  "dirtyFields": Set {},
+                  "isSubmitted": false,
+                  "isSubmitting": false,
+                  "isValid": false,
+                  "submitCount": 0,
+                  "touched": Object {},
+                },
+                "getValues": [Function],
+                "isDirtyRef": Object {
+                  "current": false,
+                },
+                "mode": Object {
+                  "isOnBlur": false,
+                  "isOnSubmit": true,
+                },
+                "reValidateMode": Object {
+                  "isReValidateOnBlur": false,
+                  "isReValidateOnSubmit": false,
+                },
+                "readFormStateRef": Object {
+                  "current": Object {
+                    "dirty": false,
+                    "dirtyFields": false,
+                    "isSubmitted": true,
+                    "isSubmitting": false,
+                    "isValid": false,
+                    "submitCount": false,
+                    "touched": false,
+                  },
+                },
+                "register": [Function],
+                "removeFieldEventListener": [Function],
+                "resetFieldArrayFunctionRef": Object {
+                  "current": Object {},
+                },
+                "setValue": [Function],
+                "touchedFieldsRef": Object {
+                  "current": Object {},
+                },
+                "triggerValidation": [Function],
+                "unregister": [Function],
+                "watchFieldArrayRef": Object {
+                  "current": Object {},
+                },
+              }
+            }
             defaultValue="Buy a new stearing wheal"
-            onChange={[Function]}
-            placeholder="Input task title"
-            required={true}
-            type="text"
+            name="title"
+            rules={
+              Object {
+                "required": "This is required",
+              }
+            }
           />
         </Row>
         <Row
           gutter={0}
         >
-          <Checkbox
-            defaultChecked={true}
-            indeterminate={false}
-            onChange={[Function]}
-          >
-            Done
-          </Checkbox>
+          <Controller
+            as={
+              <Checkbox
+                indeterminate={false}
+              >
+                Done
+              </Checkbox>
+            }
+            control={
+              Object {
+                "defaultValuesRef": Object {
+                  "current": Object {},
+                },
+                "errorsRef": Object {
+                  "current": Object {},
+                },
+                "fieldArrayNamesRef": Object {
+                  "current": Set {},
+                },
+                "fieldsRef": Object {
+                  "current": Object {},
+                },
+                "formState": Object {
+                  "dirty": false,
+                  "dirtyFields": Set {},
+                  "isSubmitted": false,
+                  "isSubmitting": false,
+                  "isValid": false,
+                  "submitCount": 0,
+                  "touched": Object {},
+                },
+                "getValues": [Function],
+                "isDirtyRef": Object {
+                  "current": false,
+                },
+                "mode": Object {
+                  "isOnBlur": false,
+                  "isOnSubmit": true,
+                },
+                "reValidateMode": Object {
+                  "isReValidateOnBlur": false,
+                  "isReValidateOnSubmit": false,
+                },
+                "readFormStateRef": Object {
+                  "current": Object {
+                    "dirty": false,
+                    "dirtyFields": false,
+                    "isSubmitted": true,
+                    "isSubmitting": false,
+                    "isValid": false,
+                    "submitCount": false,
+                    "touched": false,
+                  },
+                },
+                "register": [Function],
+                "removeFieldEventListener": [Function],
+                "resetFieldArrayFunctionRef": Object {
+                  "current": Object {},
+                },
+                "setValue": [Function],
+                "touchedFieldsRef": Object {
+                  "current": Object {},
+                },
+                "triggerValidation": [Function],
+                "unregister": [Function],
+                "watchFieldArrayRef": Object {
+                  "current": Object {},
+                },
+              }
+            }
+            defaultValue={true}
+            name="isFinished"
+            valueName="checked"
+          />
         </Row>
         <Row
           gutter={0}
         >
-          <TextArea
+          <Controller
+            as={
+              <TextArea
+                placeholder="Input type description"
+                rows={4}
+              />
+            }
+            control={
+              Object {
+                "defaultValuesRef": Object {
+                  "current": Object {},
+                },
+                "errorsRef": Object {
+                  "current": Object {},
+                },
+                "fieldArrayNamesRef": Object {
+                  "current": Set {},
+                },
+                "fieldsRef": Object {
+                  "current": Object {},
+                },
+                "formState": Object {
+                  "dirty": false,
+                  "dirtyFields": Set {},
+                  "isSubmitted": false,
+                  "isSubmitting": false,
+                  "isValid": false,
+                  "submitCount": 0,
+                  "touched": Object {},
+                },
+                "getValues": [Function],
+                "isDirtyRef": Object {
+                  "current": false,
+                },
+                "mode": Object {
+                  "isOnBlur": false,
+                  "isOnSubmit": true,
+                },
+                "reValidateMode": Object {
+                  "isReValidateOnBlur": false,
+                  "isReValidateOnSubmit": false,
+                },
+                "readFormStateRef": Object {
+                  "current": Object {
+                    "dirty": false,
+                    "dirtyFields": false,
+                    "isSubmitted": true,
+                    "isSubmitting": false,
+                    "isValid": false,
+                    "submitCount": false,
+                    "touched": false,
+                  },
+                },
+                "register": [Function],
+                "removeFieldEventListener": [Function],
+                "resetFieldArrayFunctionRef": Object {
+                  "current": Object {},
+                },
+                "setValue": [Function],
+                "touchedFieldsRef": Object {
+                  "current": Object {},
+                },
+                "triggerValidation": [Function],
+                "unregister": [Function],
+                "watchFieldArrayRef": Object {
+                  "current": Object {},
+                },
+              }
+            }
             defaultValue="This task is very important"
-            onChange={[Function]}
-            placeholder="Input type description"
-            rows={4}
+            name="description"
           />
         </Row>
       </Col>

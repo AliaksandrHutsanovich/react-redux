@@ -1,8 +1,14 @@
 import { takeEvery, put, select } from 'redux-saga/effects';
-import { addTask, deleteTask, addToUnDo } from '../actions';
+import {
+  addTask,
+  deleteTask,
+  addToUnDo,
+  clearReDo,
+} from '../actions';
 import { getTaskPath } from '../selectors';
 
 export function* addTaskGen({ payload: { path, title } }) {
+  yield put(clearReDo());
   yield put(addTask({ path, title }));
   const pathParam = yield select(getTaskPath(path));
   yield put(addToUnDo({

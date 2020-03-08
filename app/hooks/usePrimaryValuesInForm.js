@@ -12,9 +12,8 @@ const usePrimaryValuesInForm = (prop, prevProp, primaryValues) => {
     reset,
   } = useForm();
   if (prop && prop !== prevProp && !getEqualityToInitial(getValues(), primaryValues)) {
-    return reset(primaryValues);
+    reset(primaryValues);
   }
-  return null;
 };
 
 export default usePrimaryValuesInForm;

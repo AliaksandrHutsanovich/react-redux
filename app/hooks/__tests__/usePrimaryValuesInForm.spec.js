@@ -1,14 +1,17 @@
+import { useForm } from 'react-hook-form';
 import usePrimaryValuesInForm from '../usePrimaryValuesInForm';
 
-jest.mock('react-hook-form', () => ({
-  useForm: () => ({
-    getValues: () => ({ title: 'a' }),
-    reset: jest.fn().mockReturnValue(2),
-  }),
-}));
+jest.mock('react-hook-form');
 
 describe('test hook usePrimaryValuesInForm', () => {
+  const testFn = jest.fn();
+  const returnValue = {
+    getValues: () => ({ title: 'a' }),
+    reset: testFn,
+  };
+  useForm.mockReturnValue(returnValue);
   it('reset should be called', () => {
-    expect(usePrimaryValuesInForm(true, false, { title: 'b' })).toEqual(2);
+    usePrimaryValuesInForm(true, false, { title: 'b' });
+    expect(testFn).toHaveBeenCalled();
   });
 });

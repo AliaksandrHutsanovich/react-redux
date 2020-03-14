@@ -26,24 +26,24 @@ exports[`Unit test of Category component Full render test 1`] = `
   />
   <Connect(Component)
     formId="addNewSubCategory-My category"
-    handleCancel={[Function]}
-    handleOk={[Function]}
+    onCancel={[Function]}
+    onOk={[Function]}
     operationTitle="Add new subcategory"
     path="category-0"
     visible={false}
   />
   <Connect(Component)
     formId="editCategory-My category"
-    handleCancel={[Function]}
-    handleOk={[Function]}
+    onCancel={[Function]}
+    onOk={[Function]}
     operationTitle="Edit category"
     path="category-0"
     title="My category"
     visible={false}
   />
   <Connect(Component)
-    handleCancel={[Function]}
-    handleOk={[Function]}
+    onCancel={[Function]}
+    onOk={[Function]}
     operationTitle="Delete category"
     path="category-0"
     title="My category"

@@ -36,8 +36,8 @@ describe('Unit tests of add changing data dialog', () => {
         store={store}
         title="category"
         visible
-        handleOk={() => {}}
-        handleCancel={() => {}}
+        onOk={() => { }}
+        onCancel={() => { }}
         path="/category"
         operationTitle="Add new subcategory"
       />,
@@ -52,8 +52,8 @@ describe('Unit tests of add changing data dialog', () => {
         store={store}
         title="category"
         visible
-        handleOk={() => {}}
-        handleCancel={() => {}}
+        onOk={() => { }}
+        onCancel={() => { }}
         path="/category"
         operationTitle="Add new subcategory"
         dispatch={dispatch}
@@ -86,8 +86,8 @@ describe('Unit tests of add changing data dialog', () => {
         store={store}
         title="sub-category"
         visible
-        handleOk={() => {}}
-        handleCancel={() => {}}
+        onOk={() => { }}
+        onCancel={() => { }}
         path="/category-0-subCategories-0"
         operationTitle="Edit category"
         dispatch={dispatch}
@@ -120,8 +120,8 @@ describe('Unit tests of add changing data dialog', () => {
       <WithoutWrapper
         store={store}
         visible
-        handleOk={() => {}}
-        handleCancel={() => {}}
+        onOk={() => { }}
+        onCancel={() => { }}
         path="/category-0-subCategories-0"
         operationTitle="Delete category"
         dispatch={dispatch}

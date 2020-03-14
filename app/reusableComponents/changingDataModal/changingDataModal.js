@@ -18,7 +18,7 @@ import {
 import renderForm from './renderForm';
 import OPERATION_TITLES from '../../constants';
 import FOOTER_BY_OPERATION_TITLE from './constants';
-import usePrevious from '../../hooks';
+import usePrevious, { usePrimaryValuesInForm } from '../../hooks';
 
 const renderByOpearionTitle = {
   [OPERATION_TITLES.DELETE_CATEGORY]: (title) => <p>{title}</p>,
@@ -38,18 +38,16 @@ const getComponentActionsByOperationTitle = (handler) => ({
   },
 });
 
-export const ChangingDataDialog = (props) => {
-  const {
-    dispatch,
-    title: categoryTitle,
-    visible,
-    handleOk,
-    handleCancel,
-    path,
-    operationTitle,
-    formId,
-  } = props;
-
+export const ChangingDataDialog = ({
+  dispatch,
+  title: categoryTitle,
+  visible,
+  onOk,
+  onCancel,
+  path,
+  operationTitle,
+  formId,
+}) => {
   const {
     handleSubmit,
     control,
@@ -59,12 +57,15 @@ export const ChangingDataDialog = (props) => {
     getValues,
   } = useForm();
   const previousVisibleValue = usePrevious(visible);
-  if (
-    operationTitle === OPERATION_TITLES.EDIT_CATEGORY
-    && getValues().title !== categoryTitle && visible
-    && visible !== previousVisibleValue
-  ) {
-    reset({ title: categoryTitle });
+
+  if (operationTitle === OPERATION_TITLES.EDIT_CATEGORY) {
+    usePrimaryValuesInForm(  //eslint-disable-line
+      visible,
+      previousVisibleValue,
+      { title: getValues().title },
+      { title: categoryTitle },
+      reset,
+    );
   }
 
   const handleClickOk = useCallback(async (value) => {
@@ -72,7 +73,7 @@ export const ChangingDataDialog = (props) => {
     if (isError) {
       setError('title', 'notMatch', 'An item with the same name exists');
     } else {
-      handleOk();
+      onOk();
       typesCategoryOperation[operationTitle](path, dispatch, value, categoryTitle);
       resetOnOkByTypeOperation[operationTitle](reset);
     }
@@ -82,14 +83,14 @@ export const ChangingDataDialog = (props) => {
     path,
     categoryTitle,
     setError,
-    handleOk,
+    onOk,
     reset,
   ]);
 
   const handleCloseOnCancel = useCallback((title) => {
-    handleCancel();
+    onCancel();
     resetOnCancelByTypeOperation[operationTitle](reset, title);
-  }, [handleCancel, operationTitle, reset]);
+  }, [onCancel, operationTitle, reset]);
 
   return (
     <Modal
@@ -133,9 +134,9 @@ ChangingDataDialog.propTypes = {
   dispatch: PropTypes.func.isRequired,
   title: PropTypes.string,
   visible: PropTypes.bool.isRequired,
-  handleOk: PropTypes.func.isRequired,
+  onOk: PropTypes.func.isRequired,
   path: PropTypes.string.isRequired,
-  handleCancel: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired,
   operationTitle: PropTypes.string.isRequired,
   formId: PropTypes.string,
 };

@@ -19,20 +19,20 @@ describe('Unit tests of add changing data dialog for errors', () => {
   store.dispatch = dispatch;
   const testFn = jest.fn();
 
-    const withoutWrapper1 = shallow(
-      <WithoutWrapper
-        store={store}
-        title="category"
-        visible
-        handleOk={() => {}}
-        handleCancel={testFn}
-        path="/category"
-        operationTitle="Add new subcategory"
-        dispatch={dispatch}
-      />,
-    );
+  const withoutWrapper1 = shallow(
+    <WithoutWrapper
+      store={store}
+      title="category"
+      visible
+      onOk={() => { }}
+      onCancel={testFn}
+      path="/category"
+      operationTitle="Add new subcategory"
+      dispatch={dispatch}
+    />,
+  );
 
-    const input = withoutWrapper1.find(Controller).dive();
+  const input = withoutWrapper1.find(Controller).dive();
 
   it('full render test', async () => {
     input.simulate(

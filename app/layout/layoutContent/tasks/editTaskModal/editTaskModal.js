@@ -54,7 +54,9 @@ export const EditTaskModal = ({
   usePrimaryValuesInForm(
     visible,
     previousVisibleValue,
+    getValues(),
     { title: taskTitle, description, isFinished },
+    reset,
   );
 
   const onSaveTask = useCallback((

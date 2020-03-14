@@ -59,6 +59,7 @@
     "jest": "24.8.0",
     "jest-css-modules": "2.1.0",
     "jest-enzyme": "7.1.0",
+    "@types/jest": "^25.1.1",
     "postcss-flexbugs-fixes": "^4.1.0",
     "postcss-loader": "^3.0.0",
     "postcss-modules-values": "^3.0.0",

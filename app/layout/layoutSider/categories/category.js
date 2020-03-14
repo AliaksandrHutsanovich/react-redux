@@ -26,53 +26,26 @@ class Category extends React.Component {
     || nextState.deleteModalVisible !== deleteModalVisible);
   }
 
-  handleAddModalOk = () => {
+  toggleAddModal = () => {
+    const { addModalVisible } = this.state;
     this.setState({
-      addModalVisible: false,
+      addModalVisible: !addModalVisible,
     });
-  }
+  };
 
-  handleEditModalOk = () => {
+  toggleEditModal = () => {
+    const { editModalVisible } = this.state;
     this.setState({
-      editModalVisible: false,
+      editModalVisible: !editModalVisible,
     });
-  }
+  };
 
-  handleDeleteModalOk = () => {
+  toggleDeleteModal = () => {
+    const { deleteModalVisible } = this.state;
     this.setState({
-      deleteModalVisible: false,
+      deleteModalVisible: !deleteModalVisible,
     });
-  }
-
-  handleAddModalCancel = () => {
-    this.setState({
-      addModalVisible: false,
-    });
-  }
-
-  handleEditModalCancel = () => {
-    this.setState({
-      editModalVisible: false,
-    });
-  }
-
-  handleDeleteModalCancel = () => {
-    this.setState({
-      deleteModalVisible: false,
-    });
-  }
-
-  showAddModal = () => {
-    this.setState({ addModalVisible: true });
-  }
-
-  showEditModal = () => {
-    this.setState({ editModalVisible: true });
-  }
-
-  showDeleteModal = () => {
-    this.setState({ deleteModalVisible: true });
-  }
+  };
 
   render() {
     const { addModalVisible, editModalVisible, deleteModalVisible } = this.state;
@@ -80,21 +53,21 @@ class Category extends React.Component {
     return (
       <div>
         <span><Link to={`/${path}`}>{title}</Link></span>
-        <Icon className={styles.itemButton} type="edit" onClick={this.showEditModal} />
-        <Icon className={styles.itemButton} type="plus" onClick={this.showAddModal} />
-        <Icon className={styles.itemButton} type="delete" onClick={this.showDeleteModal} />
+        <Icon className={styles.itemButton} type="edit" onClick={this.toggleEditModal} />
+        <Icon className={styles.itemButton} type="plus" onClick={this.toggleAddModal} />
+        <Icon className={styles.itemButton} type="delete" onClick={this.toggleDeleteModal} />
         <ChangingDataDialog
           visible={addModalVisible}
-          handleOk={this.handleAddModalOk}
-          handleCancel={this.handleAddModalCancel}
+          onOk={this.toggleAddModal}
+          onCancel={this.toggleAddModal}
           path={path}
           operationTitle={OPERATION_TITLES.ADD_NEW_SUBCATEGORY}
           formId={`addNewSubCategory-${title}`}
         />
         <ChangingDataDialog
           visible={editModalVisible}
-          handleOk={this.handleEditModalOk}
-          handleCancel={this.handleEditModalCancel}
+          onOk={this.toggleEditModal}
+          onCancel={this.toggleEditModal}
           path={path}
           title={title}
           operationTitle={OPERATION_TITLES.EDIT_CATEGORY}
@@ -102,8 +75,8 @@ class Category extends React.Component {
         />
         <ChangingDataDialog
           visible={deleteModalVisible}
-          handleOk={this.handleDeleteModalOk}
-          handleCancel={this.handleDeleteModalCancel}
+          onOk={this.toggleDeleteModal}
+          onCancel={this.toggleDeleteModal}
           path={path}
           title={title}
           operationTitle={OPERATION_TITLES.DELETE_CATEGORY}

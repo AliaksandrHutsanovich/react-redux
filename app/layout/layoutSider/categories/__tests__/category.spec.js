@@ -33,33 +33,33 @@ describe('Unit test of Category component', () => {
     fragment.find(Icon).at(2).simulate('click');
     expect(fragment.find(ChangingDataDialog).at(2).prop('visible')).toBeTruthy();
 
-    fragment.find(ChangingDataDialog).at(2).prop('handleOk')();
+    fragment.find(ChangingDataDialog).at(2).prop('onOk')();
     expect(fragment.find(ChangingDataDialog).at(2).prop('visible')).toBeFalsy();
 
     fragment.find(Icon).at(2).simulate('click');
-    fragment.find(ChangingDataDialog).at(2).prop('handleCancel')();
+    fragment.find(ChangingDataDialog).at(2).prop('onCancel')();
     expect(fragment.find(ChangingDataDialog).at(2).prop('visible')).toBeFalsy();
   });
   it('Edit modal should be openable and closable', () => {
     fragment.find(Icon).at(0).simulate('click');
     expect(fragment.find(ChangingDataDialog).at(1).prop('visible')).toBeTruthy();
 
-    fragment.find(ChangingDataDialog).at(1).prop('handleOk')();
+    fragment.find(ChangingDataDialog).at(1).prop('onOk')();
     expect(fragment.find(ChangingDataDialog).at(1).prop('visible')).toBeFalsy();
 
     fragment.find(Icon).at(0).simulate('click');
-    fragment.find(ChangingDataDialog).at(1).prop('handleCancel')();
+    fragment.find(ChangingDataDialog).at(1).prop('onCancel')();
     expect(fragment.find(ChangingDataDialog).at(1).prop('visible')).toBeFalsy();
   });
   it('Add modal should be openable and closable', () => {
     fragment.find(Icon).at(1).simulate('click');
     expect(fragment.find(ChangingDataDialog).at(0).prop('visible')).toBeTruthy();
 
-    fragment.find(ChangingDataDialog).at(0).prop('handleOk')();
+    fragment.find(ChangingDataDialog).at(0).prop('onOk')();
     expect(fragment.find(ChangingDataDialog).at(0).prop('visible')).toBeFalsy();
 
     fragment.find(Icon).at(1).simulate('click');
-    fragment.find(ChangingDataDialog).at(0).prop('handleCancel')();
+    fragment.find(ChangingDataDialog).at(0).prop('onCancel')();
     expect(fragment.find(ChangingDataDialog).at(0).prop('visible')).toBeFalsy();
   });
 });

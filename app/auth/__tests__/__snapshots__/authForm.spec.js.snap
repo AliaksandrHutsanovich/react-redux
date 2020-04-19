@@ -1,0 +1,208 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AuthForm /> Log in form should render properly 1`] = `
+<Form
+  autoComplete="off"
+  colon={true}
+  hideRequiredMark={false}
+  labelCol={
+    Object {
+      "lg": Object {
+        "span": 6,
+      },
+      "md": Object {
+        "span": 6,
+      },
+      "sm": Object {
+        "span": 6,
+      },
+      "xs": Object {
+        "span": 6,
+      },
+    }
+  }
+  layout="horizontal"
+  onSubmit={[Function]}
+  wrapperCol={
+    Object {
+      "lg": Object {
+        "offset": 2,
+        "span": 8,
+      },
+      "md": Object {
+        "offset": 2,
+        "span": 8,
+      },
+      "sm": Object {
+        "offset": 2,
+        "span": 8,
+      },
+      "xs": Object {
+        "offset": 2,
+        "span": 8,
+      },
+    }
+  }
+>
+  <FormItem
+    hasFeedback={false}
+    key="0"
+    label="E-mail"
+  >
+    <Input
+      data-__field={
+        Object {
+          "name": "email",
+        }
+      }
+      data-__meta={
+        Object {
+          "name": "email",
+          "originalProps": Object {
+            "type": "text",
+          },
+          "ref": null,
+          "rules": Array [
+            Object {
+              "message": "The input is not valid E-mail!",
+              "type": "email",
+            },
+            Object {
+              "message": "Please input your E-mail!",
+              "required": true,
+            },
+          ],
+          "trigger": "onChange",
+          "validate": Array [
+            Object {
+              "rules": Array [
+                Object {
+                  "message": "The input is not valid E-mail!",
+                  "type": "email",
+                },
+                Object {
+                  "message": "Please input your E-mail!",
+                  "required": true,
+                },
+              ],
+              "trigger": Array [
+                "onChange",
+              ],
+            },
+          ],
+          "valuePropName": "value",
+        }
+      }
+      id="register_email"
+      onChange={[Function]}
+      type="text"
+    />
+  </FormItem>
+  <FormItem
+    hasFeedback={true}
+    key="1"
+    label="Password"
+  >
+    <Password
+      action="click"
+      data-__field={
+        Object {
+          "name": "password",
+        }
+      }
+      data-__meta={
+        Object {
+          "name": "password",
+          "originalProps": Object {
+            "action": "click",
+            "inputPrefixCls": "ant-input",
+            "prefixCls": "ant-input-password",
+            "visibilityToggle": true,
+          },
+          "ref": null,
+          "rules": Array [
+            Object {
+              "message": "Please input your password!",
+              "required": true,
+            },
+          ],
+          "trigger": "onChange",
+          "validate": Array [
+            Object {
+              "rules": Array [
+                Object {
+                  "message": "Please input your password!",
+                  "required": true,
+                },
+              ],
+              "trigger": Array [
+                "onChange",
+              ],
+            },
+          ],
+          "valuePropName": "value",
+        }
+      }
+      id="register_password"
+      inputPrefixCls="ant-input"
+      onChange={[Function]}
+      prefixCls="ant-input-password"
+      visibilityToggle={true}
+    />
+  </FormItem>
+  <FormItem
+    hasFeedback={false}
+    wrapperCol={
+      Object {
+        "sm": Object {
+          "offset": 8,
+          "span": 16,
+        },
+        "xs": Object {
+          "offset": 0,
+          "span": 24,
+        },
+      }
+    }
+  >
+    <Button
+      block={false}
+      ghost={false}
+      htmlType="submit"
+      loading={false}
+      type="primary"
+    >
+      Log in
+    </Button>
+  </FormItem>
+</Form>
+`;
+
+exports[`<AuthForm /> Sign up form should render properly 1`] = `
+<AuthForm
+  form={
+    Object {
+      "getFieldDecorator": [Function],
+      "getFieldError": [Function],
+      "getFieldInstance": [Function],
+      "getFieldProps": [Function],
+      "getFieldValue": [Function],
+      "getFieldsError": [Function],
+      "getFieldsValue": [Function],
+      "isFieldTouched": [Function],
+      "isFieldValidating": [Function],
+      "isFieldsTouched": [Function],
+      "isFieldsValidating": [Function],
+      "isSubmitting": [Function],
+      "resetFields": [Function],
+      "setFields": [Function],
+      "setFieldsInitialValue": [Function],
+      "setFieldsValue": [Function],
+      "submit": [Function],
+      "validateFields": [Function],
+      "validateFieldsAndScroll": [Function],
+    }
+  }
+  type="signUp"
+/>
+`;
